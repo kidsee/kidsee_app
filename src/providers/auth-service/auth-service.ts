@@ -22,7 +22,7 @@ export class AuthServiceProvider {
       return Observable.throw("Please insert credentials");
     } else {
       return Observable.create(observer => {
-        // At this point make a request to your backend to make a real check!
+        //TODO At this point make a request to your backend to make a real check!
         let access = (credentials.password === "pass" && credentials.email === "email");
         this.currentUser = new User('Martijn', 'mcoomans@avans.nl');
         observer.next(access);
@@ -35,7 +35,7 @@ export class AuthServiceProvider {
     if (credentials.email === null || credentials.password === null) {
       return Observable.throw("Please insert credentials");
     } else {
-      // At this point store the credentials to your backend!
+      //TODO At this point store the credentials to your backend!
       return Observable.create(observer => {
         observer.next(true);
         observer.complete();
