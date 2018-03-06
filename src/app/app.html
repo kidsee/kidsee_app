@@ -14,7 +14,7 @@
                 </ion-avatar>
                 <!--TODO change placeholder with actual username-->
                 <h2>username</h2>
-                <h3 (click)="profile()">Ga naar profiel</h3>
+                <h3 (click)="profile()" menuClose="left">Ga naar profiel</h3>
             </ion-list-header>
             <ion-item detail-none>Meldingen</ion-item>
             <ion-item detail-none>Beloningen</ion-item>
@@ -25,4 +25,4 @@
     </ion-content>
 
 </ion-menu>
-<ion-nav #myNav [root]="rootPage"#content swipeBackEnabled="false"></ion-nav>
+<ion-nav #myNav [root]="rootPage" #content swipeBackEnabled="true"></ion-nav>
