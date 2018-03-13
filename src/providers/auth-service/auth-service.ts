@@ -1,32 +1,40 @@
-import { HttpClient } from '@angular/common/http';
+import { Http, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-
-export class User {
-  name: string;
-  email: string;
-
-  constructor(name: string, email: string) {
-    this.name = name;
-    this.email = email;
-  }
-}
+import { Datastore } from '../datastore/datastore';
+import { User } from '../../app/models/user';
+import * as bcrypt from 'bcryptjs';
 
 @Injectable()
 export class AuthServiceProvider {
+  currentUserId: number;
+  currentToken: string;
   currentUser: User;
 
+  constructor(private datastore: Datastore, private http: Http) { }
+
   public login(credentials) {
-    if (credentials.email === null || credentials.password === null) {
+    if (credentials.identification === null || credentials.password === null) {
       return Observable.throw("Please insert credentials");
     } else {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/vnd.api+json');
       return Observable.create(observer => {
-        //TODO At this point make a request to your backend to make a real check!
-        let access = (credentials.password === "pass" && credentials.email === "email");
-        this.currentUser = new User('Martijn', 'mcoomans@avans.nl');
-        observer.next(access);
-        observer.complete();
+        
+            this.http.post('http://174.138.7.193/api/tokens', {
+              username: credentials.identification,
+              password: credentials.password,
+            }, {headers: headers}).map(res => res.json())
+            .subscribe(data => {
+              this.currentUserId = data.meta.id;
+              this.currentToken = data.meta.token;
+
+              let access = (this.currentUserId != null && this.currentToken != null);
+              
+              observer.next(access);
+              observer.complete();
+            });
       });
     }
   }
@@ -35,7 +43,22 @@ export class AuthServiceProvider {
     if (credentials.email === null || credentials.password === null) {
       return Observable.throw("Please insert credentials");
     } else {
-      //TODO At this point store the credentials to your backend!
+      bcrypt.genSalt(10, function(err, salt) {
+        bcrypt.hash(credentials.password, salt, (err, hash) => {
+          let user = this.datastore.createRecord(User, {
+            username: credentials.username,
+            email: credentials.email,
+            password: hash,
+            birthdate: credentials.birthdate
+          });
+
+          user.save().subscribe(
+            (user: User) => {
+              console.log(user);
+            }
+          );
+        });
+      });
       return Observable.create(observer => {
         observer.next(true);
         observer.complete();
@@ -43,13 +66,33 @@ export class AuthServiceProvider {
     }
   }
 
-  public getUserInfo(): User {
-    return this.currentUser;
+  public getUserId() {
+    return this.currentUserId;
+  }
+
+  public getUser() {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/vnd.api+json');
+    headers.append('Authorization', 'Bearer '+this.currentToken);
+
+    return new Promise((resolve,reject) => { 
+      this.datastore.findRecord(User, String(this.currentUserId), null, headers).subscribe(
+        (user: User) => {
+          resolve(user);
+        }
+      );
+    });
+    
+  }
+
+  public getToken() {
+    return this.currentToken;
   }
 
   public logout() {
     return Observable.create(observer => {
-      this.currentUser = null;
+      this.currentUserId = null;
+      this.currentToken = null;
       observer.next(true);
       observer.complete();
     });

@@ -9,7 +9,7 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 })
 export class RegisterPage {
   createSuccess = false;
-  registerCredentials = { email: '', password: '' };
+  registerCredentials = { email: '', password: '', birthdate: '', username: '' };
  
   constructor(private nav: NavController, private auth: AuthServiceProvider, private alertCtrl: AlertController) { }
  
@@ -44,4 +44,5 @@ export class RegisterPage {
     });
     alert.present();
   }
+
 }

@@ -11,9 +11,17 @@
       <ion-row>
         <ion-col>
           <ion-list inset>
-            
+            <ion-item>
+              <ion-input type="text" placeholder="Gebruikersnaam" name="username" [(ngModel)]="registerCredentials.username" required></ion-input>
+            </ion-item>
+
             <ion-item>
               <ion-input type="text" placeholder="E-mail" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Date</ion-label>
+              <ion-datetime displayFormat="DD - MM - YYYY" name="birthdate" [(ngModel)]="registerCredentials.birthdate"></ion-datetime>
             </ion-item>
             
             <ion-item>

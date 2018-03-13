@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 /**
  * Generated class for the PersonalPage page.
@@ -14,12 +15,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'personal.html',
 })
 export class PersonalPage {
+  currentUser: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthServiceProvider) { }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PersonalPage');
+    let self = this;
+    this.auth.getUser().then((res) => {
+      self.currentUser = res;
+    });  
   }
 
 }
