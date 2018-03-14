@@ -9,7 +9,7 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 })
 export class RegisterPage {
   createSuccess = false;
-  registerCredentials = { email: '', password: '' };
+  registerCredentials = { email: '', password: '', birthdate: '', username: '' };
  
   constructor(private nav: NavController, private auth: AuthServiceProvider, private alertCtrl: AlertController) { }
  
@@ -18,6 +18,7 @@ export class RegisterPage {
       if (success) {
         this.createSuccess = true;
         this.showPopup("Success", "Account created.");
+        this.nav.push('LoginPage');
       } else {
         this.showPopup("Error", "Problem creating account.");
       }
@@ -44,4 +45,5 @@ export class RegisterPage {
     });
     alert.present();
   }
+
 }

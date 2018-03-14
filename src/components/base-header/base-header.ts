@@ -9,12 +9,8 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 export class BaseHeaderComponent {
 
   @Input() title: string;
-  username = '';
-  email = '';
   constructor(private nav: NavController, private auth: AuthServiceProvider, private app: App) {
-    let info = this.auth.getUserInfo();
-    this.username = info['name'];
-    this.email = info['email'];
+    
   }
  
   public logout() {
