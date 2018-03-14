@@ -16,7 +16,7 @@ export class AuthServiceProvider {
 
   public login(credentials) {
     if (credentials.identification === null || credentials.password === null) {
-      return Observable.throw("Please insert credentials");
+      return Observable.throw("Vul je gegevens in!");
     } else {
       let headers = new Headers();
       headers.append('Content-Type', 'application/vnd.api+json');
@@ -26,7 +26,8 @@ export class AuthServiceProvider {
               username: credentials.identification,
               password: credentials.password,
             }, {headers: headers}).map(res => res.json())
-            .subscribe(data => {
+            .subscribe(
+              (data) => {
               this.currentUserId = data.meta.id;
               this.currentToken = data.meta.token;
 
@@ -34,28 +35,35 @@ export class AuthServiceProvider {
               
               observer.next(access);
               observer.complete();
+            },
+            (err) => {
+              observer.error("De combinatie van gebruikersnaam/email en wachtwoord is fout");
             });
       });
     }
   }
 
   public register(credentials) {
+    let self = this;
     if (credentials.email === null || credentials.password === null) {
-      return Observable.throw("Please insert credentials");
-    } else {
+      return Observable.throw("Alstublieft, vul je gegevens in!");
+    } else if (credentials.password.length < 8) {
+      console.log(credentials.password.count);
+      return Observable.throw("Het wachtwoord moet minimaal 8 karakters lang zijn.");
+    }
+      else {
       bcrypt.genSalt(10, function(err, salt) {
         bcrypt.hash(credentials.password, salt, (err, hash) => {
-          let user = this.datastore.createRecord(User, {
+          let user = self.datastore.createRecord(User, {
             username: credentials.username,
             email: credentials.email,
             password: hash,
-            birthdate: credentials.birthdate
+            birthdate: credentials.birthdate,
+            avatar: 'https://www.w3schools.com/howto/img_avatar.png'
           });
 
           user.save().subscribe(
-            (user: User) => {
-              console.log(user);
-            }
+            (user: User) => { }
           );
         });
       });
