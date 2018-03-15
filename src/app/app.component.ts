@@ -23,8 +23,7 @@ export class MyApp {
     }
 
     public profile() {
-        //TODO change this with ProfilePage once it exists
-        this.nav.push('RegisterPage');
+        this.nav.push('ProfilePage');
     }
 }
 

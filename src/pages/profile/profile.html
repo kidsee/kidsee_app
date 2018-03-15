@@ -1,0 +1,41 @@
+<base-header title="profiel"></base-header>
+<ion-header>
+    <ion-navbar>
+        <ion-buttons left>
+            <button ion-button icon-only class="custom-back-button" (click)="navCtrl.pop()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title>Profiel</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-list>
+        <ion-list-header>
+            <ion-avatar item-start="">
+                <img src="https://www.w3schools.com/howto/img_avatar.png">
+            </ion-avatar>
+            <a>Aanpassen</a>
+        </ion-list-header>
+        <ion-item>
+            <ion-label floating>Gebruikersnaam</ion-label>
+            <ion-input type="text" name="username" [value]="user?.username" (change)='updateUser($event.target.name,$event.target.value)'></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input type="email" name="email" [value]="user?.email" (change)='updateUser($event.target.name,$event.target.value)'></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Geboortedatum</ion-label>
+            <ion-input displayFormat="dd/mm/yyyy" name="birthdate" [value]="user?.birthdate" (change)='updateUser($event.target.name,$event.target.value)'></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Woonplaats</ion-label>
+            <ion-input type="text" name="city" [value]="user?.city" (change)='updateUser($event.target.name,$event.target.value)'></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Wachtwoord</ion-label>
+            <ion-input type="password" name="password" [value]="user?.password" (change)='updatePassword($event.target.value)'></ion-input>
+        </ion-item>
+    </ion-list>
+</ion-content>

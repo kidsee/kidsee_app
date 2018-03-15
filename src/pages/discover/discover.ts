@@ -18,8 +18,4 @@ export class DiscoverPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DiscoverPage');
-  }
-
 }
