@@ -4,7 +4,6 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {NavController} from "ionic-angular/index";
 
-
 @Component({
     templateUrl: 'app.html'
 })
