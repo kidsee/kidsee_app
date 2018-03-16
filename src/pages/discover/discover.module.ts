@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { DiscoverPage } from './discover';
 import { ComponentsModule } from '../../components/components.module';
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
   declarations: [
@@ -9,7 +10,8 @@ import { ComponentsModule } from '../../components/components.module';
   ],
   imports: [
     IonicPageModule.forChild(DiscoverPage),
-    ComponentsModule
+    ComponentsModule,
+    TranslateModule,
   ],
   exports: [
     DiscoverPage
