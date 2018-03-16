@@ -1,0 +1,7 @@
+install:
+  - npm install -g cordova ionic qunit typescript tslint
+  - npm install
+
+script:
+  - npm run lint
+  - qunit
