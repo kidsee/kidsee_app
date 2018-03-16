@@ -1,4 +1,4 @@
-import { JsonApiModelConfig, JsonApiModel, Attribute, HasMany, BelongsTo } from 'angular2-jsonapi';
+import { JsonApiModelConfig, JsonApiModel, Attribute } from 'angular2-jsonapi';
 
 @JsonApiModelConfig({
     type: 'users'
