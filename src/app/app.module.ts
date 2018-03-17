@@ -12,6 +12,7 @@ import { Datastore } from '../providers/datastore/datastore';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { PostService } from "../providers/post-service/post-service";
 
 @NgModule({
   declarations: [
@@ -41,10 +42,12 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
     Datastore,
-    DatePicker
+    DatePicker,
+    PostService
   ]
 })
-export class AppModule {}
-export function HttpLoaderFactory(http: HttpClient){
+export class AppModule {
+}
+export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
