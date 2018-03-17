@@ -1,22 +1,35 @@
 <base-header title="Persoonlijk"></base-header>
 
 <ion-content padding>
-  <ion-list>
-    <ion-card>
-      <ion-card-header>
-        Header
-      </ion-card-header>
-      <ion-card-content>
-        The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
-      </ion-card-content>
-    </ion-card>
-    <ion-card>
-        <ion-card-header>
-          Header
-        </ion-card-header>
-        <ion-card-content>
-          The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
-        </ion-card-content>
-      </ion-card>
-  </ion-list>
+    <ion-list>
+        <ion-card (click)="post()">
+            <ion-card-header>
+                Jantje
+            </ion-card-header>
+            <ion-card-content>
+                The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
+            </ion-card-content>
+            <button ion-button icon-left clear small>
+                <ion-icon name="text"></ion-icon>
+                <div>2 Comments</div>
+            </button>
+        </ion-card>
+        <ion-card>
+            <ion-card-header>
+                Piet
+            </ion-card-header>
+            <ion-card-content>
+                The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
+            </ion-card-content>
+            <button ion-button icon-left clear small>
+                <ion-icon name="text"></ion-icon>
+                <div>2 Comments</div>
+            </button>
+        </ion-card>
+    </ion-list>
+    <ion-fab bottom right >
+        <button ion-fab color="secondary">
+            <ion-icon name="add-circle"></ion-icon>
+        </button>
+    </ion-fab>
 </ion-content>

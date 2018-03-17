@@ -11,4 +11,8 @@ export class PersonalPage {
 
     constructor(public navCtrl: NavController, public navParams: NavParams) { }
 
+    public post()
+    {
+        this.navCtrl.push('PostPage');
+    }
 }
