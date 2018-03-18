@@ -14,7 +14,7 @@
                 <div>2 Comments</div>
             </button>
         </ion-card>
-        <ion-card>
+        <ion-card (click)="post()">
             <ion-card-header>
                 Piet
             </ion-card-header>
@@ -27,9 +27,9 @@
             </button>
         </ion-card>
     </ion-list>
-    <ion-fab bottom right >
-        <button ion-fab color="secondary">
-            <ion-icon name="add-circle"></ion-icon>
-        </button>
-    </ion-fab>
 </ion-content>
+<ion-fab bottom right >
+    <button ion-fab color="secondary">
+        <ion-icon name="add-circle"></ion-icon>
+    </button>
+</ion-fab>
