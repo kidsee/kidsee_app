@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Post aanmaken</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <form (submit)="save()" #postform="ngForm">
+        <ion-list>
+            <ion-item>
+                <ion-select>
+                <ion-option value="f">St Jan</ion-option>
+                <ion-option value="m">Avans</ion-option>
+            </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-select>
+                    <ion-option value="f">Vraag</ion-option>
+                    <ion-option value="m">Mededeling</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-input placeholder="Titel" required></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input placeholder="Vraag" required></ion-input>
+            </ion-item>
+            <ion-item>
+                <button ion-button class="submit-btn" full type="submit" [disabled]="!postform.form.valid">Vraag!</button>
+            </ion-item>
+        </ion-list>
+    </form>
+</ion-content>

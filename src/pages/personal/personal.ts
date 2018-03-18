@@ -15,4 +15,9 @@ export class PersonalPage {
     {
         this.navCtrl.push('PostPage');
     }
+
+    public createpost()
+    {
+        this.navCtrl.push('CreatepostPage');
+    }
 }
