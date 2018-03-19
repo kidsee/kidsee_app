@@ -23,7 +23,7 @@ export class AuthServiceProvider {
             return Observable.create(observer => {
 
                 this.http.post('http://174.138.7.193/api/tokens', {
-                    username: credentials.identification,
+                    identification: credentials.identification,
                     password: credentials.password,
                 }, {headers: headers}).map(res => res.json())
                     .subscribe(
