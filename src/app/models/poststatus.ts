@@ -1,4 +1,4 @@
-import {Attribute, JsonApiModel, JsonApiModelConfig} from "angular2-jsonapi";
+import { Attribute, JsonApiModel, JsonApiModelConfig } from "angular2-jsonapi";
 
 @JsonApiModelConfig({
     type: 'poststatusses'

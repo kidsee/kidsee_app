@@ -1,8 +1,8 @@
-import { JsonApiModelConfig, JsonApiModel, Attribute } from 'angular2-jsonapi';
+import { JsonApiModelConfig, JsonApiModel, Attribute, HasMany, BelongsTo } from 'angular2-jsonapi';
 import { User } from "./user";
 import { ContentType } from "./contentType";
-import {PostStatus} from "./poststatus";
-import {Comment} from "./comment";
+import { PostStatus } from "./poststatus";
+import { Comment } from "./comment";
 
 @JsonApiModelConfig({
     type: 'posts'
@@ -18,13 +18,13 @@ export class Post extends JsonApiModel {
     @Attribute()
     type: ContentType;
 
-    @Attribute()
+    @BelongsTo()
     user: User;
 
     @Attribute()
     postStatus: PostStatus;
 
-    @Attribute()
+    @HasMany()
     comments: Comment[] = [];
 
     @Attribute()
