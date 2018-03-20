@@ -1,16 +1,13 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import {Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
-import {NavController} from "ionic-angular/index";
 
 @Component({
     templateUrl: 'app.html'
 })
 export class MyApp {
-    @ViewChild('myNav') private nav: NavController;
     rootPage: any = 'LoginPage';
-
 
     constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
         platform.ready().then(() => {
@@ -19,10 +16,6 @@ export class MyApp {
             statusBar.styleDefault();
             splashScreen.hide();
         });
-    }
-
-    public profile() {
-        this.nav.push('ProfilePage');
     }
 }
 
