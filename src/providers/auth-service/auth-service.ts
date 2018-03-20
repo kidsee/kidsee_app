@@ -21,9 +21,8 @@ export class AuthServiceProvider {
             let headers = new Headers();
             headers.append('Content-Type', 'application/vnd.api+json');
             return Observable.create(observer => {
-
-                this.http.post('http://174.138.7.193/api/tokens', {
-                    username: credentials.identification,
+                this.http.post(this.datastore.getBaseUrl()+'/tokens', {
+                    identification: credentials.identification,
                     password: credentials.password,
                 }, {headers: headers}).map(res => res.json())
                     .subscribe(

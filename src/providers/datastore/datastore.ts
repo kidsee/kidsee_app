@@ -18,4 +18,8 @@ export class Datastore extends JsonApiDatastore {
         super(http);
     }
 
+    public getBaseUrl() {
+      return this.datastoreConfig.baseUrl;
+    }
+
 }
