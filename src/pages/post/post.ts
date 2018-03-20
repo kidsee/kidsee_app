@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Post} from "../../app/models/post";
+import {PostService} from "../../providers/post-service/post-service";
 
 /**
  * Generated class for the PostPage page.
@@ -14,6 +16,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'post.html',
 })
 export class PostPage {
-    constructor(public navCtrl: NavController, public navParams: NavParams) {
+    private post: Post;
+
+    constructor(public navCtrl: NavController, public navParams: NavParams, private postProv: PostService) {
   }
+
+    ionViewDidEnter() {
+        this.post = this.postProv.getCurrentPost();
+    }
 }

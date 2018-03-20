@@ -12,32 +12,27 @@
 
 <ion-content padding>
   <ion-card>
+    <ion-card-header>
+      {{post?.user.username}}
+    </ion-card-header>
     <ion-card-title>
-      Jantje
+      {{post?.title}}
     </ion-card-title>
     <ion-card-content>
-      The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
+      {{post?.content}}
     </ion-card-content>
-    <button ion-button icon-left clear small>
+    <button *ngIf="post?.comments != undefined || post?.comments.length == 0" ion-button icon-left clear small>
       <ion-icon name="text"></ion-icon>
-      <div>2 Comments</div>
+      <div>{{post?.comments.length}} Comments</div>
     </button>
   </ion-card>
   <ion-list>
-    <ion-card>
+    <ion-card *ngFor="let comment of post?.comments">
       <ion-card-header>
-        Piet
+        {{comment.user.username}}
       </ion-card-header>
       <ion-card-content>
-        Hoooi!
-      </ion-card-content>
-    </ion-card>
-    <ion-card>
-      <ion-card-header>
-        Kees
-      </ion-card-header>
-      <ion-card-content>
-        Vette post maat!
+        {{comment.content}}
       </ion-card-content>
     </ion-card>
   </ion-list>
