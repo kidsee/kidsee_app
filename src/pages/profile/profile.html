@@ -27,14 +27,14 @@
         </ion-item>
         <ion-item>
             <ion-label floating>Geboortedatum</ion-label>
-            <ion-input displayFormat="dd/mm/yyyy" name="birthdate" [value]="user?.birthdate" (change)='updateUser($event.target.name,$event.target.value)'></ion-input>
+            <ion-datetime displayFormat="DD - MM - YYYY" name="birthdate" [(ngModel)]="birthdate" (ngModelChange)='updateBirthdate()'></ion-datetime>
         </ion-item>
         <ion-item>
             <ion-label floating>Woonplaats</ion-label>
             <ion-input type="text" name="city" [value]="user?.city" (change)='updateUser($event.target.name,$event.target.value)'></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label floating>Wachtwoord</ion-label>
+            <ion-label floating>Nieuw wachtwoord</ion-label>
             <ion-input type="password" name="password" [value]="user?.password" (change)='updatePassword($event.target.value)'></ion-input>
         </ion-item>
     </ion-list>
