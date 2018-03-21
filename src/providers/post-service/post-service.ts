@@ -11,6 +11,8 @@ export class PostService {
     currentPost: Post;
 
     constructor(private datastore: Datastore) { }
+
+
     public posts()
     {
         let contentTypeQuestion = this.datastore.createRecord(ContentType, {
@@ -55,7 +57,10 @@ export class PostService {
         });
         post.comments.push(firstComment);
         post.comments.push(secondComment);
-        posts.push(post);
+        for(let i = 0; i < 60; i++)
+        {
+            posts.push(post);
+        }
         return posts;
     }
 
