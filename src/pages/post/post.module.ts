@@ -4,12 +4,12 @@ import { PostPage } from './post';
 import {ComponentsModule} from "../../components/components.module";
 
 @NgModule({
-    declarations: [
-        PostPage,
-    ],
-    imports: [
-        IonicPageModule.forChild(PostPage),
-        ComponentsModule
-    ],
+  declarations: [
+    PostPage,
+  ],
+  imports: [
+    IonicPageModule.forChild(PostPage),
+      ComponentsModule
+  ],
 })
 export class PostPageModule {}

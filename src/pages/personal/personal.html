@@ -2,34 +2,22 @@
 
 <ion-content padding class="under-nav-margin">
     <ion-list>
-        <ion-card (click)="post()">
-            <ion-card-header>
-                Jantje
-            </ion-card-header>
-            <ion-card-content>
-                The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
-            </ion-card-content>
+        <ion-card *ngFor="let post of viewPosts" (click)="gotoPost(post.id)">
+            <ion-card-header>{{post.user.username}}</ion-card-header>
+            <ion-card-title>{{post.title}}</ion-card-title>
+            <ion-card-content>{{post.content}}</ion-card-content>
             <button ion-button icon-left clear small>
                 <ion-icon name="text"></ion-icon>
-                <div>2 Comments</div>
-            </button>
-        </ion-card>
-        <ion-card (click)="post()">
-            <ion-card-header>
-                Piet
-            </ion-card-header>
-            <ion-card-content>
-                The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
-            </ion-card-content>
-            <button ion-button icon-left clear small>
-                <ion-icon name="text"></ion-icon>
-                <div>2 Comments</div>
+                <div>{{post.comments?.length}} Comments</div>
             </button>
         </ion-card>
     </ion-list>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>
 <ion-fab bottom right >
-    <button ion-fab (click)="createpost()" color="secondary">
+    <button ion-fab color="secondary">
         <ion-icon name="add-circle"></ion-icon>
     </button>
 </ion-fab>

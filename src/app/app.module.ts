@@ -10,6 +10,7 @@ import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { Datastore } from '../providers/datastore/datastore';
+import {PostService} from "../providers/post-service/post-service";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { Datastore } from '../providers/datastore/datastore';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
     Datastore,
-    DatePicker
+    DatePicker,
+    PostService
   ]
 })
 export class AppModule {}
