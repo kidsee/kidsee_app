@@ -73,25 +73,7 @@ export class AuthServiceProvider {
         }
     }
 
-    public changePassword(password)
-    {
-        let self = this;
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/vnd.api+json');
-        headers.append('Authorization', 'Bearer '+this.getToken());
-        bcrypt.genSalt(10, function(err, salt)
-        {
-            bcrypt.hash(password, salt, (err, hash) => {
 
-                self.datastore.findRecord(User, String(self.currentUserId), null, headers).subscribe(
-                    (user: User) => {
-                        user.password = hash;
-                        user.save(null, headers).subscribe();
-                    }
-                );
-            });
-        });
-    }
 
     public getUserId() {
         return this.currentUserId;

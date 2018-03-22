@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams} from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-import { Datastore } from '../../providers/datastore/datastore';
-import { User } from '../../app/models/user';
-import {Headers} from "@angular/http";
+import {ProfileServiceProvider} from "../../providers/profile-service/profile-service";
 
 @IonicPage()
 @Component({
@@ -11,38 +9,31 @@ import {Headers} from "@angular/http";
     templateUrl: 'profile.html',
 })
 export class ProfilePage {
-    user: any;
-    birthdate: string;
+    private user: any;
+    private birthdate: string;
 
-    constructor(private datastore: Datastore, public navCtrl: NavController, public navParams: NavParams, private auth: AuthServiceProvider) { }
+    constructor(public navCtrl: NavController, public navParams: NavParams,
+                private auth: AuthServiceProvider, private profileServ: ProfileServiceProvider) { }
 
     updateUser(userProperty, value){
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/vnd.api+json');
-        headers.append('Authorization', 'Bearer '+this.auth.currentToken);
-        this.datastore.findRecord(User, String(this.auth.currentUserId), null, headers).subscribe(
-            (user: User) => {
-                user[userProperty] = value;
-                user.save(null, headers).subscribe();
-            }
-        );
+        this.profileServ.updateUserProperty(userProperty, value);
     }
 
     updateBirthdate(){
-        this.updateUser("birthdate", Date.parse(this.birthdate));
+        this.profileServ.updateUserProperty("birthdate", Date.parse(this.birthdate));
     }
 
     updatePassword(value){
-        this.auth.changePassword(value);
+        this.profileServ.changePassword(value);
     }
 
-ionViewDidLoad() {
-    let self = this;
-    this.auth.getUser().then((res) => {
-        self.user = res;
-        self.birthdate = self.user.birthdate.toISOString();
-    });
-}
+    ionViewDidLoad() {
+        let self = this;
+        this.auth.getUser().then((res) => {
+            self.user = res;
+            self.birthdate = self.user.birthdate.toISOString();
+        });
+    }
 
 
 }

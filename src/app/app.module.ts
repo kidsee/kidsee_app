@@ -6,10 +6,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { DatePicker } from '@ionic-native/date-picker';
 import { HttpModule } from '@angular/http';
-
 import { MyApp } from './app.component';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { Datastore } from '../providers/datastore/datastore';
+import { ProfileServiceProvider } from '../providers/profile-service/profile-service';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,8 @@ import { Datastore } from '../providers/datastore/datastore';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
     Datastore,
-    DatePicker
+    DatePicker,
+    ProfileServiceProvider
   ]
 })
 export class AppModule {}
