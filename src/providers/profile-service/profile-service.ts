@@ -26,19 +26,10 @@ export class ProfileServiceProvider {
     public changePassword(password)
     {
         let self = this;
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/vnd.api+json');
-        headers.append('Authorization', 'Bearer '+this.auth.getToken());
         bcrypt.genSalt(10, function(err, salt)
         {
             bcrypt.hash(password, salt, (err, hash) => {
-
-                self.datastore.findRecord(User, String(self.auth.getUserId()), null, headers).subscribe(
-                    (user: User) => {
-                        user.password = hash;
-                        user.save(null, headers).subscribe();
-                    }
-                );
+                self.updateUserProperty('password', hash);
             });
         });
     }
