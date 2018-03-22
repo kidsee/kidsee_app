@@ -18,6 +18,9 @@ export class Post extends JsonApiModel {
     @Attribute()
     type: ContentType;
 
+    @Attribute()
+    location: string;
+
     @BelongsTo()
     user: User;
 

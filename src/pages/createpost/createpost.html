@@ -5,29 +5,33 @@
 </ion-header>
 
 <ion-content padding>
-    <form (submit)="save()" #postform="ngForm">
+    <form (ngSubmit)="submitPost()" #postform="ngForm">
         <ion-list>
             <ion-item>
-                <ion-select>
-                <ion-option value="f">St Jan</ion-option>
-                <ion-option value="m">Avans</ion-option>
+                <!--TODO: change to autofill input field -->
+                <ion-select name="loc" [(ngModel)]="postProperties.location" required>
+                    <!--TODO: get options from gmaps api -->
+                <ion-option value="jan">St Jan</ion-option>
+                <ion-option value="test">Avans</ion-option>
             </ion-select>
             </ion-item>
             <ion-item>
-                <ion-select>
-                    <ion-option value="f">Vraag</ion-option>
-                    <ion-option value="m">Mededeling</ion-option>
+                <ion-select name="type" [(ngModel)]="postProperties.type" required>
+                    <!--TODO: get options from posttypes? -->
+                    <ion-option type="vraag">Vraag</ion-option>
+                    <ion-option type="post">Mededeling</ion-option>
                 </ion-select>
             </ion-item>
             <ion-item>
-                <ion-input placeholder="Titel" required></ion-input>
+                <ion-input name="title" [(ngModel)]="postProperties.title" placeholder="Titel" required></ion-input>
             </ion-item>
             <ion-item>
-                <ion-input placeholder="Vraag" required></ion-input>
-            </ion-item>
-            <ion-item>
-                <button ion-button class="submit-btn" full type="submit" [disabled]="!postform.form.valid">Vraag!</button>
+                <ion-input name="content" [(ngModel)]="postProperties.content" placeholder="Vraag" required></ion-input>
             </ion-item>
         </ion-list>
+
+        <ion-item>
+            <button ion-button class="submit-btn" full type="submit" [disabled]="!postform.form.valid">Vraag!</button>
+        </ion-item>
     </form>
 </ion-content>

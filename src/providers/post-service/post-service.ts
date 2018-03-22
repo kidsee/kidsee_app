@@ -5,12 +5,14 @@ import {PostStatus} from "../../app/models/poststatus";
 import {Datastore} from "../datastore/datastore";
 import {User} from "../../app/models/user";
 import {Comment} from "../../app/models/comment";
+import {Headers} from "@angular/http";
+import {AuthServiceProvider} from "../auth-service/auth-service";
 
 @Injectable()
 export class PostService {
     currentPost: Post;
 
-    constructor(private datastore: Datastore) { }
+    constructor(private datastore: Datastore, private auth: AuthServiceProvider) { }
 
 
     public posts()
@@ -66,5 +68,15 @@ export class PostService {
 
     public getCurrentPost(){
         return this.currentPost;
+    }
+
+    public createPost(post){
+        console.log(post);
+
+        let self = this;
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/vnd.api+json');
+        headers.append('Authorization', 'Bearer '+this.auth.getToken());
+        //TODO: use datastore and place new post
     }
 }
