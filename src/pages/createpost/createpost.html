@@ -8,7 +8,7 @@
     <form (ngSubmit)="submitPost()" #postform="ngForm">
         <ion-list>
             <ion-item>
-                <!--TODO: change to autofill input field -->
+                <!--TODO: change to autocomplete places input field -->
                 <ion-select name="loc" [(ngModel)]="postProperties.location" required>
                     <!--TODO: get options from gmaps api -->
                 <ion-option value="jan">St Jan</ion-option>
@@ -19,7 +19,6 @@
                 <ion-select name="type" [(ngModel)]="postProperties.type" required>
                     <!--TODO: get options from posttypes? -->
                     <ion-option type="vraag">Vraag</ion-option>
-                    <ion-option type="post">Mededeling</ion-option>
                 </ion-select>
             </ion-item>
             <ion-item>
