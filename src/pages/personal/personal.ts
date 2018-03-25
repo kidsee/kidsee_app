@@ -25,10 +25,20 @@ export class PersonalPage {
     }
 
     ionViewDidEnter() {
-        this.posts = this.postProv.posts();
-        for (let i = 0; i < this.amountOfShownPosts; i++) {
-            this.viewPosts.push(this.posts[i]);
-        }
+        this.posts = [];
+        this.viewPosts = [];
+        let self = this;
+        this.postProv.posts().then((res) => {
+                self.posts = res as Post[];
+                if(self.posts.length < this.amountOfShownPosts) {
+                    self.amountOfShownPosts = self.posts.length;
+                }
+                for (let i = 0; i < this.amountOfShownPosts; i++) {
+                    self.viewPosts.push(this.posts[i]);
+                }
+            }
+        );
+
     }
 
     doInfinite(infiniteScroll) {

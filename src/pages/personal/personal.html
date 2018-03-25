@@ -3,12 +3,12 @@
 <ion-content padding class="under-nav-margin">
     <ion-list>
         <ion-card *ngFor="let post of viewPosts" (click)="gotoPost(post.id)">
-            <ion-card-header>{{post.user.username}}</ion-card-header>
-            <ion-card-title>{{post.title}}</ion-card-title>
-            <ion-card-content>{{post.content}}</ion-card-content>
+            <!--<ion-card-header>{{post.user.username}}</ion-card-header>-->
+            <ion-card-title>{{post?.title}}</ion-card-title>
+            <ion-card-content>{{post?.content}}</ion-card-content>
             <button ion-button icon-left clear small>
                 <ion-icon name="text"></ion-icon>
-                <div>{{post.comments?.length}} Comments</div>
+                <div>{{post?.comments?.length}} Comments</div>
             </button>
         </ion-card>
     </ion-list>

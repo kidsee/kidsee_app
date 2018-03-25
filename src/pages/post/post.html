@@ -13,7 +13,7 @@
 <ion-content padding>
   <ion-card>
     <ion-card-header>
-      {{post?.user.username}}
+      <!--{{post?.user.username}}-->
     </ion-card-header>
     <ion-card-title>
       {{post?.title}}
@@ -29,7 +29,7 @@
   <ion-list>
     <ion-card *ngFor="let comment of post?.comments">
       <ion-card-header>
-        {{comment.user.username}}
+        <!--{{comment.user.username}}-->
       </ion-card-header>
       <ion-card-content>
         {{comment.content}}

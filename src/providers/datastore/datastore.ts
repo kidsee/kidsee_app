@@ -2,11 +2,13 @@ import { JsonApiDatastoreConfig, JsonApiDatastore, DatastoreConfig } from 'angul
 import { User } from '../../app/models/user';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import {Post} from "../../app/models/post";
 
 const config: DatastoreConfig = {
   baseUrl: 'http://174.138.7.193/api',
   models: {
     users: User,
+    posts: Post
   }
 }
 
