@@ -24,4 +24,8 @@ export class PostPage {
     ionViewDidEnter() {
         this.post = this.postProv.getCurrentPost();
     }
+
+    public createcomment() {
+        this.navCtrl.push('CreatePostPage', { post: this.post });
+    }
 }

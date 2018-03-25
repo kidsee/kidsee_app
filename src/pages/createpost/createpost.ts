@@ -1,20 +1,16 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {PostService} from "../../providers/post-service/post-service";
+import { Post } from '../../app/models/post';
 
 @IonicPage()
 @Component({
     selector: 'page-createpost',
     templateUrl: 'createpost.html',
 })
-export class CreatepostPage {
-    private postProperties = {location: "", type: "", title: "", content: ""};
+export class CreatePostPage {
+    private post: Post;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, private postProv: PostService) {
-    }
-
-    public submitPost()
-    {
-        this.postProv.createPost(this.postProperties);
+    constructor(public navCtrl: NavController, public navParams: NavParams) {
+        this.post = this.navParams.get('post');
     }
 }

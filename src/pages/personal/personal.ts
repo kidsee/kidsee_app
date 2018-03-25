@@ -25,7 +25,7 @@ export class PersonalPage {
     }
 
     public createpost() {
-        this.navCtrl.push('CreatepostPage');
+        this.navCtrl.push('CreatePostPage');
     }
 
     ionViewDidEnter() {

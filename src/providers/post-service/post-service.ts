@@ -90,4 +90,22 @@ export class PostService {
         //
         // postToSave.save(null, headers).subscribe();
     }
+
+    public createComment(comment){
+        console.log(comment);
+
+        let self = this;
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/vnd.api+json');
+        headers.append('Authorization', 'Bearer '+this.auth.getToken());
+        //TODO: uncomment and pray when comments are implemented in api
+        // let commentToSave = this.datastore.createRecord(Comment, {
+        //    user: user,
+        //    post: post,
+        //    content: "Wow!!",
+        //    type: contentTypeAnswer
+        //});
+        //
+        // commentToSave.save(null, headers).subscribe();
+    }
 }
