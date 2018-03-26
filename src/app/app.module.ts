@@ -6,10 +6,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { DatePicker } from '@ionic-native/date-picker';
 import { HttpModule } from '@angular/http';
-
 import { MyApp } from './app.component';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { Datastore } from '../providers/datastore/datastore';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader} from "@ngx-translate/http-loader";
+import { HttpClient, HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -19,7 +21,14 @@ import { Datastore } from '../providers/datastore/datastore';
     BrowserModule,
     JsonApiModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -35,3 +44,6 @@ import { Datastore } from '../providers/datastore/datastore';
   ]
 })
 export class AppModule {}
+export function HttpLoaderFactory(http: HttpClient){
+  return new TranslateHttpLoader(http);
+}

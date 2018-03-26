@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController, IonicPage } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { TranslateService } from '@ngx-translate/core';
  
 @IonicPage()
 @Component({
@@ -11,20 +12,28 @@ export class RegisterPage {
   createSuccess = false;
   registerCredentials = { email: '', password: '', birthdate: '', username: '' };
  
-  constructor(private nav: NavController, private auth: AuthServiceProvider, private alertCtrl: AlertController) { }
+  constructor(private nav: NavController, private auth: AuthServiceProvider, private alertCtrl: AlertController, private translate: TranslateService) {
+    this.translate.get('success').subscribe( res => { console.log(res) });
+   }
  
   public register() {
     this.auth.register(this.registerCredentials).subscribe(success => {
       if (success) {
         this.createSuccess = true;
-        this.showPopup("Success", "Account created.");
-        this.nav.push('LoginPage');
+        this.translate.get(['success', 'accountCreated']).subscribe(translations => {
+          this.showPopup(translations[0], translations[1]);
+          this.nav.push('LoginPage');
+        });
       } else {
-        this.showPopup("Error", "Problem creating account.");
+        this.translate.get(['error', 'problemCreatingAccount']).subscribe(translations => {
+          this.showPopup(translations[0], translations[1]);
+        });
       }
     },
       error => {
-        this.showPopup("Error", error);
+        this.translate.get('error').subscribe(translation => {
+          this.showPopup(translation, error);
+        });
       });
   }
  
