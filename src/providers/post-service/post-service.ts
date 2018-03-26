@@ -10,7 +10,6 @@ export class PostService {
     currentPost: Post;
 
     constructor(private datastore: Datastore, private auth: AuthServiceProvider) {
-
     }
 
     public posts()

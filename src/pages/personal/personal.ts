@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
-import {PostService} from "../../providers/post-service/post-service";
-import {Post} from "../../app/models/post";
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { PostService } from "../../providers/post-service/post-service";
+import { Post } from "../../app/models/post";
 
 @IonicPage()
 @Component({
