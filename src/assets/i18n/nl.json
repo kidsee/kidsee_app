@@ -27,5 +27,8 @@
   "discover": "Ontdek",
   "kidsee": "Kidsee",
   "map": "Kaart",
-  "personal": "Persoonlijk"
+  "personal": "Persoonlijk",
+  "postedBy": "Geplaatst door: ",
+  "commented": "heeft gereageerd:",
+  "comments": "reacties"
 }

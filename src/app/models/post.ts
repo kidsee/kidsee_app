@@ -18,8 +18,8 @@ export class Post extends JsonApiModel {
     @Attribute()
     type: ContentType;
 
-    // @BelongsTo()
-    // user: User;
+    @BelongsTo()
+    user: User;
 
     @Attribute()
     postStatus: PostStatus;

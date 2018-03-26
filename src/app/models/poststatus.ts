@@ -5,5 +5,5 @@ import { Attribute, JsonApiModel, JsonApiModelConfig } from "angular2-jsonapi";
 })
 export class PostStatus extends JsonApiModel {
     @Attribute()
-    naam: string;
+    name: string;
 }

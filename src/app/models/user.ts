@@ -33,6 +33,6 @@ export class User extends JsonApiModel {
     @Attribute()
     updated_at: Date;
 
-    // @HasMany()
-    // posts: Post;
+    @HasMany()
+    posts: Post;
 }

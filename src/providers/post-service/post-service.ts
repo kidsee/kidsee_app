@@ -20,7 +20,7 @@ export class PostService {
         headers.append('Content-Type', 'application/vnd.api+json');
         headers.append('Authorization', 'Bearer '+this.auth.getToken());
         return new Promise((resolve, reject) => {
-            this.datastore.findAll(Post,  {include: 'user'}, headers).subscribe(
+            this.datastore.findAll(Post,  null, headers).subscribe(
                 (posts: JsonApiQueryData<Post>) => {
                     resolve(posts.getModels());}
             );
