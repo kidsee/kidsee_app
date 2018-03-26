@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Post} from "../../app/models/post";
 import {Datastore} from "../datastore/datastore";
-import {Headers, Http} from "@angular/http";
+import {Headers} from "@angular/http";
 import {AuthServiceProvider} from "../auth-service/auth-service";
 import {JsonApiQueryData} from "angular2-jsonapi";
 
@@ -9,10 +9,9 @@ import {JsonApiQueryData} from "angular2-jsonapi";
 export class PostService {
     currentPost: Post;
 
-    constructor(private datastore: Datastore, private http: Http, private auth: AuthServiceProvider) {
+    constructor(private datastore: Datastore, private auth: AuthServiceProvider) {
 
     }
-
 
     public posts()
     {

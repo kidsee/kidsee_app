@@ -8,7 +8,7 @@
             <ion-card-content>{{post?.content}}</ion-card-content>
             <button ion-button icon-left clear small>
                 <ion-icon name="text"></ion-icon>
-                <div>{{post?.comments.length}} {{'comments' | translate}}</div>
+                <div>{{post?.comments?.length || 0}} {{'comments' | translate}}</div>
             </button>
         </ion-card>
     </ion-list>
