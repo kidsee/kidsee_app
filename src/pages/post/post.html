@@ -1,4 +1,4 @@
-<base-header title="Post"></base-header>
+<base-header title="{{post?.title}}"></base-header>
 <ion-header>
   <ion-navbar>
     <ion-buttons left>
@@ -6,31 +6,27 @@
         <ion-icon name="arrow-back"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>Post</ion-title>
+    <ion-title>{{post?.title}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-card>
-    <ion-card-header>
-      {{post?.user.username}}
-    </ion-card-header>
     <ion-card-title>
       {{post?.title}}
     </ion-card-title>
+    <ion-card-header>{{'postedBy' | translate}}{{post?.user.username}}</ion-card-header>
     <ion-card-content>
       {{post?.content}}
     </ion-card-content>
-    <button *ngIf="post?.comments != undefined || post?.comments.length == 0" ion-button icon-left clear small>
+    <button ion-button icon-left clear small>
       <ion-icon name="text"></ion-icon>
-      <div>{{post?.comments.length}} Comments</div>
+      <div>{{post?.comments?.length || 0}} {{'comments' | translate}}</div>
     </button>
   </ion-card>
   <ion-list>
     <ion-card *ngFor="let comment of post?.comments">
-      <ion-card-header>
-        {{comment.user.username}}
-      </ion-card-header>
+      <ion-card-header>{{post.user.username}} {{'commented' | translate}}</ion-card-header>
       <ion-card-content>
         {{comment.content}}
       </ion-card-content>
