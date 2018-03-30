@@ -1,10 +1,10 @@
 ## What to do before you make a pull request (pr):
 Run:
 - npm run lint
-- qunit
+- jasmine
 
 Als je deze nog niet hebt:
-npm install -g lint qunit
+npm install -g lint jasmine
 
 Als er errors naar voren komen moet je deze eerst fixen voor je een pr aanmaakt.
 
@@ -31,3 +31,10 @@ HTML: <br />
 JSON: <br />
 {"Hello": "hello {{value}}"} <br />
 Voor nog meer info, zie https://github.com/ngx-translate/core/blob/master/README.md
+
+
+## Unit testing
+Voor de tests wordt jasmine gebruikt, zie deze handige links voor wat voorbeelden: <br />
+https://www.joshmorony.com/how-to-unit-test-an-ionic-2-application/ <br />
+https://jasmine.github.io/pages/docs_home.html <br />
+Daarnaast zijn er ook een aantal voorbeelden in de jasmine_examples folders (/lib/jasmine_examples voor de models en /specs/jasmine_examples voor de tests).
