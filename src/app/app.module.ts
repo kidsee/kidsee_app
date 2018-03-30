@@ -21,6 +21,7 @@ import { HttpClient, HttpClientModule} from "@angular/common/http";
     BrowserModule,
     JsonApiModule,
     HttpModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp),
     TranslateModule.forRoot({
       loader: {
