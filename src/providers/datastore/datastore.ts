@@ -8,18 +8,17 @@ const config: DatastoreConfig = {
   models: {
     users: User,
   }
-}
+};
 
 @Injectable()
 @JsonApiDatastoreConfig(config)
 export class Datastore extends JsonApiDatastore {
 
-    constructor(http: Http) {
-        super(http);
-    }
+  constructor(http: Http) {
+    super(http);
+  }
 
-    public getBaseUrl() {
-      return this.datastoreConfig.baseUrl;
-    }
-
+  public getBaseUrl() {
+    return this.datastoreConfig.baseUrl;
+  }
 }
