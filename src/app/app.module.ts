@@ -10,8 +10,8 @@ import { MyApp } from './app.component';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { Datastore } from '../providers/datastore/datastore';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader} from "@ngx-translate/http-loader";
-import { HttpClient, HttpClientModule} from "@angular/common/http";
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [

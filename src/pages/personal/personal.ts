@@ -3,12 +3,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-    selector: 'page-personal',
-    templateUrl: 'personal.html',
+  selector: 'page-personal',
+  templateUrl: 'personal.html',
 })
 
 export class PersonalPage {
-
-    constructor(public navCtrl: NavController, public navParams: NavParams) { }
-
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  }
 }
