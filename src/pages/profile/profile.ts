@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-import {ProfileServiceProvider} from "../../providers/profile-service/profile-service";
-import { Datastore } from '../../providers/datastore/datastore';
-import { User } from '../../app/models/user';
-import { Headers } from "@angular/http";
+import { ProfileServiceProvider } from "../../providers/profile-service/profile-service";
 
 @IonicPage()
 @Component({
@@ -15,20 +12,18 @@ export class ProfilePage {
     private user: any;
     private birthdate: string;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams,
-                private auth: AuthServiceProvider, private profileServ: ProfileServiceProvider) {
-    }
+    constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthServiceProvider, private profileProvider: ProfileServiceProvider) { }
 
     updateUser(userProperty, value) {
-        this.profileServ.updateUserProperty(userProperty, value);
+        this.profileProvider.updateUserProperty(userProperty, value);
     }
 
     updateBirthdate() {
-        this.profileServ.updateUserProperty("birthdate", Date.parse(this.birthdate));
+        this.profileProvider.updateUserProperty("birthdate", Date.parse(this.birthdate));
     }
 
     updatePassword(value) {
-        this.profileServ.changePassword(value);
+        this.profileProvider.changePassword(value);
     }
 
     ionViewDidLoad() {
