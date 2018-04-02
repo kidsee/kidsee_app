@@ -1,7 +1,7 @@
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu</ion-title>
+      <ion-title>{{'menu' | translate}}</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -13,13 +13,13 @@
           <img src="https://www.w3schools.com/howto/img_avatar.png">
         </ion-avatar>
         <h2>{{username}}</h2>
-        <h3>Ga naar profiel</h3>
+        <h3>{{'gotoProfile' | translate}}</h3>
       </ion-list-header>
-      <ion-item detail-none>Meldingen</ion-item>
-      <ion-item detail-none>Beloningen</ion-item>
-      <ion-item detail-none>Helpdesk</ion-item>
-      <ion-item detail-none>Veelgestelde vragen</ion-item>
-      <ion-item detail-none>Tips</ion-item>
+      <ion-item detail-none>{{'notifications' | translate}}</ion-item>
+      <ion-item detail-none>{{'rewards' | translate}}</ion-item>
+      <ion-item detail-none>{{'helpdesk' | translate}}</ion-item>
+      <ion-item detail-none>{{'faq' | translate}}</ion-item>
+      <ion-item detail-none>{{'tips' | translate}}</ion-item>
     </ion-list>
   </ion-content>
 </ion-menu>

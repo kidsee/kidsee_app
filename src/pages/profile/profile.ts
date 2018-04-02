@@ -1,29 +1,33 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams} from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import {ProfileServiceProvider} from "../../providers/profile-service/profile-service";
+import { Datastore } from '../../providers/datastore/datastore';
+import { User } from '../../app/models/user';
+import { Headers } from "@angular/http";
 
 @IonicPage()
 @Component({
-    selector: 'page-profile',
-    templateUrl: 'profile.html',
+  selector: 'page-profile',
+  templateUrl: 'profile.html',
 })
 export class ProfilePage {
     private user: any;
     private birthdate: string;
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
-                private auth: AuthServiceProvider, private profileServ: ProfileServiceProvider) { }
+                private auth: AuthServiceProvider, private profileServ: ProfileServiceProvider) {
+    }
 
-    updateUser(userProperty, value){
+    updateUser(userProperty, value) {
         this.profileServ.updateUserProperty(userProperty, value);
     }
 
-    updateBirthdate(){
+    updateBirthdate() {
         this.profileServ.updateUserProperty("birthdate", Date.parse(this.birthdate));
     }
 
-    updatePassword(value){
+    updatePassword(value) {
         this.profileServ.changePassword(value);
     }
 
@@ -34,6 +38,5 @@ export class ProfilePage {
             self.birthdate = self.user.birthdate.toISOString();
         });
     }
-
 
 }

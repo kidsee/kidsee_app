@@ -12,7 +12,8 @@ export class AuthServiceProvider {
     currentToken: string;
     currentUser: User;
 
-    constructor(private datastore: Datastore, private http: Http) { }
+    constructor(private datastore: Datastore, private http: Http) {
+    }
 
     public login(credentials) {
         if (credentials.identification === null || credentials.password === null) {
@@ -21,7 +22,7 @@ export class AuthServiceProvider {
             let headers = new Headers();
             headers.append('Content-Type', 'application/vnd.api+json');
             return Observable.create(observer => {
-                this.http.post(this.datastore.getBaseUrl()+'/tokens', {
+                this.http.post(this.datastore.getBaseUrl() + '/tokens', {
                     identification: credentials.identification,
                     password: credentials.password,
                 }, {headers: headers}).map(res => res.json())
@@ -38,9 +39,9 @@ export class AuthServiceProvider {
                         (err) => {
                             observer.error("De combinatie van gebruikersnaam/email en wachtwoord is fout");
                         });
+
             });
-        }
-    }
+        }}
 
     public register(credentials) {
         let self = this;
@@ -51,7 +52,7 @@ export class AuthServiceProvider {
             return Observable.throw("Het wachtwoord moet minimaal 8 karakters lang zijn.");
         }
         else {
-            bcrypt.genSalt(10, function(err, salt) {
+            bcrypt.genSalt(10, function (err, salt) {
                 bcrypt.hash(credentials.password, salt, (err, hash) => {
                     let user = self.datastore.createRecord(User, {
                         username: credentials.username,
@@ -62,7 +63,8 @@ export class AuthServiceProvider {
                     });
 
                     user.save().subscribe(
-                        (user: User) => { }
+                        (user: User) => {
+                        }
                     );
                 });
             });
@@ -73,7 +75,23 @@ export class AuthServiceProvider {
         }
     }
 
+    public changePassword(password) {
+        let self = this;
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/vnd.api+json');
+        headers.append('Authorization', 'Bearer ' + this.getToken());
+        bcrypt.genSalt(10, function (err, salt) {
+            bcrypt.hash(password, salt, (err, hash) => {
 
+                self.datastore.findRecord(User, String(self.currentUserId), null, headers).subscribe(
+                    (user: User) => {
+                        user.password = hash;
+                        user.save(null, headers).subscribe();
+                    }
+                );
+            });
+        });
+    }
 
     public getUserId() {
         return this.currentUserId;
@@ -82,9 +100,9 @@ export class AuthServiceProvider {
     public getUser() {
         let headers = new Headers();
         headers.append('Content-Type', 'application/vnd.api+json');
-        headers.append('Authorization', 'Bearer '+this.currentToken);
+        headers.append('Authorization', 'Bearer ' + this.currentToken);
 
-        return new Promise((resolve,reject) => {
+        return new Promise((resolve, reject) => {
             this.datastore.findRecord(User, String(this.currentUserId), null, headers).subscribe(
                 (user: User) => {
                     resolve(user);
