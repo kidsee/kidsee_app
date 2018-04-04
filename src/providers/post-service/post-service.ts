@@ -3,12 +3,9 @@ import { ContentType } from './../../app/models/contentType';
 import {Injectable} from "@angular/core";
 import {Post} from "../../app/models/post";
 import {Datastore} from "../datastore/datastore";
-import {User} from "../../app/models/user";
-import {Comment} from "../../app/models/comment";
 import {Headers} from "@angular/http";
 import {AuthServiceProvider} from "../auth-service/auth-service";
 import {JsonApiQueryData} from "angular2-jsonapi";
-import { Content } from 'ionic-angular';
 
 @Injectable()
 export class PostService {
@@ -26,10 +23,10 @@ export class PostService {
             this.datastore.findRecord(ContentType, '1', null, headers).subscribe(type => {
                 this.auth.getUser().then(user => {
                     let postToSave = this.datastore.createRecord(Post, {
-                        title: "test",
-                        type: "post",
-                        content: "test",
-                        location: "test",
+                        title: post.title,
+                        type: post.type,
+                        content: post.content,
+                        location: post.location,
                         content_type: type,
                         status: status,
                         user: user
