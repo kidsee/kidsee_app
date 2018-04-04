@@ -12,10 +12,14 @@
 
 <ion-content padding>
   <ion-card>
-    <ion-card-title>
-      {{post?.title}}
-    </ion-card-title>
-    <ion-card-header>{{'postedBy' | translate}}{{post?.user.username}}</ion-card-header>
+    <ion-card-header>
+        <ion-card-title>
+            {{post?.title}}
+        </ion-card-title>
+        <ion-note class="italic">
+            {{'postedBy' | translate}}{{post?.user.username}}
+        </ion-note>
+    </ion-card-header>
     <ion-card-content>
       {{post?.content}}
     </ion-card-content>

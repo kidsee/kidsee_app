@@ -14,8 +14,8 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 @IonicPage()
 @Component({
-    selector: 'page-post',
-    templateUrl: 'post.html',
+  selector: 'page-post',
+  templateUrl: 'post.html',
 })
 export class PostPage {
     private post: Post;

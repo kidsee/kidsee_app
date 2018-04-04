@@ -4,6 +4,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { DatePicker } from '@ionic-native/date-picker';
 import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
@@ -12,6 +13,7 @@ import {PostService} from "../providers/post-service/post-service";
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { PostService } from "../providers/post-service/post-service";
 import {DatePicker} from "@ionic-native/date-picker";
 import {CommentService} from "../providers/comment-service/comment-service";
 
@@ -49,7 +51,8 @@ import {CommentService} from "../providers/comment-service/comment-service";
     ]
 
 })
-export class AppModule {}
-export function HttpLoaderFactory(http: HttpClient){
-    return new TranslateHttpLoader(http);
+export class AppModule {
+}
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
 }
