@@ -18,7 +18,8 @@ export class PersonalPage {
   private amountOfShownPosts: number;
     private user: User;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private postProv: PostService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private postProv: PostService,
+  private auth: AuthServiceProvider) {
     this.amountOfShownPosts = 5;
   }
 

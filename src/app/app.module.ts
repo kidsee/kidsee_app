@@ -13,8 +13,6 @@ import {PostService} from "../providers/post-service/post-service";
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
-import { PostService } from "../providers/post-service/post-service";
-import {DatePicker} from "@ionic-native/date-picker";
 import {CommentService} from "../providers/comment-service/comment-service";
 
 @NgModule({
