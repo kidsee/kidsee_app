@@ -21,8 +21,8 @@ export class User extends JsonApiModel {
   @Attribute()
   school: string;
 
-  @Attribute()
-  city: string;
+  @Attribute({serializedName: 'postal-code'})
+  postal_code: string;
 
   @Attribute()
   avatar: string;
