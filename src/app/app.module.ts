@@ -13,6 +13,7 @@ import { ProfileServiceProvider } from '../providers/profile-service/profile-ser
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { PostService } from "../providers/post-service/post-service";
 
 @NgModule({
   declarations: [
@@ -43,10 +44,12 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
     AuthServiceProvider,
     Datastore,
     DatePicker,
-    ProfileServiceProvider
+    ProfileServiceProvider,
+    PostService
   ]
 })
-export class AppModule {}
-export function HttpLoaderFactory(http: HttpClient){
+export class AppModule {
+}
+export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
