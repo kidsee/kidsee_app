@@ -3,8 +3,12 @@ import { IonicModule } from 'ionic-angular';
 import { BaseHeaderComponent } from './base-header/base-header';
 
 @NgModule({
-	declarations: [BaseHeaderComponent],
+	declarations: [
+		BaseHeaderComponent,
+	],
 	imports: [IonicModule],
-	exports: [BaseHeaderComponent]
+	exports: [
+		BaseHeaderComponent,
+	]
 })
 export class ComponentsModule {}

@@ -41,7 +41,7 @@ export class CommentService {
             content: comment.content,
             user: comment.user,
             post: comment.post,
-            'content-type': comment.post.type 
+            'content-type': new ContentType(self.datastore)
         });
         
         commentToSave.save(null, headers).subscribe();
