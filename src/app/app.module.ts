@@ -13,6 +13,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import {DatePicker} from "@ionic-native/date-picker";
+import {CommentService} from "../providers/comment-service/comment-service";
 
 @NgModule({
     declarations: [
@@ -43,8 +44,10 @@ import {DatePicker} from "@ionic-native/date-picker";
         AuthServiceProvider,
         Datastore,
         DatePicker,
-        PostService
+        PostService,
+        CommentService
     ]
+
 })
 export class AppModule {}
 export function HttpLoaderFactory(http: HttpClient){

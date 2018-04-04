@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PostService } from "../../providers/post-service/post-service";
 import { Post } from "../../app/models/post";
+import {User} from "../../app/models/user";
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 @IonicPage()
 @Component({
@@ -14,8 +16,9 @@ export class PersonalPage {
     private posts: Post[] = [];
     private viewPosts: Post[] = [];
     private amountOfShownPosts: number;
+    private user: User;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, private postProv: PostService) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, private postProv: PostService, private auth: AuthServiceProvider) {
         this.amountOfShownPosts = 5;
     }
 
@@ -25,7 +28,13 @@ export class PersonalPage {
     }
 
     public createpost() {
-        this.navCtrl.push('CreatePostPage');
+        this.auth.getUser().then((user: User) => {
+            this.user = user;
+        }).then( value => {
+            this.navCtrl.push('CreatePostPage', {
+                user: this.user,
+            });
+        });
     }
 
     ionViewDidEnter() {
@@ -43,7 +52,6 @@ export class PersonalPage {
             }
         );
     }
-
 
     doInfinite(infiniteScroll) {
         let self = this;

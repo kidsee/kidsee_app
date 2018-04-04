@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Post } from '../../app/models/post';
+import { User } from '../../app/models/user';
+import {PostService} from "../../providers/post-service/post-service";
 
 @IonicPage()
 @Component({
@@ -9,8 +11,16 @@ import { Post } from '../../app/models/post';
 })
 export class CreatePostPage {
     private post: Post;
+    private user: User;
+    private postProperties = {location: "", type: "", title: "", content: ""};
 
-    constructor(public navCtrl: NavController, public navParams: NavParams) {
-        this.post = this.navParams.get('post');
+    constructor(private postProv: PostService, public navCtrl: NavController, public navParams: NavParams) {
+        this.user = this.navParams.get('user');
+     }
+
+    public submitPost()
+    {
+        this.postProperties['user'] = this.user;
+        this.postProv.createPost(this.postProperties);
     }
 }

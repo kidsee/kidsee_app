@@ -23,18 +23,18 @@ export class PostService {
         let headers = new Headers();
         headers.append('Content-Type', 'application/vnd.api+json');
         headers.append('Authorization', 'Bearer '+this.auth.getToken());
-        //TODO: uncomment and pray when posts are implemented in api
-        // let postToSave = this.datastore.createRecord(Post, {
-        //     title: post.title,
-        //     content: post.content,
-        //     type: post.type,
-        //     location: post.location,
-        //     user: self.auth.getUser(),
-        //     //TODO: fix poststatus?
-        //     postStatus: new PostStatus(self.datastore)
-        // });
-        //
-        // postToSave.save(null, headers).subscribe();
+
+        let postToSave = this.datastore.createRecord(Post, {
+            title: post.title,
+            content: post.content,
+            type: post.type,
+            location: post.location,
+            user: post.user,
+            status: new PostStatus(self.datastore),
+            'content-type': new ContentType(self.datastore)
+        });
+        
+        postToSave.save(null, headers).subscribe();
     }
 
     public createComment(comment) {
