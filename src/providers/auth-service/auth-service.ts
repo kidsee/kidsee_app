@@ -109,7 +109,6 @@ export class AuthServiceProvider {
                 }
             );
         });
-
     }
 
     public getToken() {

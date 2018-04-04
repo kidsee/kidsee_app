@@ -4,13 +4,13 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { DatePicker } from '@ionic-native/date-picker';
 import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { Datastore } from '../providers/datastore/datastore';
-import {PostService} from "../providers/post-service/post-service";
+import { PostService } from "../providers/post-service/post-service";
+import { CommentService } from "../providers/comment-service/comment-service";
 
 @NgModule({
   declarations: [
@@ -32,8 +32,8 @@ import {PostService} from "../providers/post-service/post-service";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
     Datastore,
-    DatePicker,
-    PostService
+    PostService,
+    CommentService
   ]
 })
 export class AppModule {}
