@@ -23,7 +23,6 @@ export class CreatecommentPage {
     {
         this.commentProperties['post'] = this.post;
         this.commentProperties['user'] = this.user;
-        console.log(this.commentProperties);
         this.commentProv.createComment(this.commentProperties).then(_ => {
           this.navCtrl.pop();
         });

@@ -18,42 +18,24 @@ export class PostService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/vnd.api+json');
     headers.append('Authorization', 'Bearer '+this.auth.getToken());
-
-    this.datastore.findRecord(Status, '3', null, headers).subscribe(status => {
-      this.datastore.findRecord(ContentType, '1', null, headers).subscribe(type => {
-        this.auth.getUser().then(user => {
-          let postToSave = this.datastore.createRecord(Post, {
-            title: post.title,
-            type: post.type,
-            content: post.content,
-            location: post.location,
-            content_type: type,
-            status: status,
-            user: user
-          });
-          postToSave.save(null, headers).subscribe();
+    return new Promise(resolve => {
+      this.datastore.findRecord(Status, '3', null, headers).subscribe(status => {
+        this.datastore.findRecord(ContentType, '1', null, headers).subscribe(type => {
+          this.auth.getUser().then(user => {
+            let postToSave = this.datastore.createRecord(Post, {
+              title: post.title,
+              type: post.type,
+              content: post.content,
+              location: post.location,
+              content_type: type,
+              status: status,
+              user: user
+            });
+            resolve(postToSave.save(null, headers).subscribe());
+          })
         })
       })
-    })
-  }
-
-  public createComment(comment) {
-    console.log(comment);
-
-    let self = this;
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/vnd.api+json');
-    headers.append('Authorization', 'Bearer ' + this.auth.getToken());
-    //TODO: uncomment and pray when comments are implemented in api
-    // let commentToSave = this.datastore.createRecord(Comment, {
-    //    user: user,
-    //    post: post,
-    //    content: "Wow!!",
-    //    type: contentTypeAnswer
-    //});
-    //
-    // commentToSave.save(null, headers).subscribe();
-
+    });
   }
 
   public posts()
@@ -61,14 +43,9 @@ export class PostService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/vnd.api+json');
     headers.append('Authorization', 'Bearer '+this.auth.getToken());
-    this.datastore.findAll(Status, null, headers).subscribe(statuses => {
-      console.log(statuses.getModels());
-    })
-
     return new Promise((resolve, reject) => {
       this.datastore.findAll(Post,  { include: 'post-statuses,content-types'}, headers).subscribe(
         (posts: JsonApiQueryData<Post>) => {
-          console.log(posts.getModels());
           resolve(posts.getModels());}
       );
     });
