@@ -2,7 +2,7 @@ import {JsonApiModelConfig, JsonApiModel, Attribute, HasMany} from 'angular2-jso
 import {Post} from "./post";
 
 @JsonApiModelConfig({
-    type: 'users'
+  type: 'users'
 })
 export class User extends JsonApiModel {
 

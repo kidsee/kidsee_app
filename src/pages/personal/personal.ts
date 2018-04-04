@@ -7,8 +7,8 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 
 @IonicPage()
 @Component({
-    selector: 'page-personal',
-    templateUrl: 'personal.html',
+  selector: 'page-personal',
+  templateUrl: 'personal.html',
 })
 
 export class PersonalPage {
