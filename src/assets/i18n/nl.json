@@ -4,7 +4,7 @@
   "username": "Gebruikersnaam",
   "password": "Wachtwoord",
   "register": "Registreren",
-  "city": "Woonplaats",
+  "postal_code": "Postcode",
   "birthdate": "Geboortedatum",
   "email": "Emailadres",
   "edit": "aanpassen",

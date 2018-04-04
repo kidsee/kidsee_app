@@ -30,8 +30,8 @@
             <ion-datetime displayFormat="DD - MM - YYYY" name="birthdate" [(ngModel)]="birthdate" (ngModelChange)='updateBirthdate()'></ion-datetime>
         </ion-item>
         <ion-item>
-            <ion-label floating>{{'city' | translate}}</ion-label>
-            <ion-input type="text" name="city" [value]="user?.city" (change)='updateUser($event.target.name,$event.target.value)'></ion-input>
+            <ion-label floating>{{'postal_code' | translate}}</ion-label>
+            <ion-input type="text" name="postal_code" [value]="user?.postal_code" (change)='updateUser($event.target.name,$event.target.value)'></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>{{'password' | translate}}</ion-label>
