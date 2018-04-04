@@ -1,4 +1,5 @@
-import { JsonApiModelConfig, JsonApiModel, Attribute } from 'angular2-jsonapi';
+import { JsonApiModelConfig, JsonApiModel, Attribute, HasMany } from 'angular2-jsonapi';
+import { Post } from "./post";
 
 @JsonApiModelConfig({
   type: 'users'
@@ -31,4 +32,7 @@ export class User extends JsonApiModel {
 
   @Attribute()
   updated_at: Date;
+
+  @HasMany()
+  posts: Post[] = [];
 }

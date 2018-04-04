@@ -1,0 +1,44 @@
+<base-header title="{{post?.title}}"></base-header>
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button icon-only class="custom-back-button" (click)="navCtrl.pop()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{post?.title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>
+        <ion-card-title>
+            {{post?.title}}
+        </ion-card-title>
+        <ion-note class="italic">
+            {{'postedBy' | translate}}{{post?.user.username}}
+        </ion-note>
+    </ion-card-header>
+    <ion-card-content>
+      {{post?.content}}
+    </ion-card-content>
+    <button ion-button icon-left clear small>
+      <ion-icon name="text"></ion-icon>
+      <div>{{post?.comments?.length || 0}} {{'comments' | translate}}</div>
+    </button>
+  </ion-card>
+  <ion-list>
+    <ion-card *ngFor="let comment of post?.comments">
+      <ion-card-header>{{post.user.username}} {{'commented' | translate}}</ion-card-header>
+      <ion-card-content>
+        {{comment.content}}
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+  <ion-fab bottom right >
+    <button ion-fab color="secondary">
+      <ion-icon name="add-circle"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>
