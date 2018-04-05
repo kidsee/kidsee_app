@@ -23,12 +23,12 @@ export class RegisterPage {
         if (success) {
           this.createSuccess = true;
           this.translate.get(['success', 'accountCreated']).subscribe(translations => {
-            this.showPopup(translations[0], translations[1]);
+            this.showPopup(translations['success'], translations['accountCreated']);
             this.nav.push('LoginPage');
           });
         } else {
           this.translate.get(['error', 'problemCreatingAccount']).subscribe(translations => {
-            this.showPopup(translations[0], translations[1]);
+            this.showPopup(translations['error'], translations['problemCreatingAccount']);
           });
         }
       },

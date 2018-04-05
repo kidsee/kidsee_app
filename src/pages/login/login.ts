@@ -26,7 +26,7 @@ export class LoginPage {
   }
 
   public login() {
-    this.showLoading()
+    this.showLoading();
     this.auth.login(this.registerCredentials).subscribe(allowed => {
         if (allowed) {
           this.nav.setRoot('MenuPage');
@@ -43,7 +43,7 @@ export class LoginPage {
 
   showLoading() {
     let message = "";
-    this.translate.get(['loading']).subscribe(translation => {
+    this.translate.get('loading').subscribe(translation => {
       message = translation;
     });
     this.loading = this.loadingCtrl.create({
@@ -60,8 +60,8 @@ export class LoginPage {
     let buttonText = "";
 
     this.translate.get(['fail', 'ok']).subscribe(translations => {
-      title = translations[0];
-      buttonText = translations[1];
+      title = translations['fail'];
+      buttonText = translations['ok'];
     });
     let alert = this.alertCtrl.create({
       title: title,
