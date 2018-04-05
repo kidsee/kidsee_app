@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-import { Datastore } from '../../providers/datastore/datastore';
 import { User } from '../../app/models/user';
-import { Headers } from "@angular/http";
 
 @IonicPage()
 @Component({
@@ -11,22 +9,17 @@ import { Headers } from "@angular/http";
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
-  user: any;
+  user: User;
   birthdate: string;
 
-  constructor(private datastore: Datastore, public navCtrl: NavController, public navParams: NavParams, private auth: AuthServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthServiceProvider) {
   }
 
   updateUser(userProperty, value) {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/vnd.api+json');
-    headers.append('Authorization', 'Bearer ' + this.auth.currentToken);
-    this.datastore.findRecord(User, String(this.auth.currentUserId), null, headers).subscribe(
-      (user: User) => {
-        user[userProperty] = value;
-        user.save(null, headers).subscribe();
-      }
-    );
+    this.auth.fetchCurrentUser().then(function (user){
+      user[userProperty] = value;
+      user.save().subscribe();
+    })
   }
 
   updateBirthdate() {
@@ -37,11 +30,10 @@ export class ProfilePage {
     this.auth.changePassword(value);
   }
 
-  ionViewDidLoad() {
-    let self = this;
-    this.auth.getUser().then((res) => {
-      self.user = res;
-      self.birthdate = self.user.birthdate.toISOString();
+  ionViewDidEnter() {
+    this.auth.fetchCurrentUser().then(user => {
+      this.user = user;
+      this.birthdate = this.user.birthdate.toISOString();
     });
   }
 }

@@ -1,128 +1,119 @@
-import { Http, Headers } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Datastore } from '../datastore/datastore';
 import { User } from '../../app/models/user';
 import * as bcrypt from 'bcryptjs';
+import { HttpHeaders } from '@angular/common/http';
+import { Storage } from '@ionic/storage';
+import { Headers } from '@angular/http';
 
 @Injectable()
 export class AuthServiceProvider {
-  currentUserId: number;
-  currentToken: string;
-  currentUser: User;
+  private currentUser: User;
 
-  constructor(private datastore: Datastore, private http: Http) {
+  constructor(
+    private datastore: Datastore,
+    private http: HttpClient,
+    private storage: Storage,
+  ) { this.isAuthenticated(); }
+
+  login(credentials) {
+    return Observable.create(observer => {
+      this.http.post(this.datastore.getBaseUrl() + '/tokens', credentials,
+        { headers: new HttpHeaders({ 'Content-Type': 'application/vnd.api+json' }) })
+        .subscribe(
+          (data) => {
+            this.storage.set('token', data['meta']['token']).then(token => {
+              this.setHeader(token);
+              this.storage.set('user_id', data['meta']['id']).then(_ => {
+                this.fetchCurrentUser().then(_ => {
+                  observer.next(true);
+                  observer.complete();
+                });
+              });
+            });
+          },
+          (err) => {
+            observer.error();
+            observer.complete();
+          });
+    });
   }
 
-  public login(credentials) {
-    if (credentials.identification === null || credentials.password === null) {
-      return Observable.throw("Vul je gegevens in!");
-    } else {
-      let headers = new Headers();
-      headers.append('Content-Type', 'application/vnd.api+json');
-      return Observable.create(observer => {
-        this.http.post(this.datastore.getBaseUrl() + '/tokens', {
-          identification: credentials.identification,
-          password: credentials.password,
-        }, {headers: headers}).map(res => res.json())
-          .subscribe(
-            (data) => {
-              this.currentUserId = data.meta.id;
-              this.currentToken = data.meta.token;
+  setHeader(token) {
+    this.datastore.headers = new Headers({ 'Authorization': 'Bearer ' + token});
+  }
 
-              let access = (this.currentUserId != null && this.currentToken != null);
+  fetchCurrentUser() {
+    return new Promise<any>((resolve) => {
+      if(this.currentUser) {
+        resolve(this.currentUser);
+      }
+      return this.storage.get('user_id').then(id => {
+        return this.datastore.findRecord(User, id).subscribe(
+          (user) => {
+            this.currentUser = user;
+            resolve(user);
+          },
+          (err) =>{
+            resolve(null);
+          }
+        )
+      });
+    });
+  }
 
-              observer.next(access);
+  logout() {
+    this.currentUser = null;
+    this.datastore.headers = null;
+    this.storage.remove('token');
+    this.storage.remove('user_id');
+  }
+
+  isAuthenticated() {
+    return this.storage.get('token').then(token => {
+      if(token) {
+        this.setHeader(token);
+        return this.fetchCurrentUser().then(user => {
+          return user != null;
+        });
+      }
+      else {
+        return false;
+      }
+    });
+  }
+
+
+  register(userParams) {
+    return Observable.create(observer => {
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(userParams.password, salt, (err, hash) => {
+          userParams.avatar = 'https://www.w3schools.com/howto/img_avatar.png';
+          let user = {...userParams, ...{password: hash}};
+          this.datastore.createRecord(User, user).save().subscribe(
+            success => {
+              observer.next(true);
               observer.complete();
             },
-            (err) => {
-              observer.error("De combinatie van gebruikersnaam/email en wachtwoord is fout");
-            });
-      });
-    }
-  }
-
-  public register(credentials) {
-    let self = this;
-    if (credentials.email === null || credentials.password === null) {
-      return Observable.throw("Alstublieft, vul je gegevens in!");
-    } else if (credentials.password.length < 8) {
-      console.log(credentials.password.count);
-      return Observable.throw("Het wachtwoord moet minimaal 8 karakters lang zijn.");
-    }
-    else {
-      bcrypt.genSalt(10, function (err, salt) {
-        bcrypt.hash(credentials.password, salt, (err, hash) => {
-          let user = self.datastore.createRecord(User, {
-            username: credentials.username,
-            email: credentials.email,
-            password: hash,
-            birthdate: credentials.birthdate,
-            avatar: 'https://www.w3schools.com/howto/img_avatar.png'
-          });
-
-          user.save().subscribe(
-            (user: User) => {
+            error => {
+              observer.error();
+              observer.complete();
             }
           );
         });
       });
-      return Observable.create(observer => {
-        observer.next(true);
-        observer.complete();
-      });
-    }
+    });
   }
 
-  public changePassword(password) {
-    let self = this;
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/vnd.api+json');
-    headers.append('Authorization', 'Bearer ' + this.getToken());
-    bcrypt.genSalt(10, function (err, salt) {
+  changePassword(password) {
+    bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(password, salt, (err, hash) => {
-
-        self.datastore.findRecord(User, String(self.currentUserId), null, headers).subscribe(
-          (user: User) => {
-            user.password = hash;
-            user.save(null, headers).subscribe();
-          }
-        );
+        this.currentUser.password = hash;
+        this.currentUser.save().subscribe();
       });
     });
   }
-
-  public getUserId() {
-    return this.currentUserId;
-  }
-
-  public getUser() {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/vnd.api+json');
-    headers.append('Authorization', 'Bearer ' + this.currentToken);
-
-    return new Promise((resolve, reject) => {
-      this.datastore.findRecord(User, String(this.currentUserId), null, headers).subscribe(
-        (user: User) => {
-          resolve(user);
-        }
-      );
-    });
-
-  }
-
-  public getToken() {
-    return this.currentToken;
-  }
-
-  public logout() {
-    return Observable.create(observer => {
-      this.currentUserId = null;
-      this.currentToken = null;
-      observer.next(true);
-      observer.complete();
-    });
-  }
-
 }

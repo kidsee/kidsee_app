@@ -15,8 +15,7 @@ export class BaseHeaderComponent {
   }
 
   public logout() {
-    this.auth.logout().subscribe(succ => {
-      this.app.getRootNav().setRoot('LoginPage');
-    });
+    this.auth.logout();
+    this.app.getRootNav().setRoot('LoginPage');
   }
 }

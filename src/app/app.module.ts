@@ -13,6 +13,8 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { PostService } from "../providers/post-service/post-service";
+import { IonicStorageModule } from '@ionic/storage';
+import { AlertServiceProvider } from '../providers/alert-service/alert-service';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { PostService } from "../providers/post-service/post-service";
     HttpModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -41,9 +44,10 @@ import { PostService } from "../providers/post-service/post-service";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthServiceProvider,
+    AlertServiceProvider,
     Datastore,
     DatePicker,
-    PostService
+    PostService,
   ]
 })
 export class AppModule {

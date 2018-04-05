@@ -1,5 +1,6 @@
+import { AlertServiceProvider } from './../../providers/alert-service/alert-service';
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
+import { NavController, LoadingController, Loading, IonicPage } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { TranslateService } from '@ngx-translate/core';
 /**
@@ -18,56 +19,45 @@ export class LoginPage {
   loading: Loading;
   registerCredentials = {identification: '', password: ''};
 
-  constructor(private nav: NavController, private auth: AuthServiceProvider, private alertCtrl: AlertController, private loadingCtrl: LoadingController, private translate: TranslateService) {
-  }
+  constructor(
+    private nav: NavController,
+    private auth: AuthServiceProvider,
+    private alertCtrl: AlertServiceProvider,
+    private loadingCtrl: LoadingController,
+    private translate: TranslateService
+  ) { }
 
   public createAccount() {
     this.nav.push('RegisterPage');
   }
 
-  public login() {
+  ionViewDidLoad(){
+    this.auth.isAuthenticated().then(authenticated => {
+      if(authenticated) {
+        this.nav.setRoot('TabsPage');
+      }
+    })
+  }
+
+  login() {
     this.showLoading();
-    this.auth.login(this.registerCredentials).subscribe(allowed => {
-        if (allowed) {
-          this.nav.setRoot('MenuPage');
-        } else {
-          this.translate.get(['accessDenied']).subscribe(translation => {
-            this.showError(translation);
-          });
-        }
+    this.auth.login(this.registerCredentials).subscribe(
+      success => {
+        this.nav.setRoot('TabsPage');
       },
       error => {
-        this.showError(error);
-      });
+        this.translate.get(['fail', 'accessDenied', 'ok']).subscribe(translation => {
+          this.alertCtrl.showPopup(translation.fail, translation.accessDenied, translation.ok);
+          this.loading.dismiss();
+        });
+      }
+    )
   }
 
   showLoading() {
-    let message = "";
-    this.translate.get('loading').subscribe(translation => {
-      message = translation;
-    });
     this.loading = this.loadingCtrl.create({
-
-      content: message,
       dismissOnPageChange: true
     });
     this.loading.present();
-  }
-
-  showError(text) {
-    this.loading.dismiss();
-    let title = "";
-    let buttonText = "";
-
-    this.translate.get(['fail', 'ok']).subscribe(translations => {
-      title = translations['fail'];
-      buttonText = translations['ok'];
-    });
-    let alert = this.alertCtrl.create({
-      title: title,
-      subTitle: text,
-      buttons: [buttonText]
-    });
-    alert.present();
   }
 }
