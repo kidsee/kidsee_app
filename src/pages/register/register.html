@@ -1,31 +1,50 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>{{'register' | translate}}</ion-title>
+    <ion-title>{{ 'register' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content class="login-content" padding>
-  <div class="login-box">
+<ion-content class="register-content" padding>
+  <div class="register-box">
 
-    <form (ngSubmit)="register()" #registerForm="ngForm">
+    <form [formGroup]="registerForm">
       <ion-row>
         <ion-col>
           <ion-list inset>
             <ion-item>
-              <ion-input type="text" placeholder="{{'username' | translate}}" name="username" [(ngModel)]="registerCredentials.username" required></ion-input>
+              <ion-input type="text" placeholder="{{'username' | translate}}" formControlName="username" [class.invalid]="!registerForm.controls.username.valid && (registerForm.controls.username.dirty || submitAttempt)"></ion-input>
+            </ion-item>
+            <ion-item text-wrap *ngIf="!registerForm.controls.username.valid  && (registerForm.controls.username.dirty || submitAttempt)">
+              <p>{{ 'username_invalid' | translate }}</p>
             </ion-item>
 
             <ion-item>
-              <ion-input type="text" placeholder="{{'email' | translate}}" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
+              <ion-input type="text" placeholder="{{ 'email' | translate }}" name="email" formControlName="email" [class.invalid]="!registerForm.controls.email.valid && (registerForm.controls.email.dirty || submitAttempt)"></ion-input>
+            </ion-item>
+            <ion-item text-wrap *ngIf="!registerForm.controls.email.valid  && (registerForm.controls.email.dirty || submitAttempt)">
+              <p>{{ 'email_invalid' | translate }}</p>
             </ion-item>
 
             <ion-item>
-              <ion-label>{{'birthdate' | translate}}</ion-label>
-              <ion-datetime displayFormat="DD - MM - YYYY" name="birthdate" [(ngModel)]="registerCredentials.birthdate"></ion-datetime>
+              <ion-label>{{ 'birthdate' | translate }}</ion-label>
+              <ion-datetime displayFormat="DD - MM - YYYY" name="birthdate" formControlName="birthdate" [class.invalid]="!registerForm.controls.birthdate.valid && (registerForm.controls.birthdate.dirty || submitAttempt)"></ion-datetime>
+            </ion-item>
+            <ion-item text-wrap *ngIf="!registerForm.controls.birthdate.valid  && (registerForm.controls.birthdate.dirty || submitAttempt)">
+              <p>{{ 'birthdate_invalid' | translate }}</p>
             </ion-item>
 
             <ion-item>
-              <ion-input type="password" placeholder="{{'password' | translate}}" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>
+              <ion-input type="password" placeholder="{{ 'password' | translate }}" formControlName="password" [class.invalid]="!registerForm.controls.password.valid && (registerForm.controls.password.dirty || submitAttempt)"></ion-input>
+            </ion-item>
+            <ion-item text-wrap *ngIf="!registerForm.controls.password.valid  && (registerForm.controls.password.dirty || submitAttempt)">
+              <p>{{ 'password_invalid' | translate }}</p>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="password" placeholder="{{ 'confirm_password' | translate }}" formControlName="passwordConfirmation" [class.invalid]="!registerForm.controls.passwordConfirmation.valid && (registerForm.controls.passwordConfirmation.dirty || submitAttempt)"></ion-input>
+            </ion-item>
+            <ion-item text-wrap *ngIf="!registerForm.controls.passwordConfirmation.valid  && (registerForm.controls.passwordConfirmation.dirty || submitAttempt)">
+              <p>{{ 'password_doesnt_match' | translate}}</p>
             </ion-item>
 
           </ion-list>
@@ -34,7 +53,7 @@
 
       <ion-row>
         <ion-col class="signup-col">
-          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">{{'register' | translate}}</button>
+          <button ion-button class="submit-btn" full (click)="register()" [disabled]="!registerForm.valid">{{ 'register' | translate}}</button>
         </ion-col>
       </ion-row>
 

@@ -11,7 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class LoginPage {
   private loading: Loading;
-  
+
   registerCredentials = {identification: '', password: ''};
 
   constructor(
