@@ -7,16 +7,15 @@ import { AuthServiceProvider } from "../auth-service/auth-service";
 
 @Injectable()
 export class CommentService {
-  commentsList: any;
+  private commentsList: any;
 
-  constructor(private datastore: Datastore, private auth: AuthServiceProvider) {
+  constructor(private datastore: Datastore, private authServiceProvider: AuthServiceProvider) {
   }
 
 
   public comments() {
     let headers = new Headers();
-    headers.append('Content-Type', 'application/vnd.api+json');
-    headers.append('Authorization', 'Bearer ' + this.auth.getToken());
+    headers.append('Authorization', 'Bearer ' + this.authServiceProvider.getToken());
 
     return this.datastore.findAll(Comment, null, headers)
       .subscribe(comments => {
@@ -26,7 +25,7 @@ export class CommentService {
 
   public createComment(comment) {
     let headers = new Headers();
-    headers.append('Authorization', 'Bearer ' + this.auth.getToken());
+    headers.append('Authorization', 'Bearer ' + this.authServiceProvider.getToken());
     return new Promise(resolve => {
       this.datastore.findRecord(ContentType, '1', null, headers).subscribe(type => {
         let commentToSave = this.datastore.createRecord(Comment, {
