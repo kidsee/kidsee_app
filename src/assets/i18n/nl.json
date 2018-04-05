@@ -30,5 +30,12 @@
   "personal": "Persoonlijk",
   "postedBy": "Geplaatst door: ",
   "commented": "heeft gereageerd:",
-  "comments": "reacties"
+  "comments": "reacties",
+  "comment": "Reactie",
+  "createcomment": "Reactie aanmaken",
+  "sendcomment": "Reageren",
+  "createpost": "Post aanmaken",
+  "question": "Vraag",
+  "title": "Titel",
+  "sendpost": "Verzenden"
 }

@@ -30,14 +30,14 @@
   </ion-card>
   <ion-list>
     <ion-card *ngFor="let comment of post?.comments">
-      <ion-card-header>{{post.user.username}} {{'commented' | translate}}</ion-card-header>
+      <ion-card-header>{{comment.user.username}} {{'commented' | translate}}</ion-card-header>
       <ion-card-content>
         {{comment.content}}
       </ion-card-content>
     </ion-card>
   </ion-list>
   <ion-fab bottom right >
-    <button ion-fab color="secondary">
+    <button ion-fab (click)="createcomment(post)" color="secondary">
       <ion-icon name="add-circle"></ion-icon>
     </button>
   </ion-fab>

@@ -9,42 +9,45 @@ import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { Datastore } from '../providers/datastore/datastore';
+import {PostService} from "../providers/post-service/post-service";
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
-import { PostService } from "../providers/post-service/post-service";
+import {CommentService} from "../providers/comment-service/comment-service";
 
 @NgModule({
-  declarations: [
-    MyApp
-  ],
-  imports: [
-    BrowserModule,
-    JsonApiModule,
-    HttpModule,
-    HttpClientModule,
-    IonicModule.forRoot(MyApp),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp
-  ],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthServiceProvider,
-    Datastore,
-    DatePicker,
-    PostService
-  ]
+    declarations: [
+        MyApp
+    ],
+    imports: [
+        BrowserModule,
+        JsonApiModule,
+        HttpModule,
+        HttpClientModule,
+        IonicModule.forRoot(MyApp),
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        }),
+    ],
+    bootstrap: [IonicApp],
+    entryComponents: [
+        MyApp
+    ],
+    providers: [
+        StatusBar,
+        SplashScreen,
+        {provide: ErrorHandler, useClass: IonicErrorHandler},
+        AuthServiceProvider,
+        Datastore,
+        DatePicker,
+        PostService,
+        CommentService
+    ]
+
 })
 export class AppModule {
 }

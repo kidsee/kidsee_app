@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PostService } from "../../providers/post-service/post-service";
 import { Post } from "../../app/models/post";
+import {User} from "../../app/models/user";
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { TranslateService } from '@ngx-translate/core';
 
 @IonicPage()
 @Component({
@@ -14,21 +17,33 @@ export class PersonalPage {
   private posts: Post[] = [];
   private viewPosts: Post[] = [];
   private amountOfShownPosts: number;
+    private user: User;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private postProv: PostService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private postService: PostService,
+  private auth: AuthServiceProvider, private translate: TranslateService) {
     this.amountOfShownPosts = 5;
   }
 
   public gotoPost(postid: string) {
-    this.postProv.currentPost = this.posts.find(p => p.id == postid);
+    this.postService.currentPost = this.posts.find(p => p.id == postid);
     this.navCtrl.push('PostPage');
   }
+
+    public createpost() {
+        this.auth.getUser().then((user: User) => {
+            this.user = user;
+        }).then( value => {
+            this.navCtrl.push('CreatePostPage', {
+                user: this.user,
+            });
+        });
+    }
 
   ionViewDidEnter() {
     this.posts = [];
     this.viewPosts = [];
     let self = this;
-    this.postProv.posts().then((res) => {
+    this.postService.posts().then((res) => {
         self.posts = res as Post[];
         if (self.posts.length < this.amountOfShownPosts) {
           self.amountOfShownPosts = self.posts.length;
