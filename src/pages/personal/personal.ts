@@ -4,6 +4,7 @@ import { PostService } from "../../providers/post-service/post-service";
 import { Post } from "../../app/models/post";
 import {User} from "../../app/models/user";
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { TranslateService } from '@ngx-translate/core';
 
 @IonicPage()
 @Component({
@@ -18,13 +19,13 @@ export class PersonalPage {
   private amountOfShownPosts: number;
     private user: User;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private postProv: PostService,
-  private auth: AuthServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private postService: PostService,
+  private auth: AuthServiceProvider, private translate: TranslateService) {
     this.amountOfShownPosts = 5;
   }
 
   public gotoPost(postid: string) {
-    this.postProv.currentPost = this.posts.find(p => p.id == postid);
+    this.postService.currentPost = this.posts.find(p => p.id == postid);
     this.navCtrl.push('PostPage');
   }
 
@@ -42,7 +43,7 @@ export class PersonalPage {
     this.posts = [];
     this.viewPosts = [];
     let self = this;
-    this.postProv.posts().then((res) => {
+    this.postService.posts().then((res) => {
         self.posts = res as Post[];
         if (self.posts.length < this.amountOfShownPosts) {
           self.amountOfShownPosts = self.posts.length;

@@ -1,6 +1,6 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>Post aanmaken</ion-title>
+        <ion-title>{{ 'createpost' | translate }}</ion-title>
     </ion-navbar>
 </ion-header>
 
@@ -18,19 +18,19 @@
             <ion-item>
                 <ion-select name="type" [(ngModel)]="postProperties.type" required>
                     <!--TODO: get options from posttypes? -->
-                    <ion-option type="vraag">Vraag</ion-option>
+                    <ion-option type="vraag">{{ 'question' | translate }}</ion-option>
                 </ion-select>
             </ion-item>
             <ion-item>
-                <ion-input name="title" [(ngModel)]="postProperties.title" placeholder="Titel" required></ion-input>
+                <ion-input name="title" [(ngModel)]="postProperties.title" placeholder="{{ 'title' | translate }}" required></ion-input>
             </ion-item>
             <ion-item>
-                <ion-input name="content" [(ngModel)]="postProperties.content" placeholder="Vraag" required></ion-input>
+                <ion-input name="content" [(ngModel)]="postProperties.content" placeholder="{{ 'question' | translate }}" required></ion-input>
             </ion-item>
         </ion-list>
 
         <ion-item>
-            <button ion-button class="submit-btn" full type="submit" [disabled]="!postform.form.valid">Vraag!</button>
+            <button ion-button class="submit-btn" full type="submit" [disabled]="!postform.form.valid">{{ 'sendpost' | translate }}!</button>
         </ion-item>
     </form>
 </ion-content>
