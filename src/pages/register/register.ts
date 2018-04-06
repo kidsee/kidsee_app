@@ -1,5 +1,6 @@
+import { AlertServiceProvider } from '../../providers/alert-service/alert-service';
 import { Component } from '@angular/core';
-import { NavController, AlertController, IonicPage } from 'ionic-angular';
+import { NavController, IonicPage } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -9,51 +10,36 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: 'register.html',
 })
 export class RegisterPage {
-  createSuccess = false;
   registerCredentials = {email: '', password: '', birthdate: '', username: ''};
 
-  constructor(private nav: NavController, private auth: AuthServiceProvider, private alertCtrl: AlertController, private translate: TranslateService) {
-    this.translate.get('success').subscribe(res => {
-      console.log(res)
-    });
-  }
+  constructor(
+    private nav: NavController,
+    private auth: AuthServiceProvider,
+    private alertCtrl: AlertServiceProvider,
+    private translate: TranslateService
+  ) { }
 
   public register() {
-    this.auth.register(this.registerCredentials).subscribe(success => {
-        if (success) {
-          this.createSuccess = true;
-          this.translate.get(['success', 'accountCreated']).subscribe(translations => {
-            this.showPopup(translations['success'], translations['accountCreated']);
-            this.nav.push('LoginPage');
-          });
-        } else {
-          this.translate.get(['error', 'problemCreatingAccount']).subscribe(translations => {
-            this.showPopup(translations['error'], translations['problemCreatingAccount']);
-          });
-        }
+    this.auth.register(this.registerCredentials).subscribe(
+      success => {
+        this.translate.get(['success', 'accountCreated', 'ok']).subscribe(translations => {
+          this.alertCtrl.showPopup(
+            translations.succes,
+            translations.accountCreated,
+            translations.ok
+          );
+          this.nav.push('LoginPage');
+        });
       },
       error => {
-        this.translate.get('error').subscribe(translation => {
-          this.showPopup(translation, error);
+        this.translate.get(['error', 'problemCreatingAccount', 'ok']).subscribe(translations => {
+          this.alertCtrl.showPopup(
+            translations.error,
+            translations.problemCreatingAccount,
+            translations.ok
+          );
         });
-      });
-  }
-
-  showPopup(title, text) {
-    let alert = this.alertCtrl.create({
-      title: title,
-      subTitle: text,
-      buttons: [
-        {
-          text: 'OK',
-          handler: data => {
-            if (this.createSuccess) {
-              this.nav.popToRoot();
-            }
-          }
-        }
-      ]
-    });
-    alert.present();
+      }
+    );
   }
 }

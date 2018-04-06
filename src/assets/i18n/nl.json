@@ -11,11 +11,6 @@
   "profile": "Profiel",
   "menu": "Menu",
   "gotoProfile": "Ga naar profiel",
-  "notifications": "Meldingen",
-  "rewards": "Beloningen",
-  "helpdesk": "Hulp",
-  "faq": "Veelgestelde vragen",
-  "tips": "Tips",
   "success": "Gelukt",
   "accountCreated": "Account aangemaakt",
   "error": "Foutmelding",
@@ -24,11 +19,10 @@
   "loading": "Even geduld aub",
   "fail": "Er is iets misgegaan",
   "ok": "OK",
-  "discover": "Ontdek",
-  "kidsee": "Kidsee",
-  "map": "Kaart",
   "personal": "Persoonlijk",
   "postedBy": "Geplaatst door: ",
   "commented": "heeft gereageerd:",
-  "comments": "reacties"
+  "comments": "reacties",
+  "missingCredentials": "Niet alle gegevens zijn ingevuld",
+  "home": "home"
 }
