@@ -2,11 +2,11 @@
 
 <ion-content padding class="under-nav-margin">
     <ion-list>
-        <ion-card *ngFor="let post of viewPosts" (click)="gotoPost(post.id)">
+        <ion-card *ngFor="let post of viewPosts" (click)="gotoPost(post)">
             <ion-card-header>
                 <ion-card-title>{{post?.title}}</ion-card-title>
                 <ion-note class="italic">
-                    {{'postedBy' | translate}}{{post.user.username}}
+                    {{'posted_by' | translate}}{{post.user.username}}
                 </ion-note>
             </ion-card-header>
             <ion-card-content>{{post?.content}}</ion-card-content>

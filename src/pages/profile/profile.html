@@ -2,7 +2,7 @@
 <ion-header>
     <ion-navbar>
         <ion-buttons left>
-            <button ion-button icon-only class="custom-back-button" (click)="navCtrl.pop()">
+            <button ion-button icon-only class="custom-back-button" (click)="back()">
                 <ion-icon name="arrow-back"></ion-icon>
             </button>
         </ion-buttons>
@@ -26,7 +26,7 @@
             <ion-input type="email" name="email" [value]="user?.email" (change)='updateUser($event.target.name,$event.target.value)'></ion-input>
         </ion-item>
         <ion-item>
-		<ion-label floating>{{'birthdate' | translate}}</ion-label>
+            <ion-label floating>{{'birthdate' | translate}}</ion-label>
             <ion-datetime displayFormat="DD - MM - YYYY" name="birthdate" [(ngModel)]="birthdate" (ngModelChange)='updateBirthdate()'></ion-datetime>
         </ion-item>
         <ion-item>

@@ -10,31 +10,33 @@ import { Post } from "../../app/models/post";
 })
 
 export class PersonalPage {
-
   private posts: Post[] = [];
-  private viewPosts: Post[] = [];
   private amountOfShownPosts: number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private postProv: PostService) {
+  public viewPosts: Post[] = [];
+
+  constructor(
+    private navController: NavController,
+    private navParams: NavParams,
+    private postService: PostService
+  ) {
     this.amountOfShownPosts = 5;
   }
 
-  public gotoPost(postid: string) {
-    this.postProv.currentPost = this.posts.find(p => p.id == postid);
-    this.navCtrl.push('PostPage');
+  public gotoPost(post: Post) {
+    this.navController.push('PostPage', {post: post});
   }
 
   ionViewDidEnter() {
     this.posts = [];
     this.viewPosts = [];
-    let self = this;
-    this.postProv.posts().then((res) => {
-        self.posts = res as Post[];
-        if (self.posts.length < this.amountOfShownPosts) {
-          self.amountOfShownPosts = self.posts.length;
+    this.postService.posts().then((res) => {
+      this.posts = res as Post[];
+        if (this.posts.length < this.amountOfShownPosts) {
+          this.amountOfShownPosts = this.posts.length;
         }
         for (let i = 0; i < this.amountOfShownPosts; i++) {
-          self.viewPosts.push(this.posts[i]);
+          this.viewPosts.push(this.posts[i]);
         }
       }
     );
@@ -42,12 +44,11 @@ export class PersonalPage {
   }
 
   doInfinite(infiniteScroll) {
-    let self = this;
     setTimeout(() => {
-      let min = self.viewPosts.length;
+      let min = this.viewPosts.length;
       let max;
-      if (min + this.amountOfShownPosts > self.posts.length) {
-        max = self.posts.length;
+      if (min + this.amountOfShownPosts > this.posts.length) {
+        max = this.posts.length;
       }
       else {
         max = min + this.amountOfShownPosts;

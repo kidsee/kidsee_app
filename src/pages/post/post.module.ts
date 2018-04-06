@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { PostPage } from './post';
-import {ComponentsModule} from "../../components/components.module";
-import {TranslateModule} from "@ngx-translate/core";
+import { ComponentsModule } from "../../components/components.module";
+import { TranslateModule } from "@ngx-translate/core";
 
 @NgModule({
   declarations: [
@@ -10,8 +10,8 @@ import {TranslateModule} from "@ngx-translate/core";
   ],
   imports: [
     IonicPageModule.forChild(PostPage),
-      ComponentsModule,
-      TranslateModule
+    ComponentsModule,
+    TranslateModule
   ],
 })
 export class PostPageModule {}

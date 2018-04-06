@@ -4,18 +4,18 @@ import { Post } from "./post";
 import { ContentType } from "./contentType";
 
 @JsonApiModelConfig({
-    type: 'comments'
+  type: 'comments'
 })
 export class Comment extends JsonApiModel {
-    @BelongsTo()
-    user: User;
+  @BelongsTo()
+  user: User;
 
-    @BelongsTo()
-    post: Post;
+  @BelongsTo()
+  post: Post;
 
-    @Attribute()
-    content: string;
+  @Attribute()
+  content: string;
 
-    @Attribute()
-    type: ContentType;
+  @Attribute()
+  type: ContentType;
 }

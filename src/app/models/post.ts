@@ -5,31 +5,31 @@ import { PostStatus } from "./poststatus";
 import { Comment } from "./comment";
 
 @JsonApiModelConfig({
-    type: 'posts'
+  type: 'posts'
 })
 export class Post extends JsonApiModel {
 
-    @Attribute()
-    content: string;
+  @Attribute()
+  content: string;
 
-    @Attribute()
-    title: string;
+  @Attribute()
+  title: string;
 
-    @Attribute()
-    type: ContentType;
+  @Attribute()
+  type: ContentType;
 
-    @BelongsTo()
-    user: User;
+  @BelongsTo()
+  user: User;
 
-    @Attribute()
-    postStatuses: PostStatus;
+  @Attribute()
+  postStatuses: PostStatus;
 
-    @HasMany()
-    comments: Comment[] = [];
+  @HasMany()
+  comments: Comment[] = [];
 
-    @Attribute()
-    created_at: Date;
+  @Attribute()
+  created_at: Date;
 
-    @Attribute()
-    updated_at: Date;
+  @Attribute()
+  updated_at: Date;
 }
