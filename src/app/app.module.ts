@@ -9,6 +9,7 @@ import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { Datastore } from '../providers/datastore/datastore';
+import { ProfileServiceProvider } from '../providers/profile-service/profile-service';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
@@ -43,6 +44,7 @@ import { PostService } from "../providers/post-service/post-service";
     AuthServiceProvider,
     Datastore,
     DatePicker,
+    ProfileServiceProvider,
     PostService
   ]
 })

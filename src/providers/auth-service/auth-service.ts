@@ -39,9 +39,9 @@ export class AuthServiceProvider {
             (err) => {
               observer.error("De combinatie van gebruikersnaam/email en wachtwoord is fout");
             });
+
       });
-    }
-  }
+    }}
 
   public register(credentials) {
     let self = this;
