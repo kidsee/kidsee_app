@@ -2,7 +2,7 @@
 <ion-header>
   <ion-navbar>
     <ion-buttons left>
-      <button ion-button icon-only class="custom-back-button" (click)="navCtrl.pop()">
+      <button ion-button icon-only class="custom-back-button" (click)="back()">
         <ion-icon name="arrow-back"></ion-icon>
       </button>
     </ion-buttons>
@@ -13,12 +13,12 @@
 <ion-content padding>
   <ion-card>
     <ion-card-header>
-        <ion-card-title>
-            {{post?.title}}
-        </ion-card-title>
-        <ion-note class="italic">
-            {{'postedBy' | translate}}{{post?.user.username}}
-        </ion-note>
+      <ion-card-title>
+        {{post?.title}}
+      </ion-card-title>
+      <ion-note class="italic">
+        {{'posted_by' | translate}}{{post?.user.username}}
+      </ion-note>
     </ion-card-header>
     <ion-card-content>
       {{post?.content}}

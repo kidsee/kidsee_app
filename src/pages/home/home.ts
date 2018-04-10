@@ -11,16 +11,16 @@ import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
 export class HomePage {
   private user: User;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthServiceProvider) {
+  constructor(public navController: NavController, public navParams: NavParams, private authServiceProvider: AuthServiceProvider) {
   }
 
   ionViewDidLoad(){
-    this.auth.fetchCurrentUser().then(user => {
+    this.authServiceProvider.fetchCurrentUser().then(user => {
       this.user = user;
     });
   }
 
   public profile() {
-    this.navCtrl.push('ProfilePage');
+    this.navController.push('ProfilePage');
   }
 }

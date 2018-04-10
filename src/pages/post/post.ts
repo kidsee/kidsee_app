@@ -1,14 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {Post} from "../../app/models/post";
-import {PostService} from "../../providers/post-service/post-service";
-
-/**
- * Generated class for the PostPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Post } from "../../app/models/post";
+import { PostService } from "../../providers/post-service/post-service";
 
 @IonicPage()
 @Component({
@@ -16,12 +9,20 @@ import {PostService} from "../../providers/post-service/post-service";
   templateUrl: 'post.html',
 })
 export class PostPage {
-    private post: Post;
+  post: Post;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, private postProv: PostService) {
+  constructor(
+    public navController: NavController,
+    public navParams: NavParams,
+    private postService: PostService
+  ) { }
+
+  ionViewDidEnter() {
+    this.post = this.navParams.get('post');
+    console.log(this.post)
   }
 
-    ionViewDidEnter() {
-        this.post = this.postProv.getCurrentPost();
-    }
+  back() {
+    this.navController.pop();
+  }
 }

@@ -15,13 +15,13 @@ export class AuthServiceProvider {
 
   constructor(
     private datastore: Datastore,
-    private http: HttpClient,
+    private httpClient: HttpClient,
     private storage: Storage,
   ) { this.isAuthenticated(); }
 
   login(credentials) {
     return Observable.create(observer => {
-      this.http.post(this.datastore.getBaseUrl() + '/tokens', credentials,
+      this.httpClient.post(this.datastore.getBaseUrl() + '/tokens', credentials,
         { headers: new HttpHeaders({ 'Content-Type': 'application/vnd.api+json' }) })
         .subscribe(
           (data) => {

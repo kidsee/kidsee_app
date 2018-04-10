@@ -12,14 +12,21 @@ export class ProfilePage {
   user: User;
   birthdate: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthServiceProvider) {
-  }
+  constructor(
+    private navController: NavController,
+    private navParams: NavParams,
+    private authServiceProvider: AuthServiceProvider
+  ) { }
 
   updateUser(userProperty, value) {
-    this.auth.fetchCurrentUser().then(function (user){
+    this.authServiceProvider.fetchCurrentUser().then(function (user){
       user[userProperty] = value;
       user.save().subscribe();
     })
+  }
+
+  back() {
+    this.navController.pop();
   }
 
   updateBirthdate() {
@@ -27,11 +34,11 @@ export class ProfilePage {
   }
 
   updatePassword(value) {
-    this.auth.changePassword(value);
+    this.authServiceProvider.changePassword(value);
   }
 
   ionViewDidEnter() {
-    this.auth.fetchCurrentUser().then(user => {
+    this.authServiceProvider.fetchCurrentUser().then(user => {
       this.user = user;
       this.birthdate = this.user.birthdate.toISOString();
     });

@@ -13,27 +13,27 @@ export class RegisterPage {
   registerCredentials = {email: '', password: '', birthdate: '', username: ''};
 
   constructor(
-    private nav: NavController,
-    private auth: AuthServiceProvider,
-    private alertCtrl: AlertServiceProvider,
-    private translate: TranslateService
+    private navController: NavController,
+    private authServiceProvider: AuthServiceProvider,
+    private alertServiceProvider: AlertServiceProvider,
+    private translateService: TranslateService
   ) { }
 
-  public register() {
-    this.auth.register(this.registerCredentials).subscribe(
+  register() {
+    this.authServiceProvider.register(this.registerCredentials).subscribe(
       success => {
-        this.translate.get(['success', 'accountCreated', 'ok']).subscribe(translations => {
-          this.alertCtrl.showPopup(
+        this.translateService.get(['success', 'account_created', 'ok']).subscribe(translations => {
+          this.alertServiceProvider.showPopup(
             translations.succes,
             translations.accountCreated,
             translations.ok
           );
-          this.nav.push('LoginPage');
+          this.navController.push('LoginPage');
         });
       },
       error => {
-        this.translate.get(['error', 'problemCreatingAccount', 'ok']).subscribe(translations => {
-          this.alertCtrl.showPopup(
+        this.translateService.get(['error', 'problem_creating_account', 'ok']).subscribe(translations => {
+          this.alertServiceProvider.showPopup(
             translations.error,
             translations.problemCreatingAccount,
             translations.ok

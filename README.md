@@ -1,40 +1,48 @@
+## Some code styling guidelines:
+ - Name variables for what they are, and in camelCase. So a NavigationController becomes a navigationController, not a navctrl
+ - Indents are 2 spaces and there is a space between a bracket and name in an import
+ - Translations use underscores as word breaks
+
 ## What to do before you make a pull request (pr):
 Run:
 - npm run lint
 - jasmine
 
-Als je deze nog niet hebt:
-npm install -g lint jasmine
+If you don't have these yet, run: <br/>
+`npm install -g lint jasmine`<br/>
+As well as<br/>
+`npm install`<br/>
 
-Als er errors naar voren komen moet je deze eerst fixen voor je een pr aanmaakt.
+If you find errors, fix these before you make a pr.
 
 ## What to do when reviewing a pull request:
-- Kijk of de travis checks passen. Check ook even op de travis site, want Lint errors worden als warnings gezien en dus NIET op github getoond, alleen op travis zelf.
-- Pull de code.
-- Check zelf of de code werkt, en ook of je het onderdeel stuk kunt maken (verkeerde waardes invullen etc).
+- Check if the travis checks all pass. Check the travis site for Lint errors, as those are *not* shown on Github.
+- Pull the code.
+- Check if the code runs and if you can in any way destroy the new functionality (i.e. by entering wrong values).
 
 ## What to do when merging a pull request:
-- Rebase de commits naar een beperkt aantal zinvolle commits. Dus geen "oeps, vergeten", die worden gesquashed naar een andere commit.
-- Merge vervolgens met de standaard merge naar develop.
+- Rebase the commits to a limited amount of useful (as in useful to read 3 months from now) commits. This means no "whoops, forgot this" commits, those are squashed to other commits.
+- Then merge with the standard merge to develop.
 
-## Multi-Language Instruction gids
-Voeg geen platte tekst meer toe aan de frontend. De tekst die er moet komen te staan dient ingevoerd te worden aan elke language file die we hebben. Op dit moment is dat alleen Nederlands. De language files staan in: src/assets/i18n. Dit zijn json files, met de key die aangeroepen wordt in de frontend en de value die dan getoond wordt. <br />
-Voorbeeld:<br />
+## Multi-Language Instruction guide
+Don't add flat text to the frontend. The text has to come either from the api data, or from the language file. Currently, we only use Dutch. The language files are located in src/assets/i18n. The translation files are json, with the key that can be called and the value that will be returned<br />
+Example:<br />
 HTML:<br />
 {{ 'helloWorld' | translate }} <br />
 JSON:<br />
 { "helloWorld": "Hallo wereld!"} <br />
-Dan wordt er de string uit de json file getoond.
-Dit is ook mogelijk met parameters: <br />
+This will show the text from the JSON file.
+It's possible to add parameters: <br />
 HTML: <br />
 {{'Hello' | translate:param}} <br />
 JSON: <br />
 {"Hello": "hello {{value}}"} <br />
-Voor nog meer info, zie https://github.com/ngx-translate/core/blob/master/README.md
+For more info, zie https://github.com/ngx-translate/core/blob/master/README.md
 
+Protip: If you get an error in the HTML saying that the pipe 'translate' is invalid, add the TranslateModule to your module.ts
 
 ## Unit testing
-Voor de tests wordt jasmine gebruikt, zie deze handige links voor wat voorbeelden: <br />
+We use jasmine to unit test, see these links for some examples: <br />
 https://www.joshmorony.com/how-to-unit-test-an-ionic-2-application/ <br />
 https://jasmine.github.io/pages/docs_home.html <br />
-Daarnaast zijn er ook een aantal voorbeelden in de jasmine_examples folders (/lib/jasmine_examples voor de models en /specs/jasmine_examples voor de tests).
+Next to that, there are some examples in the jasmine_examples folders (/lib/jasmine_examples for the models and /specs/jasmine_examples for the tests).

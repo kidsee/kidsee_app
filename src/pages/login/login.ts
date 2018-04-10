@@ -1,14 +1,8 @@
-import { AlertServiceProvider } from './../../providers/alert-service/alert-service';
+import { AlertServiceProvider } from '../../providers/alert-service/alert-service';
 import { Component } from '@angular/core';
 import { NavController, LoadingController, Loading, IonicPage } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { TranslateService } from '@ngx-translate/core';
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -16,38 +10,39 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  loading: Loading;
+  private loading: Loading;
+  
   registerCredentials = {identification: '', password: ''};
 
   constructor(
-    private nav: NavController,
-    private auth: AuthServiceProvider,
-    private alertCtrl: AlertServiceProvider,
-    private loadingCtrl: LoadingController,
-    private translate: TranslateService
+    private navController: NavController,
+    private authServiceProvider: AuthServiceProvider,
+    private alertServiceProvider: AlertServiceProvider,
+    private loadingController: LoadingController,
+    private translateService: TranslateService
   ) { }
 
-  public createAccount() {
-    this.nav.push('RegisterPage');
+  createAccount() {
+    this.navController.push('RegisterPage');
   }
 
   ionViewDidLoad(){
-    this.auth.isAuthenticated().then(authenticated => {
+    this.authServiceProvider.isAuthenticated().then(authenticated => {
       if(authenticated) {
-        this.nav.setRoot('TabsPage');
+        this.navController.setRoot('TabsPage');
       }
     })
   }
 
   login() {
     this.showLoading();
-    this.auth.login(this.registerCredentials).subscribe(
+    this.authServiceProvider.login(this.registerCredentials).subscribe(
       success => {
-        this.nav.setRoot('TabsPage');
+        this.navController.setRoot('TabsPage');
       },
       error => {
-        this.translate.get(['fail', 'accessDenied', 'ok']).subscribe(translation => {
-          this.alertCtrl.showPopup(translation.fail, translation.accessDenied, translation.ok);
+        this.translateService.get(['fail', 'access_denied', 'ok']).subscribe(translation => {
+          this.alertServiceProvider.showPopup(translation.fail, translation.accessDenied, translation.ok);
           this.loading.dismiss();
         });
       }
@@ -55,7 +50,7 @@ export class LoginPage {
   }
 
   showLoading() {
-    this.loading = this.loadingCtrl.create({
+    this.loading = this.loadingController.create({
       dismissOnPageChange: true
     });
     this.loading.present();
