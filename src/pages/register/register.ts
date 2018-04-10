@@ -10,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: 'register.html',
 })
 export class RegisterPage {
-  registerCredentials = {email: '', password: '', birthdate: '', username: ''};
+  protected registerCredentials = {email: '', password: '', birthdate: '', username: ''};
 
   constructor(
     private navController: NavController,
