@@ -16,7 +16,7 @@ export class HomePage {
   private map: GoogleMap;
 
   constructor(public navController: NavController, public navParams: NavParams, private authServiceProvider: AuthServiceProvider, private androidPermissions: AndroidPermissions, private screenOrientation: ScreenOrientation) {
-    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+    //this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
   }
 
   ionViewDidLoad(){

@@ -5,4 +5,11 @@ page-home {
   #map_canvas {
     height: 100%;
   }
+  .toolbar {
+    max-height: 10%;
+  }
+  .tlb-button {
+    max-height: 60px;
+    margin: 5%;
+  }
 }
