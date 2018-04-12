@@ -10,7 +10,7 @@ import { Nav } from 'ionic-angular';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = 'LoginPage';
+  rootPage: any;
 
   constructor(
     platform: Platform,
@@ -21,6 +21,7 @@ export class MyApp {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+      this.rootPage = 'LoginPage';
       statusBar.styleDefault();
       splashScreen.hide();
       // this language will be used as a fallback when a translation isn't found in the current language

@@ -15,6 +15,9 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { PostService } from "../providers/post-service/post-service";
 import { IonicStorageModule } from '@ionic/storage';
 import { AlertServiceProvider } from '../providers/alert-service/alert-service';
+import { GoogleMaps } from "@ionic-native/google-maps";
+import { AndroidPermissions } from '@ionic-native/android-permissions';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @NgModule({
   declarations: [
@@ -48,6 +51,9 @@ import { AlertServiceProvider } from '../providers/alert-service/alert-service';
     Datastore,
     DatePicker,
     PostService,
+    GoogleMaps,
+    AndroidPermissions,
+    ScreenOrientation,
   ]
 })
 export class AppModule {

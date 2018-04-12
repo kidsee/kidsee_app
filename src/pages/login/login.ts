@@ -29,7 +29,7 @@ export class LoginPage {
   ionViewDidLoad(){
     this.authServiceProvider.isAuthenticated().then(authenticated => {
       if(authenticated) {
-        this.navController.setRoot('TabsPage');
+        this.navController.setRoot('HomePage');
       }
     })
   }
@@ -38,7 +38,7 @@ export class LoginPage {
     this.showLoading();
     this.authServiceProvider.login(this.registerCredentials).subscribe(
       success => {
-        this.navController.setRoot('TabsPage');
+        this.navController.setRoot('HomePage');
       },
       error => {
         this.translateService.get(['fail', 'access_denied', 'ok']).subscribe(translation => {
