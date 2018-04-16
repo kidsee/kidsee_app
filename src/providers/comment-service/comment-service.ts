@@ -8,8 +8,7 @@ export class CommentServiceProvider {
 
   constructor(
     private datastore: Datastore,
-  ) {
-  }
+  ) { }
 
   public createComment(data) {
     return Observable.create(observer => {

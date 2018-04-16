@@ -19,7 +19,7 @@ export class RegisterPage {
     private translateService: TranslateService
   ) { }
 
-  register() {
+  protected register() {
     this.authServiceProvider.register(this.registerCredentials).subscribe(
       success => {
         this.translateService.get(['success', 'account_created', 'ok']).subscribe(translations => {

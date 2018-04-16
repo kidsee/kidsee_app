@@ -22,7 +22,7 @@ export class LoginPage {
     private translateService: TranslateService
   ) { }
 
-  createAccount() {
+  protected createAccount() {
     this.navController.push('RegisterPage');
   }
 
@@ -41,7 +41,7 @@ export class LoginPage {
     )
   }
 
-  showLoading() {
+  protected showLoading() {
     this.loading = this.loadingController.create({
       dismissOnPageChange: true
     });

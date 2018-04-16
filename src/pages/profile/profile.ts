@@ -17,16 +17,16 @@ export class ProfilePage {
     private authServiceProvider: AuthServiceProvider
   ) { }
 
-  saveChanges() {
+  protected saveChanges() {
     this.user.birthdate = new Date(this.birthdate);
     this.user.save().subscribe();
   }
 
-  back() {
+  protected back() {
     this.navController.pop();
   }
 
-  updatePassword(value) {
+  protected updatePassword(value) {
     this.authServiceProvider.changePassword(value);
   }
 

@@ -18,7 +18,7 @@ export class TimelinePage {
     private postService: PostService
   ) { }
 
-  goToPost(post: Post) {
+  protected goToPost(post: Post) {
     this.navController.push('PostPage', {post: post});
   }
 
@@ -26,7 +26,7 @@ export class TimelinePage {
     this.fetchNewPage();
   }
 
-  fetchNewPage() {
+  private fetchNewPage() {
     this.page++;
     this.postService.posts({page: this.page}).subscribe(
       posts => {
@@ -37,7 +37,7 @@ export class TimelinePage {
     )
   }
 
-  doInfinite(infiniteScroll) {
+  protected doInfinite(infiniteScroll) {
     setTimeout(() => {
       this.fetchNewPage();
       infiniteScroll.complete();
