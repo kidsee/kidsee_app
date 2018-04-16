@@ -46,7 +46,7 @@ export class HomePage {
   }
 
   public settings() {
-    this.navController.push('ProfilePage');
+    this.navController.push('SettingsPage');
   }
 
   public profile() {
