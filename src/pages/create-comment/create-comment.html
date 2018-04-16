@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+      <ion-title>{{ 'create_comment' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form (ngSubmit)="createComment()" #commentform="ngForm">
+      <ion-list>
+          <ion-item>
+              <ion-input name="content" [(ngModel)]="commentAttributes.content" placeholder="{{ 'comment' | translate }}" required></ion-input>
+          </ion-item>
+      </ion-list>
+
+      <ion-item>
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!commentform.form.valid">{{ 'send_comment' | translate }}</button>
+      </ion-item>
+  </form>
+</ion-content>

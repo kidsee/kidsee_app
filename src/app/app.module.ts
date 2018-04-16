@@ -15,6 +15,8 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { PostService } from "../providers/post-service/post-service";
 import { IonicStorageModule } from '@ionic/storage';
 import { AlertServiceProvider } from '../providers/alert-service/alert-service';
+import { CommentServiceProvider } from '../providers/comment-service/comment-service';
+import { ContentTypeServiceProvider } from '../providers/content-type-service/content-type-service';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { AlertServiceProvider } from '../providers/alert-service/alert-service';
     Datastore,
     DatePicker,
     PostService,
+    CommentServiceProvider,
+    ContentTypeServiceProvider,
   ]
 })
 export class AppModule {
