@@ -9,24 +9,33 @@
 <ion-content>
   
   <div id="map_canvas">
-    <ion-row justify-content-between>
-      <img src="assets/imgs/profile.png" style="max-height : 90px" (click)="profile()" >
     
-      <img src="assets/imgs/settings.png" (click)="settings()" style="float: right; max-height : 90px;" >
-    </ion-row>
+      <img class="profile_button" src="assets/imgs/profile.png" padding  (click)="profile()">
+    
+      <img class="settings_button" src="assets/imgs/settings.png" padding (click)="settings()">
+    
     <ion-row>
       <timeline-container>
 
       </timeline-container>
     </ion-row>
-    <ion-footer no-border>
-      <div class="toolbar">
-        <img class="tlb-button" src="assets/imgs/puzzle.png">
-        <img class="tlb-button" src="assets/imgs/questionandanswer.png">
-        <img class="tlb-button" src="assets/imgs/photoandvideo.png">
-        <img class="tlb-button" src="assets/imgs/rating.png">
-      </div>
-    </ion-footer>
+    
+    <ion-grid class="button_grid" padding>
+        <ion-row>
+          <ion-col>
+              <img class="tlb-button" src="assets/imgs/puzzle.png">
+          </ion-col>
+          <ion-col>
+              <img class="tlb-button" src="assets/imgs/questionandanswer.png">
+          </ion-col>
+          <ion-col>
+              <img class="tlb-button" src="assets/imgs/photoandvideo.png">
+          </ion-col>
+          <ion-col>
+              <img class="tlb-button" src="assets/imgs/rating.png">
+          </ion-col>
+        </ion-row>
+      </ion-grid>
   </div>
 
 

@@ -1,5 +1,6 @@
 {
   "login": "Inloggen",
+  "logout": "Uitloggen",
   "username_or_password": "Gebruikersnaam of email",
   "username": "Gebruikersnaam",
   "password": "Wachtwoord",
@@ -25,5 +26,13 @@
   "comments": "reacties",
   "home": "home",
   "find_my_location": "Vind mijn locatie",
-  "settings": "Instellingen"
+  "settings": "Instellingen",
+  "notifications": "Meldingen",
+  "mobile_data_usage": "Mobiele data",
+  "language": "Taal",
+  "dutch": "Nederlands",
+  "english": "Engels - nog niet beschikbaar",
+  "german": "Duits - nog niet beschikbaar",
+  "french": "Frans - nog niet beschikbaar",
+  "spanish": "Spaans - nog niet beschikbaar"
 }

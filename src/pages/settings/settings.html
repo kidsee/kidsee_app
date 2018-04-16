@@ -1,0 +1,38 @@
+<base-header title="profiel"></base-header>
+<ion-header>
+    <ion-navbar>
+        <ion-buttons left>
+            <button ion-button icon-only class="custom-back-button" (click)="back()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title>{{'settings' | translate}}</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-list>
+       
+        <ion-item>
+            <ion-label>{{"notifications" | translate}}</ion-label>
+            <ion-radio></ion-radio>
+        </ion-item>
+        <ion-item>
+            <ion-label>{{'mobile_data_usage' | translate}}</ion-label>
+            <ion-radio></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>{{"language" | translate}}</ion-label>
+          <ion-select>
+            <ion-option value="nl">{{'dutch' | translate}}</ion-option>
+            <ion-option value="en" disabled>{{'english' | translate}}</ion-option>
+            <ion-option value="es" disabled>{{'spanish' | translate}}</ion-option>
+            <ion-option value="fr" disabled>{{'french' | translate}}</ion-option>
+            <ion-option value="de" disabled>{{'german' | translate}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+           <button ion-button (click)="logout()">{{'logout' | translate}}</button>
+        </ion-item>
+     
+    </ion-list>
+</ion-content>
