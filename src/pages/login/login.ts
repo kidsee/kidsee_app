@@ -26,14 +26,6 @@ export class LoginPage {
     this.navController.push('RegisterPage');
   }
 
-  ionViewDidLoad(){
-    this.authServiceProvider.isAuthenticated().then(authenticated => {
-      if(authenticated) {
-        this.navController.setRoot('TabsPage');
-      }
-    })
-  }
-
   login() {
     this.showLoading();
     this.authServiceProvider.login(this.registerCredentials).subscribe(

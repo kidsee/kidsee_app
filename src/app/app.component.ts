@@ -4,19 +4,21 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TranslateService } from "@ngx-translate/core";
 import { Nav } from 'ionic-angular';
+import { AuthServiceProvider } from "../providers/auth-service/auth-service";
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = 'LoginPage';
+  rootPage: any;
 
   constructor(
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
     translate: TranslateService,
+    authServiceProvider: AuthServiceProvider
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -27,6 +29,15 @@ export class MyApp {
       translate.setDefaultLang('nl');
       // the lang to use, if the lang isn't available, it will use the current loader to get them
       translate.use('nl');
+
+      authServiceProvider.isAuthenticated().then(authenticated => {
+        if(authenticated) {
+          this.rootPage = 'TabsPage';
+        }
+        else{
+          this.rootPage = 'LoginPage';
+        }
+      });
     });
   }
 }
