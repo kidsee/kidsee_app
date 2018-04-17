@@ -43,4 +43,8 @@ export class TimelinePage {
       infiniteScroll.complete();
     }, 500);
   }
+
+  protected createPost(){
+    this.navController.push('CreatePostPage');
+  }
 }
