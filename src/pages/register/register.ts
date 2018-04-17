@@ -24,8 +24,8 @@ export class RegisterPage {
       success => {
         this.translateService.get(['success', 'account_created', 'ok']).subscribe(translations => {
           this.alertServiceProvider.showPopup(
-            translations.succes,
-            translations.accountCreated,
+            translations.success,
+            translations.account_created,
             translations.ok
           );
           this.navController.push('LoginPage');
@@ -35,7 +35,7 @@ export class RegisterPage {
         this.translateService.get(['error', 'problem_creating_account', 'ok']).subscribe(translations => {
           this.alertServiceProvider.showPopup(
             translations.error,
-            translations.problemCreatingAccount,
+            translations.problem_creating_account,
             translations.ok
           );
         });
