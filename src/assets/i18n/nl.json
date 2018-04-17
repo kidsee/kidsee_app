@@ -23,5 +23,12 @@
   "posted_by": "Geplaatst door: ",
   "commented": "heeft gereageerd:",
   "comments": "reacties",
-  "home": "home"
+  "home": "home",
+  "comment": "Reactie",
+  "create_comment": "Reactie aanmaken",
+  "send_comment": "Reageren",
+  "create_post": "Post aanmaken",
+  "question": "Vraag",
+  "title": "Titel",
+  "send_post": "Verzenden"
 }

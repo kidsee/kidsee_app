@@ -1,7 +1,7 @@
 import { Attribute, JsonApiModel, JsonApiModelConfig } from "angular2-jsonapi";
 
 @JsonApiModelConfig({
-  type: 'contentTypes'
+  type: 'content-types'
 })
 export class ContentType extends JsonApiModel {
   @Attribute()

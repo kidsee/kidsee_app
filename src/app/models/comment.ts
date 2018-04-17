@@ -14,8 +14,11 @@ export class Comment extends JsonApiModel {
   post: Post;
 
   @Attribute()
-  content: string;
+  content_type: string;
 
   @Attribute()
   type: ContentType;
+
+  @Attribute()
+  content: String;
 }

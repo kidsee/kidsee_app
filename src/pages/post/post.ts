@@ -22,4 +22,8 @@ export class PostPage {
   back() {
     this.navController.pop();
   }
+
+  protected createComment(){
+    this.navController.push('CreateCommentPage', { post: this.post });
+  }
 }

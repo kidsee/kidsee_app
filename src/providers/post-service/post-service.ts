@@ -8,8 +8,7 @@ export class PostService {
     private datastore: Datastore
   ) { }
 
-  public posts(params: {})
-  {
+  posts(params: {}) {
     return this.datastore.findAll(Post, params);
   }
 }
