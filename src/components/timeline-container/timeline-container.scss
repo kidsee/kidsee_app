@@ -1,13 +1,21 @@
 timeline-container {
     position: fixed;
-    bottom: 120px;
+    bottom: 180px;
     left: 0px;
-    margin-left: 5%;    
-    margin-right: 5%;
+    width: 100%;
 
-    .timeline-header {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
+    div {
+        height: 100%;
+    }
+
+    .post-list {
+        height: 100%;
+        overflow-y: scroll;
+        margin-bottom: 0;
+    }
+
+    h3 {
+        padding-left: 5%;
+        margin: 0 0 0 0;
     }
 }

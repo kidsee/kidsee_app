@@ -1,4 +1,41 @@
-<!-- Generated template for the TimelineContainerComponent component -->
 <div>
-  <img class="timeline-header" src="assets/imgs/timeline.png" (click)="expandTimeline()">
+  <ion-row>
+    <ion-col col-10>
+      <h3>Tijdlijn</h3>
+    </ion-col>
+    <ion-col col-1>
+      <button (click)="open()">
+        <ion-icon name="resize"></ion-icon>
+      </button>
+    </ion-col>
+    <ion-col col-1>
+      <button (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+  <ion-list class="post-list">
+      <ion-card *ngFor="let post of viewPosts" (click)="gotoPost(post)">
+          <ion-card-header>
+              <ion-card-title>{{post?.title}}</ion-card-title>
+              <ion-note class="italic">
+                  {{'posted_by' | translate}}{{post.user.username}}
+              </ion-note>
+          </ion-card-header>
+          <ion-card-content>{{post?.content}}</ion-card-content>
+          <button ion-button icon-left clear small>
+              <ion-icon name="text"></ion-icon>
+              <div>{{post?.comments?.length || 0}} {{'comments' | translate}}</div>
+          </button>
+      </ion-card>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <ion-fab *ngIf="isOpen" bottom right>
+      <button ion-fab color="secondary">
+          <ion-icon name="add-circle"></ion-icon>
+      </button>
+  </ion-fab>
 </div>
+
