@@ -89,4 +89,8 @@ export class TimelineContainerComponent {
     }, 500);
   }
 
+  openPersonalPage(){
+    this.navController.push('PersonalPage');
+  }
+
 }
