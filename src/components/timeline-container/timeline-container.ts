@@ -1,4 +1,5 @@
 import { Component, ElementRef, Renderer } from '@angular/core';
+import { NavController } from 'ionic-angular';
 
 /**
  * Generated class for the TimelineContainerComponent component.
@@ -14,13 +15,17 @@ export class TimelineContainerComponent {
 
   height: Number;
 
-  constructor(public element: ElementRef, public renderer: Renderer) {
-    this.height = 140;
+  constructor(
+    private element: ElementRef, 
+    private renderer: Renderer,
+    private navController: NavController
+  ) {
+    this.height = 170;
     this.renderer.setElementStyle(this.element.nativeElement, 'height', this.height + 'px');
   }
 
   expandTimeline() {
-
+    this.navController.push('PersonalPage');
   }
 
 }
