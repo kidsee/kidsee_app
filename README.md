@@ -8,10 +8,9 @@
 ## What to do before you make a pull request (pr):
 Run:
 - npm run lint
-- jasmine
 
 If you don't have these yet, run: <br/>
-`npm install -g lint jasmine`<br/>
+`npm install -g lint`<br/>
 As well as<br/>
 `npm install`<br/>
 
