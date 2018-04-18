@@ -20,17 +20,17 @@ export class CreateCommentPage {
     private contentTypeService: ContentTypeServiceProvider
   ) {
     this.commentAttributes['post'] = navParams.get('post');
-    this.authService.fetchCurrentUser().then(user => {
-      this.commentAttributes['user'] = user;
-    });
-    this.contentTypeService.getTypeByName("plain_text").then(type => {
-      this.commentAttributes['content-type'] = type;
-    });
   }
 
   protected createComment() {
-    this.commentService.createComment(this.commentAttributes).subscribe(_ => {
-      this.navCtrl.pop();
+    this.authService.fetchCurrentUser().then(user => {
+      this.contentTypeService.getTypeByName("plain_text").then(type => {
+        this.commentAttributes['content-type'] = type;
+        this.commentAttributes['user'] = user;
+        this.commentService.createComment(this.commentAttributes).subscribe(_ => {
+          this.navCtrl.pop();
+        });
+      });
     });
   }
 }

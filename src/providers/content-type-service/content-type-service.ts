@@ -7,8 +7,7 @@ export class ContentTypeServiceProvider {
 
   constructor(
     private datastore: Datastore
-  ) {
-  }
+  ) { }
 
   public contentTypes(){
     return this.datastore.findAll(ContentType);

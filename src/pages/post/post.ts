@@ -19,7 +19,7 @@ export class PostPage {
     this.post = this.navParams.get('post');
   }
 
-  back() {
+  protected back() {
     this.navController.pop();
   }
 

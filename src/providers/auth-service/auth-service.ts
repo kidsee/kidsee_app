@@ -16,9 +16,11 @@ export class AuthServiceProvider {
     private datastore: Datastore,
     private httpClient: HttpClient,
     private storage: Storage,
-  ) { this.isAuthenticated(); }
+  ) {
+    this.isAuthenticated();
+  }
 
-  login(credentials) {
+  public login(credentials) {
     return Observable.create(observer => {
       this.httpClient.post(this.datastore.getBaseUrl() + '/tokens', credentials,
         { headers: new HttpHeaders({ 'Content-Type': 'application/vnd.api+json' }) })
@@ -41,7 +43,7 @@ export class AuthServiceProvider {
     });
   }
 
-  setHeader(token) {
+  private setHeader(token) {
     this.datastore.headers = new Headers({ 'Authorization': 'Bearer ' + token});
   }
 
@@ -51,7 +53,7 @@ export class AuthServiceProvider {
     });
   }
 
-  fetchCurrentUser() {
+  public fetchCurrentUser() {
     return new Promise<any>((resolve) => {
       this.currentUser().then(currentUser => {
         if(currentUser) {
@@ -71,13 +73,13 @@ export class AuthServiceProvider {
     });
   }
 
-  logout() {
+  public logout() {
     this.datastore.headers = null;
     this.storage.remove('token');
     this.storage.remove('user_id');
   }
 
-  isAuthenticated() {
+  public isAuthenticated() {
     return this.storage.get('token').then(token => {
       if(token) {
         this.setHeader(token);
@@ -90,7 +92,7 @@ export class AuthServiceProvider {
   }
 
 
-  register(userParams) {
+  public register(userParams) {
     return Observable.create(observer => {
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(userParams.password, salt, (err, hash) => {
@@ -111,7 +113,7 @@ export class AuthServiceProvider {
     });
   }
 
-  changePassword(password) {
+  public changePassword(password) {
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(password, salt, (err, hash) => {
         this.currentUser().then(user => {
