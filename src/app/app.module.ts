@@ -20,6 +20,7 @@ import { ContentTypeServiceProvider } from '../providers/content-type-service/co
 import { GoogleMaps } from "@ionic-native/google-maps";
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { LocationServiceProvider } from '../providers/location-service/location-service';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
     GoogleMaps,
     AndroidPermissions,
     ScreenOrientation,
+    LocationServiceProvider,
   ]
 })
 export class AppModule {
