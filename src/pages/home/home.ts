@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from "../../app/models/user";
 import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
-import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng} from '@ionic-native/google-maps';
+import { GoogleMaps,  GoogleMap,  GoogleMapsEvent,  LatLng} from '@ionic-native/google-maps';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { LocationServiceProvider } from "../../providers/location-service/location-service";
+import { Location } from '../../app/models/location';
 
 @IonicPage()
 @Component({
@@ -14,9 +16,17 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
 export class HomePage {
   private user: User;
   private map: GoogleMap;
+  private locations: Location[] = [];
 
-  constructor(public navController: NavController, public navParams: NavParams, private authServiceProvider: AuthServiceProvider, private androidPermissions: AndroidPermissions, private screenOrientation: ScreenOrientation) {
-    //this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+  constructor(
+    public navController: NavController, 
+    public navParams: NavParams, 
+    private authServiceProvider: AuthServiceProvider, 
+    private androidPermissions: AndroidPermissions, 
+    private screenOrientation: ScreenOrientation, 
+    private locationService: LocationServiceProvider) 
+    {
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
   }
 
   ionViewDidLoad(){
@@ -41,8 +51,28 @@ export class HomePage {
       this.map.setCameraZoom(15);
       let latLng: LatLng = new LatLng(51.6888981, 5.3037321);
       this.map.setCameraTarget(latLng);
+      this.setMarkers();
     });
 
+  }
+
+  setMarkers(){
+    this.locationService.locations().then((res) => {
+      console.log(res);
+      this.locations = res as Location[];
+        this.locations.forEach(location => {
+          
+          this.map.addMarker({
+            position: {lat: location.lat, lng: location.lon},
+            title: location.name
+            
+          });
+
+        });
+      }
+    );
+
+    
   }
 
   public settings() {
