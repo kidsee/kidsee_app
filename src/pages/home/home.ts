@@ -53,4 +53,20 @@ export class HomePage {
     this.navController.push('ProfilePage');
   }
 
+  public rating() {
+    this.navController.push('RatingPage');
+  }
+
+  public puzzle() {
+    this.navController.push('PuzzlePage');
+  }
+
+  public questionandanswer() {
+    this.navController.push('QuestionandanswerPage');
+  }
+
+  public photoandvideo() {
+    this.navController.push('PhotoandvideoPage');
+  }
+
 }
