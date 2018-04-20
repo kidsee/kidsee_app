@@ -2,7 +2,7 @@
   <ion-row>
     <ion-col col-10>
       <!-- <h3>Tijdlijn</h3> -->
-      <button ion-button (click)="openPersonalPage()">{{'timeline' | translate}}</button>
+      <button ion-button (click)="openTimelinePage()">{{'timeline' | translate}}</button>
     </ion-col>
     <ion-col col-1>
       <button (click)="open()">
@@ -33,10 +33,5 @@
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
       <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>
-  <!-- <ion-fab *ngIf="isOpen" bottom right>
-      <button ion-fab color="secondary">
-          <ion-icon name="add-circle"></ion-icon>
-      </button>
-  </ion-fab> -->
 </div>
 
