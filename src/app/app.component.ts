@@ -32,7 +32,6 @@ export class MyApp {
 
       authServiceProvider.isAuthenticated().then(authenticated => {
         if(authenticated) {
-          console.log("auth");
           this.rootPage = 'HomePage';
         }
         else{

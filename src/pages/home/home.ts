@@ -31,7 +31,6 @@ export class HomePage {
   }
 
   ionViewDidEnter(){
-    console.log("view did load");
     this.authServiceProvider.fetchCurrentUser().then(user => {
       this.user = user;
     });

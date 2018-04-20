@@ -47,10 +47,8 @@ export class TimelineContainerComponent {
   }
 
   ngAfterContentInit() {
-    console.log("Ng on init");
     this.fetchNewPage();
     this.renderList();
-    console.log(this.posts);
   }
 
   openTimelinePage(){
@@ -69,7 +67,6 @@ export class TimelineContainerComponent {
   }
 
   protected doInfinite(infiniteScroll) {
-    console.log("infinite");
     setTimeout(() => {
       this.fetchNewPage();
       infiniteScroll.complete();
