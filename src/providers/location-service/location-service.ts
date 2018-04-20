@@ -1,5 +1,4 @@
 import { Location } from "../../app/models/location"
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Datastore } from '../datastore/datastore';
 import { JsonApiQueryData } from "angular2-jsonapi";

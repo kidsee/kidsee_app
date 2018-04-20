@@ -16,7 +16,7 @@
     </ion-col>
   </ion-row>
   <ion-list class="post-list">
-      <ion-card *ngFor="let post of viewPosts" (click)="gotoPost(post)">
+      <ion-card *ngFor="let post of posts" (click)="gotoPost(post)">
           <ion-card-header>
               <ion-card-title>{{post?.title}}</ion-card-title>
               <ion-note class="italic">

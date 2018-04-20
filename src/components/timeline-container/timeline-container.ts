@@ -24,18 +24,18 @@ export class TimelineContainerComponent {
     this.height = 25;
   }
 
-  protected renderList() {
+  renderList() {
     this.renderer.setElementStyle(this.element.nativeElement, 'height', this.height + '%');
   }
 
-  protected open() {
+  open() {
     this.isOpen = true;
     this.height = this.sizeMode ? 62 : 25;
     this.renderList();
     this.sizeMode = !this.sizeMode;
   }
 
-  protected close() {
+  close() {
     this.isOpen = false;
     this.height = 1;
     this.sizeMode = !this.sizeMode;
@@ -46,13 +46,14 @@ export class TimelineContainerComponent {
     this.navController.push('PostPage', {post: post});
   }
 
-  ngAfterViewInit() {
+  ngAfterContentInit() {
     console.log("Ng on init");
     this.fetchNewPage();
     this.renderList();
+    console.log(this.posts);
   }
 
-  protected openTimelinePage(){
+  openTimelinePage(){
     this.navController.push('TimelinePage');
   }
 
@@ -68,6 +69,7 @@ export class TimelineContainerComponent {
   }
 
   protected doInfinite(infiniteScroll) {
+    console.log("infinite");
     setTimeout(() => {
       this.fetchNewPage();
       infiniteScroll.complete();

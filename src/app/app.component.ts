@@ -11,7 +11,7 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any;
+  rootPage: any = 'LoginPage';
 
   constructor(
     platform: Platform,
@@ -32,6 +32,7 @@ export class MyApp {
 
       authServiceProvider.isAuthenticated().then(authenticated => {
         if(authenticated) {
+          console.log("auth");
           this.rootPage = 'HomePage';
         }
         else{

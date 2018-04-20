@@ -17,6 +17,7 @@ export class HomePage {
   private user: User;
   private map: GoogleMap;
   private locations: Location[] = [];
+  protected loaded = false;
 
   constructor(
     public navController: NavController,
@@ -29,12 +30,12 @@ export class HomePage {
     this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
   }
 
-  ionViewDidLoad(){
+  ionViewDidEnter(){
+    console.log("view did load");
     this.authServiceProvider.fetchCurrentUser().then(user => {
       this.user = user;
     });
     this.loadMap();
-
   }
 
   loadMap() {
@@ -63,7 +64,6 @@ export class HomePage {
 
   setMarkers(){
     this.locationService.locations().then((res) => {
-
       this.locations = res as Location[];
         this.locations.forEach(location => {
 
