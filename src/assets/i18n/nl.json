@@ -20,7 +20,6 @@
   "loading": "Even geduld aub",
   "fail": "Er is iets misgegaan",
   "ok": "OK",
-  "timeline": "Tijdlijn",
   "posted_by": "Geplaatst door: ",
   "commented": "heeft gereageerd:",
   "comments": "reacties",
@@ -31,7 +30,7 @@
   "create_post": "Post aanmaken",
   "question": "Vraag",
   "title": "Titel",
-  "send_post": "Verzenden"
+  "send_post": "Verzenden",
   "find_my_location": "Vind mijn locatie",
   "settings": "Instellingen",
   "notifications": "Meldingen",
