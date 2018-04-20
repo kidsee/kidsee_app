@@ -3,12 +3,7 @@ import { NavController } from 'ionic-angular';
 import { PostService } from "../../providers/post-service/post-service";
 import { Post } from "../../app/models/post";
 
-/**
- * Generated class for the TimelineContainerComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
+
 @Component({
   selector: 'timeline-container',
   templateUrl: 'timeline-container.html'
@@ -66,8 +61,7 @@ export class TimelineContainerComponent {
         }
       }
     );
-    console.log(this.posts);
-    console.log(this.viewPosts);
+   
     this.renderList();
   }
 

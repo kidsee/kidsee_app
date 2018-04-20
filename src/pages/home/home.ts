@@ -51,14 +51,19 @@ export class HomePage {
       this.map.setCameraZoom(15);
       let latLng: LatLng = new LatLng(51.6888981, 5.3037321);
       this.map.setCameraTarget(latLng);
-      this.setMarkers();
+      try {
+        this.setMarkers();
+      } catch (error) {
+        console.log(error);
+      }
+      
     });
 
   }
 
   setMarkers(){
     this.locationService.locations().then((res) => {
-      console.log(res);
+     
       this.locations = res as Location[];
         this.locations.forEach(location => {
           

@@ -19,7 +19,7 @@ export class PostPage {
 
   ionViewDidEnter() {
     this.post = this.navParams.get('post');
-    console.log(this.post)
+    
   }
 
   back() {
