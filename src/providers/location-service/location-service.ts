@@ -7,7 +7,9 @@ import { JsonApiQueryData } from "angular2-jsonapi";
 
 @Injectable()
 export class LocationServiceProvider {
-  constructor(private datastore: Datastore) {
+  constructor(
+    private datastore: Datastore
+  ) {
   }
 
   public locations()
