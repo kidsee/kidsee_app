@@ -7,6 +7,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { LocationServiceProvider } from "../../providers/location-service/location-service";
 import { Location } from '../../app/models/location';
+import { Platform } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -25,16 +26,21 @@ export class HomePage {
     private authServiceProvider: AuthServiceProvider,
     private androidPermissions: AndroidPermissions,
     private screenOrientation: ScreenOrientation,
-    private locationService: LocationServiceProvider)
+    private locationService: LocationServiceProvider,
+    private platform: Platform
+  )
     {
-    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+    
   }
 
   ionViewDidEnter(){
     this.authServiceProvider.fetchCurrentUser().then(user => {
       this.user = user;
     });
-    this.loadMap();
+    if (this.platform.is('cordova')) {
+      this.loadMap();
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+    }
   }
 
   loadMap() {
