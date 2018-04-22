@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
+import { IonicPage, NavController, App } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-
-
 
 @IonicPage()
 @Component({
@@ -11,14 +9,17 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 })
 export class SettingsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthServiceProvider, private app: App, private navController: NavController) {
-  }
+  constructor(
+    private auth: AuthServiceProvider,
+    private app: App,
+    private navController: NavController
+  ) { }
 
-  back() {
+  protected back() {
     this.navController.pop();
   }
 
-  public logout() {
+  protected logout() {
     this.auth.logout();
     this.app.getRootNav().setRoot('LoginPage');
   }

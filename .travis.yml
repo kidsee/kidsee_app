@@ -1,7 +1,6 @@
 install:
-  - npm install -g cordova ionic jasmine typescript tslint
+  - npm install -g cordova ionic typescript tslint
   - npm install
 
 script:
   - npm run lint
-  - jasmine

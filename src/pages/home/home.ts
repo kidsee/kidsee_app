@@ -7,6 +7,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { LocationServiceProvider } from "../../providers/location-service/location-service";
 import { Location } from '../../app/models/location';
+import { Platform } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -17,31 +18,36 @@ export class HomePage {
   private user: User;
   private map: GoogleMap;
   private locations: Location[] = [];
+  protected loaded = false;
 
   constructor(
-    public navController: NavController, 
-    public navParams: NavParams, 
-    private authServiceProvider: AuthServiceProvider, 
-    private androidPermissions: AndroidPermissions, 
-    private screenOrientation: ScreenOrientation, 
-    private locationService: LocationServiceProvider) 
+    public navController: NavController,
+    public navParams: NavParams,
+    private authServiceProvider: AuthServiceProvider,
+    private androidPermissions: AndroidPermissions,
+    private screenOrientation: ScreenOrientation,
+    private locationService: LocationServiceProvider,
+    private platform: Platform
+  )
     {
-    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+    
   }
 
-  ionViewDidLoad(){
+  ionViewDidEnter(){
     this.authServiceProvider.fetchCurrentUser().then(user => {
       this.user = user;
     });
-    this.loadMap();
-
+    if (this.platform.is('cordova')) {
+      this.loadMap();
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+    }
   }
 
   loadMap() {
     //creates a new map
     this.map = GoogleMaps.create('map_canvas');
     this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
-      //gets location permission 
+      //gets location permission
       this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.LOCATION).then(result => {
       if(!result.hasPermission){
         this.androidPermissions.requestPermissions([this.androidPermissions.PERMISSION.LOCATION]);
@@ -56,28 +62,25 @@ export class HomePage {
       } catch (error) {
         console.log(error);
       }
-      
     });
 
   }
 
   setMarkers(){
     this.locationService.locations().then((res) => {
-     
       this.locations = res as Location[];
         this.locations.forEach(location => {
-          
+
           this.map.addMarker({
             position: {lat: location.lat, lng: location.lon},
             title: location.name
-            
+
           });
 
         });
       }
     );
 
-    
   }
 
   public settings() {

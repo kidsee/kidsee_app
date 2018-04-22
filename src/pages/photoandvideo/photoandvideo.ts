@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
 
 
 
@@ -10,8 +10,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PhotoandvideoPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  constructor() { }
 
 
 

@@ -9,20 +9,23 @@ import { PostService } from "../../providers/post-service/post-service";
   templateUrl: 'post.html',
 })
 export class PostPage {
-  post: Post;
+  protected post: Post;
 
   constructor(
-    public navController: NavController,
-    public navParams: NavParams,
+    private navController: NavController,
+    private navParams: NavParams,
     private postService: PostService
   ) { }
 
   ionViewDidEnter() {
     this.post = this.navParams.get('post');
-    
   }
 
-  back() {
+  protected back() {
     this.navController.pop();
+  }
+
+  protected createComment(){
+    this.navController.push('CreateCommentPage', { post: this.post });
   }
 }

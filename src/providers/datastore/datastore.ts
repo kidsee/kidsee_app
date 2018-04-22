@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Post } from "../../app/models/post";
 import { Comment } from "../../app/models/comment";
-import { PostStatus } from "../../app/models/poststatus";
+import { Status } from "../../app/models/status";
 import { ContentType } from "../../app/models/contentType";
 import { Location } from '../../app/models/location';
 
@@ -14,8 +14,8 @@ const config: DatastoreConfig = {
     users: User,
     posts: Post,
     comments: Comment,
-    postStatuses: PostStatus,
-    contentTypes: ContentType,
+    status: Status,
+    'content-types': ContentType,
     locations: Location
   }
 };

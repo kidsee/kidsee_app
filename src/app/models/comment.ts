@@ -13,9 +13,9 @@ export class Comment extends JsonApiModel {
   @BelongsTo()
   post: Post;
 
-  @Attribute()
-  content: string;
+  @BelongsTo()
+  content_type: ContentType;
 
   @Attribute()
-  type: ContentType;
+  content: String;
 }

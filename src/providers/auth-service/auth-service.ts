@@ -11,15 +11,16 @@ import { Headers } from '@angular/http';
 
 @Injectable()
 export class AuthServiceProvider {
-  private currentUser: User;
 
   constructor(
     private datastore: Datastore,
     private httpClient: HttpClient,
     private storage: Storage,
-  ) { this.isAuthenticated(); }
+  ) {
+    this.isAuthenticated();
+  }
 
-  login(credentials) {
+  public login(credentials) {
     return Observable.create(observer => {
       this.httpClient.post(this.datastore.getBaseUrl() + '/tokens', credentials,
         { headers: new HttpHeaders({ 'Content-Type': 'application/vnd.api+json' }) })
@@ -42,19 +43,26 @@ export class AuthServiceProvider {
     });
   }
 
-  setHeader(token) {
+  private setHeader(token) {
     this.datastore.headers = new Headers({ 'Authorization': 'Bearer ' + token});
   }
 
-  fetchCurrentUser() {
+  private currentUser(): Promise<User> {
+    return this.storage.get('user_id').then(id => {
+      return this.datastore.peekRecord(User, id);
+    });
+  }
+
+  public fetchCurrentUser() {
     return new Promise<any>((resolve) => {
-      if(this.currentUser) {
-        resolve(this.currentUser);
-      }
+      this.currentUser().then(currentUser => {
+        if(currentUser) {
+          resolve(currentUser);
+        }
+      });
       return this.storage.get('user_id').then(id => {
         return this.datastore.findRecord(User, id).subscribe(
           (user) => {
-            this.currentUser = user;
             resolve(user);
           },
           (err) =>{
@@ -65,14 +73,13 @@ export class AuthServiceProvider {
     });
   }
 
-  logout() {
-    this.currentUser = null;
+  public logout() {
     this.datastore.headers = null;
     this.storage.remove('token');
     this.storage.remove('user_id');
   }
 
-  isAuthenticated() {
+  public isAuthenticated() {
     return this.storage.get('token').then(token => {
       if(token) {
         this.setHeader(token);
@@ -80,14 +87,12 @@ export class AuthServiceProvider {
           return user != null;
         });
       }
-      else {
-        return false;
-      }
+      return false;
     });
   }
 
 
-  register(userParams) {
+  public register(userParams) {
     return Observable.create(observer => {
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(userParams.password, salt, (err, hash) => {
@@ -108,11 +113,13 @@ export class AuthServiceProvider {
     });
   }
 
-  changePassword(password) {
+  public changePassword(password) {
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(password, salt, (err, hash) => {
-        this.currentUser.password = hash;
-        this.currentUser.save().subscribe();
+        this.currentUser().then(user => {
+          user.password = password;
+          user.save().subscribe();
+        });
       });
     });
   }

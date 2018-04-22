@@ -2,14 +2,15 @@
  - Name variables for what they are, and in camelCase. So a NavigationController becomes a navigationController, not a navctrl
  - Indents are 2 spaces and there is a space between a bracket and name in an import
  - Translations use underscores as word breaks
+ - Use access modifiers with every variable/function. If left empty, typescript defaults to **public**, which is not preferable. For variables which are used in the class, use private. For variables used in the page's html, use protected.
+ - Use the navigation parameters where applicable. (Example: Going to a post detail from the list, the post will be put into the navparams and used in the detail page.ts)
 
 ## What to do before you make a pull request (pr):
 Run:
 - npm run lint
-- jasmine
 
 If you don't have these yet, run: <br/>
-`npm install -g lint jasmine`<br/>
+`npm install -g lint`<br/>
 As well as<br/>
 `npm install`<br/>
 

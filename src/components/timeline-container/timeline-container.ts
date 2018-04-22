@@ -6,26 +6,23 @@ import { Post } from "../../app/models/post";
 
 @Component({
   selector: 'timeline-container',
-  templateUrl: 'timeline-container.html'
+  templateUrl: 'timeline-container.html',
 })
 export class TimelineContainerComponent {
-  private posts: Post[] = [];
-  private amountOfShownPosts: number = 5;
-
-  public viewPosts: Post[] = [];
-  height: Number;
-  sizeMode: Boolean = true;
-  isOpen: Boolean = true;
+  protected posts: Post[] = [];
+  protected height: Number;
+  protected sizeMode: Boolean = true;
+  protected isOpen: Boolean = true;
+  private page = 0;
 
   constructor(
-    private element: ElementRef, 
+    private element: ElementRef,
     private renderer: Renderer,
     private navController: NavController,
     private postService: PostService
   ) {
     this.height = 25;
   }
-  
   renderList() {
     this.renderer.setElementStyle(this.element.nativeElement, 'height', this.height + '%');
   }
@@ -44,47 +41,35 @@ export class TimelineContainerComponent {
     this.renderList();
   }
 
-  public gotoPost(post: Post) {
+  protected gotoPost(post: Post) {
     this.navController.push('PostPage', {post: post});
   }
 
-  ngOnInit() {  
-    this.posts = [];
-    this.viewPosts = [];
-    this.postService.posts().then((res) => {
-      this.posts = res as Post[];
-        if (this.posts.length < this.amountOfShownPosts) {
-          this.amountOfShownPosts = this.posts.length;
-        }
-        for (let i = 0; i < this.amountOfShownPosts; i++) {
-          this.viewPosts.push(this.posts[i]);
-        }
-      }
-    );
-   
+  ngAfterContentInit() {
+    this.fetchNewPage();
     this.renderList();
   }
 
-  doInfinite(infiniteScroll) {
-    setTimeout(() => {
-      let min = this.viewPosts.length;
-      let max;
-      if (min + this.amountOfShownPosts > this.posts.length) {
-        max = this.posts.length;
-      }
-      else {
-        max = min + this.amountOfShownPosts;
-      }
-
-      for (let i = min; i < max; i++) {
-        this.viewPosts.push(this.posts[i]);
-      }
-      infiniteScroll.complete();
-    }, 500);
+  openTimelinePage(){
+    this.navController.push('TimelinePage');
   }
 
-  openPersonalPage(){
-    this.navController.push('PersonalPage');
+  private fetchNewPage() {
+    this.page++;
+    this.postService.posts({page: this.page}).subscribe(
+      posts => {
+        posts.getModels().forEach(post => {
+          this.posts.push(post);
+        });
+      }
+    )
+  }
+
+  protected doInfinite(infiniteScroll) {
+    setTimeout(() => {
+      this.fetchNewPage();
+      infiniteScroll.complete();
+    }, 500);
   }
 
 }

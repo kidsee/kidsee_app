@@ -1,21 +1,21 @@
+import { TimelinePage } from './timeline';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { PersonalPage } from './personal';
 import { ComponentsModule } from '../../components/components.module';
 import { TranslateModule } from "@ngx-translate/core";
 
 @NgModule({
   declarations: [
-    PersonalPage,
+    TimelinePage,
   ],
   imports: [
-    IonicPageModule.forChild(PersonalPage),
+    IonicPageModule.forChild(TimelinePage),
     ComponentsModule,
     TranslateModule,
   ],
   exports: [
-    PersonalPage
+    TimelinePage
   ]
 })
-export class PersonalPageModule {
+export class TimelinePageModule {
 }

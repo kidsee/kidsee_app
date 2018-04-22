@@ -10,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: 'register.html',
 })
 export class RegisterPage {
-  registerCredentials = {email: '', password: '', birthdate: '', username: ''};
+  protected registerCredentials = {email: '', password: '', birthdate: '', username: ''};
 
   constructor(
     private navController: NavController,
@@ -19,13 +19,13 @@ export class RegisterPage {
     private translateService: TranslateService
   ) { }
 
-  register() {
+  protected register() {
     this.authServiceProvider.register(this.registerCredentials).subscribe(
       success => {
         this.translateService.get(['success', 'account_created', 'ok']).subscribe(translations => {
           this.alertServiceProvider.showPopup(
-            translations.succes,
-            translations.accountCreated,
+            translations.success,
+            translations.account_created,
             translations.ok
           );
           this.navController.push('LoginPage');
@@ -35,7 +35,7 @@ export class RegisterPage {
         this.translateService.get(['error', 'problem_creating_account', 'ok']).subscribe(translations => {
           this.alertServiceProvider.showPopup(
             translations.error,
-            translations.problemCreatingAccount,
+            translations.problem_creating_account,
             translations.ok
           );
         });

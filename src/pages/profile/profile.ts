@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { User } from '../../app/models/user';
 
@@ -9,31 +9,24 @@ import { User } from '../../app/models/user';
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
-  user: User;
-  birthdate: string;
+  protected user: User;
+  protected birthdate: string;
 
   constructor(
     private navController: NavController,
-    private navParams: NavParams,
     private authServiceProvider: AuthServiceProvider
   ) { }
 
-  updateUser(userProperty, value) {
-    this.authServiceProvider.fetchCurrentUser().then(function (user){
-      user[userProperty] = value;
-      user.save().subscribe();
-    })
+  protected saveChanges() {
+    this.user.birthdate = new Date(this.birthdate);
+    this.user.save().subscribe();
   }
 
-  back() {
+  protected back() {
     this.navController.pop();
   }
 
-  updateBirthdate() {
-    this.updateUser("birthdate", Date.parse(this.birthdate));
-  }
-
-  updatePassword(value) {
+  protected updatePassword(value) {
     this.authServiceProvider.changePassword(value);
   }
 

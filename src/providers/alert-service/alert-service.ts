@@ -4,10 +4,11 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class AlertServiceProvider {
 
-  constructor(public alertController: AlertController) {
-  }
+  constructor(
+    private alertController: AlertController
+  ) { }
 
-  showPopup(title, text, prompt) {
+  public showPopup(title, text, prompt) {
     let alert = this.alertController.create({
       title: title,
       subTitle: text,

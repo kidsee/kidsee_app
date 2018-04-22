@@ -19,23 +19,23 @@
         </ion-list-header>
         <ion-item>
             <ion-label floating>{{'username' | translate}}</ion-label>
-            <ion-input type="text" name="username" [value]="user?.username" (change)='updateUser($event.target.name,$event.target.value)'></ion-input>
+            <ion-input type="text" name="username" [ngModel]="user?.username" (ngModelChange)='saveChanges()'></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>{{'email' | translate}}</ion-label>
-            <ion-input type="email" name="email" [value]="user?.email" (change)='updateUser($event.target.name,$event.target.value)'></ion-input>
+            <ion-input type="email" name="email" [ngModel]="user?.email" (ngModelChange)='saveChanges()'></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>{{'birthdate' | translate}}</ion-label>
-            <ion-datetime displayFormat="DD - MM - YYYY" name="birthdate" [(ngModel)]="birthdate" (ngModelChange)='updateBirthdate()'></ion-datetime>
+            <ion-datetime displayFormat="DD - MM - YYYY" name="birthdate" [ngModel]="birthdate" (ngModelChange)='saveChanges()'></ion-datetime>
         </ion-item>
         <ion-item>
             <ion-label floating>{{'postal_code' | translate}}</ion-label>
-            <ion-input type="text" name="postal_code" [value]="user?.postal_code" (change)='updateUser($event.target.name,$event.target.value)'></ion-input>
+            <ion-input type="text" name="postal_code" [ngModel]="user?.postal_code" (ngModelChange)='saveChanges()'></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>{{'password' | translate}}</ion-label>
-            <ion-input type="password" name="password" [value]="user?.password" (change)='updatePassword($event.target.value)'></ion-input>
+            <ion-input type="password" name="password" [ngModel]="user?.password" (ngModelChange)='saveChanges()'></ion-input>
         </ion-item>
     </ion-list>
 </ion-content>
