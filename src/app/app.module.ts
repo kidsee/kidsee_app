@@ -17,6 +17,10 @@ import { IonicStorageModule } from '@ionic/storage';
 import { AlertServiceProvider } from '../providers/alert-service/alert-service';
 import { CommentServiceProvider } from '../providers/comment-service/comment-service';
 import { ContentTypeServiceProvider } from '../providers/content-type-service/content-type-service';
+import { GoogleMaps } from "@ionic-native/google-maps";
+import { AndroidPermissions } from '@ionic-native/android-permissions';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { LocationServiceProvider } from '../providers/location-service/location-service';
 
 @NgModule({
   declarations: [
@@ -52,10 +56,14 @@ import { ContentTypeServiceProvider } from '../providers/content-type-service/co
     PostService,
     CommentServiceProvider,
     ContentTypeServiceProvider,
+    GoogleMaps,
+    AndroidPermissions,
+    ScreenOrientation,
+    LocationServiceProvider,
   ]
 })
 export class AppModule {
 }
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }

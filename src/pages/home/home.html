@@ -1,8 +1,34 @@
-<base-header title="{{'home' | translate}}"></base-header>
 
-<ion-content padding class="under-nav-margin">
-  <ion-header (click)="profile()" menuClose="left" >
-    <h2>{{user?.username}}</h2>
-    <h3>{{'gotoProfile' | translate}}</h3>
-  </ion-header>
+<ion-content>
+
+  <div id="map_canvas">
+
+      <img class="profile_button" src="assets/imgs/profile.png" padding  (click)="profile()">
+
+      <img class="settings_button" src="assets/imgs/settings.png" padding (click)="settings()">
+
+    <ion-row>
+        <timeline-container>
+
+        </timeline-container>
+    </ion-row>
+    <ion-grid class="button_grid" padding>
+        <ion-row>
+          <ion-col>
+              <img class="tlb-button" src="assets/imgs/puzzle.png" (click)="puzzle()">
+          </ion-col>
+          <ion-col>
+              <img class="tlb-button" src="assets/imgs/questionandanswer.png" (click)="questionandanswer()">
+          </ion-col>
+          <ion-col>
+              <img class="tlb-button" src="assets/imgs/photoandvideo.png" (click)="photoandvideo()">
+          </ion-col>
+          <ion-col>
+              <img class="tlb-button" src="assets/imgs/rating.png" (click)="rating()">
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+  </div>
+
+
 </ion-content>

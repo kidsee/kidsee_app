@@ -1,5 +1,6 @@
 {
   "login": "Inloggen",
+  "logout": "Uitloggen",
   "username_or_password": "Gebruikersnaam of email",
   "username": "Gebruikersnaam",
   "password": "Wachtwoord",
@@ -19,7 +20,6 @@
   "loading": "Even geduld aub",
   "fail": "Er is iets misgegaan",
   "ok": "OK",
-  "timeline": "Tijdlijn",
   "fill_in_information": "Vul alle gegevens in aub",
   "password_wrong": "De combinatie van gebruikersnaam/email en wachtwoord is fout",
   "username_invalid": "Vul alstjeblieft een geldig gebruikersnaam in. Je gebruikersnaam moet minimaal 6 tekens bevatten en maximaal 18. Gebruik alleen: letters, cijfers, streepje en lage streepje",
@@ -39,5 +39,16 @@
   "create_post": "Post aanmaken",
   "question": "Vraag",
   "title": "Titel",
-  "send_post": "Verzenden"
+  "send_post": "Verzenden",
+  "find_my_location": "Vind mijn locatie",
+  "settings": "Instellingen",
+  "notifications": "Meldingen",
+  "mobile_data_usage": "Mobiele data",
+  "language": "Taal",
+  "dutch": "Nederlands",
+  "english": "Engels - nog niet beschikbaar",
+  "german": "Duits - nog niet beschikbaar",
+  "french": "Frans - nog niet beschikbaar",
+  "spanish": "Spaans - nog niet beschikbaar",
+  "timeline": "Tijdlijn"
 }
