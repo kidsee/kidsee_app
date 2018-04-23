@@ -2,4 +2,22 @@ page-home {
   .under-nav-margin {
     margin-top: 56px;
   }
+  #map_canvas {
+    height: 100%;
+  }
+  .tlb-button {
+    max-height: 100%;
+  }
+  .profile_button {
+    max-height : 15%
+  }
+  .settings_button {
+    max-height : 15%;
+    float : right;
+  }
+  .button_grid {
+    position: absolute;
+    bottom: 0;
+    max-height : 20%;
+  }
 }

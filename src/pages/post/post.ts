@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Post } from "../../app/models/post";
+import { PostService } from "../../providers/post-service/post-service";
 
 @IonicPage()
 @Component({
@@ -13,6 +14,7 @@ export class PostPage {
   constructor(
     private navController: NavController,
     private navParams: NavParams,
+    private postService: PostService
   ) { }
 
   ionViewDidEnter() {
