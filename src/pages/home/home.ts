@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from "../../app/models/user";
 import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
-import { GoogleMaps,  GoogleMap,  GoogleMapsEvent,  LatLng} from '@ionic-native/google-maps';
+import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng} from '@ionic-native/google-maps';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { LocationServiceProvider } from "../../providers/location-service/location-service";
