@@ -14,7 +14,7 @@ const config: DatastoreConfig = {
     users: User,
     posts: Post,
     comments: Comment,
-    status: Status,
+    statuses: Status,
     'content-types': ContentType,
     locations: Location
   }

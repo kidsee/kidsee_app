@@ -11,4 +11,8 @@ export class PostService {
   public posts(params: {}) {
     return this.datastore.findAll(Post, params);
   }
+
+  public createPost(data) {
+      return this.datastore.createRecord(Post, data).save();
+  }
 }

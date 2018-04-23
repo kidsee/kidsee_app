@@ -34,5 +34,5 @@ export class User extends JsonApiModel {
   updated_at: Date;
 
   @HasMany()
-  posts: Post[] = [];
+  posts: Post[];
 }

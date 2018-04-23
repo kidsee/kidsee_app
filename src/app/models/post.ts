@@ -3,6 +3,7 @@ import { User } from "./user";
 import { ContentType } from "./contentType";
 import { Status } from "./status";
 import { Comment } from "./comment";
+import { Location } from "./location";
 
 @JsonApiModelConfig({
   type: 'posts'
@@ -16,16 +17,19 @@ export class Post extends JsonApiModel {
   title: string;
 
   @BelongsTo()
+  location: Location;
+
+  @BelongsTo()
   content_type: ContentType;
 
   @BelongsTo()
   user: User;
 
-  @Attribute()
+  @BelongsTo()
   status: Status;
 
   @HasMany()
-  comments: Comment[] = [];
+  comments: Comment[];
 
   @Attribute()
   created_at: Date;
