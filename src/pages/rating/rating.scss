@@ -1,3 +1,40 @@
 page-rating {
+    .rating-content {
+        background: url('../assets/imgs/cork.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
 
+    ion-grid, ion-row { height: 100%; }
+
+    .theme-list {
+        height: 100%;
+        background: #A57F44;
+        border: 3px solid #FDFAE9;
+        outline: 4px solid #54330F;
+    }
+
+    .item-list {
+        height: 100%;
+        background: #A57F44;
+        border: 3px solid #FDFAE9;
+        outline: 4px solid #54330F;
+    }
+
+    .label-md {
+        padding: 0 !important;
+        margin: 5% !important;
+    }
+
+    .item-inner {
+        padding: 0 !important;
+    }
+
+    .theme-item {
+        background: transparent;
+    }
+
+    .item-item {
+        background: transparent;
+    }
 }
