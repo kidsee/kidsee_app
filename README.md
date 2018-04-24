@@ -1,3 +1,16 @@
+## Git usage:
+A branch contains a fix, feature or parts of a feature, or a refactor. Branchnames start with fix/, feature/ or refactor/ to clarify what is included in the branch. <br/>
+When you make a new branch, make sure that your local develop is up-to-date with the remote develop. <br/>
+During development on a branch, the base branch (develop) may be updated. When this happens, update your local develop with `git pull` and then switch back to your branch and update it with develop by using `git rebase develop`. <br/>
+Using `git merge` will likely result in problems with rebasing later on, including the interactive rebase done before merging into develop at the end of a pull request. <br/>
+During a rebase, conflicts may occur. Fix these in the files or with a mergetool and then continue the rebase with `git rebase --continue` <br/>
+After the rebase, use `git push -f` to update the remote branch. Make sure that no other commits have been added to the branch between the rebase and the push, as the push will overwrite these. <br/><br/>
+
+After a sprint, production should be updated with a stable version, which should be deployed. After that, features of the new sprint can be added to develop. Next to these features, hotfixes are permitted to merge into production.
+
+If you have any problems with using git, feel free to contact @lucashorward or @InteNs. <br/>
+For more and in-depth git usage, read http://img105.job1001.com/upload/adminnew/2015-04-18/1429345520-IAYYBZD.pdf
+
 ## Some code styling guidelines:
  - Name variables for what they are, and in camelCase. So a NavigationController becomes a navigationController, not a navctrl
  - Indents are 2 spaces and there is a space between a bracket and name in an import
@@ -6,6 +19,7 @@
  - Use the navigation parameters where applicable. (Example: Going to a post detail from the list, the post will be put into the navparams and used in the detail page.ts)
 
 ## What to do before you make a pull request (pr):
+Update your branch with develop (see above) and fix any/all conflicts.
 Run:
 - npm run lint
 
