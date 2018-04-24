@@ -12,7 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class LoginPage {
   private loading: Loading;
 
-  registerCredentials = {identification: '', password: ''};
+  loginCredentials = {identification: '', password: ''};
 
   constructor(
     private navController: NavController,
@@ -28,7 +28,7 @@ export class LoginPage {
 
   login() {
     this.showLoading();
-    this.authServiceProvider.login(this.registerCredentials).subscribe(
+    this.authServiceProvider.login(this.loginCredentials).subscribe(
       success => {
         this.navController.setRoot('HomePage');
       },
