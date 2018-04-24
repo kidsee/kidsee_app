@@ -1,4 +1,5 @@
 import { JsonApiModelConfig, JsonApiModel, Attribute, BelongsTo } from 'angular2-jsonapi';
+import { Theme } from "./theme";
 
 @JsonApiModelConfig({
   type: 'locations'
@@ -19,4 +20,7 @@ export class Location extends JsonApiModel {
 
   @Attribute()
   lat: number;
+
+  @BelongsTo()
+  theme: Theme;
 }
