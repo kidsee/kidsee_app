@@ -1,0 +1,27 @@
+<base-header title="{{'timeline' | translate}}"></base-header>
+
+<ion-content padding class="under-nav-margin">
+    <ion-list>
+        <ion-card *ngFor="let post of posts" (click)="goToPost(post)">
+            <ion-card-header>
+                <ion-card-title>{{post?.title}}</ion-card-title>
+                <ion-note class="italic">
+                    {{'posted_by' | translate}}{{post.user.username}}
+                </ion-note>
+            </ion-card-header>
+            <ion-card-content>{{post?.content}}</ion-card-content>
+            <button ion-button icon-left clear small>
+                <ion-icon name="text"></ion-icon>
+                <div>{{post?.comments?.length || 0}} {{'comments' | translate}}</div>
+            </button>
+        </ion-card>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>
+<ion-fab bottom right>
+    <button ion-fab color="secondary" (click)="createPost()">
+        <ion-icon name="add-circle"></ion-icon>
+    </button>
+</ion-fab>

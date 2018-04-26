@@ -1,0 +1,41 @@
+<base-header title="profiel"></base-header>
+<ion-header>
+    <ion-navbar>
+        <ion-buttons left>
+            <button ion-button icon-only class="custom-back-button" (click)="back()">
+                <ion-icon name="arrow-back"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title>{{'profile' | translate}}</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-list>
+        <ion-list-header>
+            <ion-avatar item-start="">
+                <img src="https://www.w3schools.com/howto/img_avatar.png">
+            </ion-avatar>
+            <a>{{'edit' | translate}}</a>
+        </ion-list-header>
+        <ion-item>
+            <ion-label floating>{{'username' | translate}}</ion-label>
+            <ion-input type="text" name="username" [ngModel]="user?.username" (ngModelChange)='saveChanges()'></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>{{'email' | translate}}</ion-label>
+            <ion-input type="email" name="email" [ngModel]="user?.email" (ngModelChange)='saveChanges()'></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>{{'birthdate' | translate}}</ion-label>
+            <ion-datetime displayFormat="DD - MM - YYYY" name="birthdate" [ngModel]="birthdate" (ngModelChange)='saveChanges()'></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>{{'postal_code' | translate}}</ion-label>
+            <ion-input type="text" name="postal_code" [ngModel]="user?.postal_code" (ngModelChange)='saveChanges()'></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>{{'password' | translate}}</ion-label>
+            <ion-input type="password" name="password" [ngModel]="user?.password" (ngModelChange)='saveChanges()'></ion-input>
+        </ion-item>
+    </ion-list>
+</ion-content>

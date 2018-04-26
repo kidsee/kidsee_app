@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Inloggen</ion-title>
+    <ion-title>{{'login' | translate}}</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -19,11 +19,11 @@
           <ion-list inset>
             
             <ion-item>
-              <ion-input type="text" placeholder="E-mail" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
+              <ion-input type="text" placeholder="{{'username_or_password' | translate}}" name="identification" [(ngModel)]="registerCredentials.identification" required></ion-input>
             </ion-item>
             
             <ion-item>
-              <ion-input type="password" placeholder="Wachtwoord" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>
+              <ion-input type="password" placeholder="{{'password' | translate }}" name="password" [(ngModel)]="registerCredentials.password" required></ion-input>
             </ion-item>
             
           </ion-list>
@@ -32,8 +32,8 @@
       
       <ion-row>
         <ion-col class="signup-col">
-          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Inloggen</button>
-          <button ion-button class="register-btn" type="button" block clear (click)="createAccount()">Registreren</button>
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">{{'login' | translate}}</button>
+          <button ion-button class="register-btn" type="button" block clear (click)="createAccount()">{{'register' | translate}}</button>
         </ion-col>
       </ion-row>
       

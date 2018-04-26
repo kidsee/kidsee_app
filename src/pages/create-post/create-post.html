@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ 'create_post' | translate }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form (ngSubmit)="createPost()" #postform="ngForm">
+    <ion-list>
+      <ion-item>
+        <ion-select name="loc" [(ngModel)]="selectedLocation" required>
+          <ion-option *ngFor="let location of locations">{{location.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-input name="title" [(ngModel)]="postAttributes.title" placeholder="{{ 'title' | translate }}" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input name="content" [(ngModel)]="postAttributes.content" placeholder="{{ 'question' | translate }}" required></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <ion-item>
+      <button ion-button class="submit-btn" full type="submit" [disabled]="!postform.form.valid">{{ 'send_post' | translate }}!</button>
+    </ion-item>
+  </form>
+</ion-content>

@@ -1,12 +1,8 @@
+import { AlertServiceProvider } from '../../providers/alert-service/alert-service';
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController, Loading, IonicPage } from 'ionic-angular';
+import { NavController, LoadingController, Loading, IonicPage } from 'ionic-angular';
 import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { TranslateService } from '@ngx-translate/core';
 
 @IonicPage()
 @Component({
@@ -14,45 +10,41 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  loading: Loading;
-  registerCredentials = { email: '', password: '' };
- 
-  constructor(private nav: NavController, private auth: AuthServiceProvider, private alertCtrl: AlertController, private loadingCtrl: LoadingController) { }
- 
-  public createAccount() {
-    this.nav.push('RegisterPage');
+  private loading: Loading;
+
+  registerCredentials = {identification: '', password: ''};
+
+  constructor(
+    private navController: NavController,
+    private authServiceProvider: AuthServiceProvider,
+    private alertServiceProvider: AlertServiceProvider,
+    private loadingController: LoadingController,
+    private translateService: TranslateService
+  ) { }
+
+  protected createAccount() {
+    this.navController.push('RegisterPage');
   }
- 
-  public login() {
-    this.showLoading()
-    this.auth.login(this.registerCredentials).subscribe(allowed => {
-      if (allowed) {        
-        this.nav.setRoot('TabsPage');
-      } else {
-        this.showError("Access Denied");
-      }
-    },
+
+  login() {
+    this.showLoading();
+    this.authServiceProvider.login(this.registerCredentials).subscribe(
+      success => {
+        this.navController.setRoot('HomePage');
+      },
       error => {
-        this.showError(error);
-      });
+        this.translateService.get(['fail', 'access_denied', 'ok']).subscribe(translation => {
+          this.alertServiceProvider.showPopup(translation.fail, translation.access_denied, translation.ok);
+          this.loading.dismiss();
+        });
+      }
+    )
   }
- 
-  showLoading() {
-    this.loading = this.loadingCtrl.create({
-      content: 'Please wait...',
+
+  protected showLoading() {
+    this.loading = this.loadingController.create({
       dismissOnPageChange: true
     });
     this.loading.present();
-  }
- 
-  showError(text) {
-    this.loading.dismiss();
- 
-    let alert = this.alertCtrl.create({
-      title: 'Fail',
-      subTitle: text,
-      buttons: ['OK']
-    });
-    alert.present();
   }
 }
