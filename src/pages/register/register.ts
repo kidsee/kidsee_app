@@ -32,6 +32,10 @@ export class RegisterPage {
     });
   }
 
+  public back() {
+    this.navController.pop();
+  }
+
   public register() {
     this.authServiceProvider.register(this.registerForm.value).subscribe(
       success => {

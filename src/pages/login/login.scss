@@ -1,0 +1,97 @@
+page-login {
+
+    .label-md {
+        width: 10%;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .login-content {
+        background: url('../assets/imgs/map-background.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .login-row {
+        text-align: center;
+    }
+
+    .login-btn {
+        font-family: 'Times New Roman';
+        font-size: 6em;
+        color: #54330F;
+        background: #FAF0C6;
+        border: 3px solid #FDFAE9;
+        outline: 4px solid #54330F;
+        width: 60%;
+        height: 25%;
+        margin-top: 6%;
+    }
+
+    .register-btn {
+        font-family: 'Times New Roman';
+        font-size: 1em;
+        color: #54330F;
+        background: #FAF0C6;
+        border: 3px solid #FDFAE9;
+        outline: 4px solid #54330F;
+        width: 50%;
+        margin: 0 auto;
+        margin-bottom: 3%;
+    }
+
+    .login-form {
+        width: 100%;
+    }
+
+    .login-box {
+        color: #54330F;
+        width: 100%;
+        background: url('../assets/imgs/background-login-register.png');
+        background-size: contain;
+        background-repeat: repeat-x;
+    }
+
+    .forgot-password {
+        font-size: 2em;
+    }
+
+    .item-inner {
+        border: 3px solid #54330F !important;
+        box-shadow: none !important;    //disables validation color line
+        background: #FAF0C6;
+    }
+
+    ion-input {
+        border-left:  3px solid #54330F;
+    }
+
+    .item-input {
+        width: 100%;
+        margin: 3% auto;
+    }
+
+    ion-icon {
+        color: #54330F;
+    }
+
+    .text-input::-webkit-input-placeholder { /* Chrome */
+        color: #54330F;
+    }
+
+    .text-input:-ms-input-placeholder { /* IE 10+ */
+        color: #54330F;
+    }
+
+    .text-input::-moz-placeholder { /* Firefox 19+ */
+        color: #54330F;
+        opacity: 1;
+    }
+
+    .text-input:-moz-placeholder { /* Firefox 4 - 18 */
+        color: #54330F;
+        opacity: 1;
+    }
+}
