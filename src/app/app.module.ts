@@ -25,6 +25,7 @@ import { StatusServiceProvider } from '../providers/status-service/status-servic
 import { LocationTypeServiceProvider } from '../providers/location-type-service/location-type-service';
 import { RatingServiceProvider } from '../providers/rating-service/rating-service';
 import { ThemeServiceProvider } from '../providers/theme-service/theme-service';
+import { Ionic2RatingModule } from "ionic2-rating";
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { ThemeServiceProvider } from '../providers/theme-service/theme-service';
         deps: [HttpClient]
       }
     }),
-    
+    Ionic2RatingModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

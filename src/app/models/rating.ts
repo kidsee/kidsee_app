@@ -1,4 +1,4 @@
-import { JsonApiModelConfig, JsonApiModel, Attribute, BelongsTo } from 'angular2-jsonapi';
+import { Attribute, BelongsTo, JsonApiModel, JsonApiModelConfig } from "angular2-jsonapi";
 import { User } from "./user";
 
 @JsonApiModelConfig({
@@ -29,4 +29,8 @@ export class Rating extends JsonApiModel {
 
   @Attribute({ serializedName: 'updated-at' })
   updated_at: Date;
+
+  @BelongsTo()
+  location: Location;
+
 }
