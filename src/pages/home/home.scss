@@ -1,10 +1,14 @@
+
 page-home {
   .under-nav-margin {
     margin-top: 56px;
   }
-  #map_canvas {
+  .map_canvas {
     height: 100%;
-  }
+    width: 100%;
+    position: absolute;
+    z-index: 1; 
+  } 
   .tlb-button {
     max-height: 100%;
   }
@@ -17,7 +21,171 @@ page-home {
   }
   .button_grid {
     position: absolute;
+    left: 0;
     bottom: 0;
-    max-height : 20%;
+    max-height: 20%;
+    width: 100%;
+  }
+  .front_buttons{
+    position: relative;
+    z-index: 10; 
+    width: 100%;
+    height: 80%;
+    top: 10%;
+    background-color:rgba(0, 0, 0, 0);
+  }
+  .menu-image{
+    width: 100%;
+    height: 100%;
+  }
+
+  //marker menu
+  .radialContainer {
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    top: 46%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+  }
+  .radialForeground {
+    position: absolute;
+    background-color:rgba(0, 0, 0, 0);
+    width:60px;
+    height:60px;
+    border-radius:30px;
+    z-index: 101;
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .radialIconContainer{
+    background-color:rgba(0, 0, 0, 0);
+    width: 40px;
+    height: 40px;
+    z-index: 101;
+    position: absolute;
+    top: 47%;
+    left: 50%;
+  }
+  .radialIcon1{
+    transform: translate(-75px, 8px);
+  }
+  .radialIcon2{
+    transform: translate(-75px, -53px);
+  }
+  .radialIcon3{
+    transform: translate(-20px, -90px);
+  }
+  .radialIcon4{
+    transform: translate(35px, -53px);
+  }
+  .radialIcon5{
+    transform: translate(35px, 8px);
+  }
+
+    
+  //Animation
+  .animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+  @-webkit-keyframes zoomIn {
+    from {
+      opacity: 0;
+      -webkit-transform: scale3d(0.3, 0.3, 0.3);
+      transform: scale3d(0.3, 0.3, 0.3);
+    }
+
+    50% {
+      opacity: 1;
+    }
+  }
+  @keyframes zoomIn {
+    from {
+      opacity: 0;
+      -webkit-transform: scale3d(0.3, 0.3, 0.3);
+      transform: scale3d(0.3, 0.3, 0.3);
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  .zoomIn {
+    -webkit-animation-name: zoomIn;
+    animation-name: zoomIn;
+  }
+  @-webkit-keyframes zoomOut {
+    from {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+      -webkit-transform: scale3d(0.3, 0.3, 0.3);
+      transform: scale3d(0.3, 0.3, 0.3);
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  @keyframes zoomOut {
+    from {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+      -webkit-transform: scale3d(0.3, 0.3, 0.3);
+      transform: scale3d(0.3, 0.3, 0.3);
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  .zoomOut {
+    -webkit-animation-name: zoomOut;
+    animation-name: zoomOut;
+  }
+  @-webkit-keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+  }
+  @-webkit-keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  .fadeOut {
+    -webkit-animation-name: fadeOut;
+    animation-name: fadeOut;
   }
 }
