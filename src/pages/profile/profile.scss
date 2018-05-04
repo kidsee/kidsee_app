@@ -1,8 +1,105 @@
 page-profile {
 
-}
+  font-family: 'Times New Roman';
 
+    .item-md {
+        padding-left: 0px;
+    }
+    .label-md {
+        width: 10%;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .profile-content {
+        overflow: hidden;
+        background: url('../assets/imgs/background-login-register.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .profile-row {
+        margin:auto;
+        width: 90%;
+        text-align: center;
+    }
+
+    .register-box {
+        color: #54330F;
+        width: 100%;
+        background: url('../assets/imgs/background-login-register.png');
+        background-size: cover;
+        background-repeat: repeat-x;
+    }
+
+    .item-inner {
+        border: 3px solid #54330F !important;
+        box-shadow: none !important;    //disables validation color line
+        background: #FAF0C6;
+    }
+
+    ion-input {
+        border-left:  3px solid #54330F;
+    }
+
+    .item-input {
+        width: 100%;
+        margin: 3% auto;
+    }
+
+    ion-item p{
+        color: #54330F !important;
+        margin: 5px !important;
+    }
+
+    ion-icon {
+        font-size: 1em;
+        color: #54330F;
+    }
+
+    // .avatar{
+    //   width: 50px;
+    // }
+
+    .item-datetime {
+        margin-top: 10px;
+    }
+
+    .text-input::-webkit-input-placeholder { /* Chrome */
+        color: #54330F;
+    }
+
+    .text-input:-ms-input-placeholder { /* IE 10+ */
+        color: #54330F;
+    }
+
+    .text-input::-moz-placeholder { /* Firefox 19+ */
+        color: #54330F;
+        opacity: 1;
+    }
+
+    .text-input:-moz-placeholder { /* Firefox 4 - 18 */
+        color: #54330F;
+        opacity: 1;
+    }
+
+    .birthdate-label {
+        display: block;
+        margin-left: 35%;
+    }
+    .title-label{
+      margin-top: 3%;
+      width: 100%;
+    }
+    .datetime{
+      float: left;
+    }
+    
 ion-buttons button[icon-only].custom-back-button {
   margin: 0 6px;
   min-width: 36px;
+}
+
 }
