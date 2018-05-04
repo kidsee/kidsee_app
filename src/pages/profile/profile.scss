@@ -36,7 +36,7 @@ page-profile {
 
     .item-inner {
         border: 3px solid #54330F !important;
-        box-shadow: none !important;    //disables validation color line
+        box-shadow: none !important;    
         background: #FAF0C6;
     }
 
@@ -59,10 +59,7 @@ page-profile {
         color: #54330F;
     }
 
-    // .avatar{
-    //   width: 50px;
-    // }
-
+    
     .item-datetime {
         margin-top: 10px;
     }
@@ -90,16 +87,17 @@ page-profile {
         margin-left: 35%;
     }
     .title-label{
-      margin-top: 3%;
-      width: 100%;
+        margin-top: 3%;
+        width: 100%;
     }
     .datetime{
-      float: left;
+        float: left;
     }
     
-ion-buttons button[icon-only].custom-back-button {
-  margin: 0 6px;
-  min-width: 36px;
-}
+    ion-buttons button[icon-only].custom-back-button {
+        margin: 0 6px;
+        min-width: 36px;
+    }
 
 }
+
