@@ -1,3 +1,108 @@
 page-settings {
+  font-family: 'Times New Roman';
 
+  .item-md {
+    padding-left: 0;
+  }
+
+  .label-md {
+    width: 10%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .settings-content {
+    overflow: hidden;
+    background: url('../assets/imgs/background-login-register.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .settings-row {
+    margin:auto;
+    width: 90%;
+    text-align: center;
+  }
+
+  .item-inner {
+    border: 3px solid #54330F !important;
+    box-shadow: none !important;
+    background: #FAF0C6;
+  }
+
+  ion-input {
+    border-left:  3px solid #54330F;
+  }
+
+  .item-input {
+    width: 100%;
+    margin: 3% auto;
+  }
+
+  ion-item p{
+    color: #54330F !important;
+    margin: 5px !important;
+  }
+
+  ion-icon {
+    font-size: 1em;
+    color: #54330F;
+  }
+
+  .item-datetime {
+    margin-top: 10px;
+  }
+
+  .text-input::-webkit-input-placeholder { /* Chrome */
+    color: #54330F;
+  }
+
+  .text-input:-ms-input-placeholder { /* IE 10+ */
+    color: #54330F;
+  }
+
+  .text-input::-moz-placeholder { /* Firefox 19+ */
+    color: #54330F;
+    opacity: 1;
+  }
+
+  .text-input:-moz-placeholder { /* Firefox 4 - 18 */
+    color: #54330F;
+    opacity: 1;
+  }
+
+  .birthdate-label {
+    display: block;
+    margin-left: 4%;
+  }
+
+  .title-label{
+    margin-top: 3%;
+    width: 100%;
+    color: black !important;
+  }
+
+  .datetime{
+    float: left;
+  }
+
+  .button {
+    font-family: 'Times New Roman';
+    font-size: 1em;
+    color: #54330F;
+    background: #FAF0C6;
+    border: 3px solid #FDFAE9;
+    outline: 4px solid #54330F;
+  }
+
+  .button:hover{
+    background-color: #FAF0C6 !important;
+  }
+
+  ion-buttons button[icon-only].custom-back-button {
+    margin: 0 6px;
+    min-width: 36px;
+  }
 }
