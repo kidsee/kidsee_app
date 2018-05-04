@@ -1,14 +1,25 @@
 <ion-content class="rating-content">
-  <ion-grid>
-    <ion-row>
-      <ion-col col-3 class="theme-bar">
-        <ion-list class="theme-list" no-lines>
+  <ion-grid no-padding>
+    <ion-row class="header">
+      <ion-col col-2>
+          <img src="assets/imgs/back-arrow.png" (click)="back()"/>
+      </ion-col>
+      <ion-col class="title-container">
+        <h1 class="title">Top 10</h1>
+      </ion-col>
+      <ion-col col-2>
+
+      </ion-col>
+    </ion-row>
+    <ion-row class="content-row">
+      <ion-col col-2 class="theme-bar">
+        <ion-list class="theme-list">
           <ion-item class="theme-item" *ngFor="let theme of themes;">
             <img class="theme-button" src="assets/imgs/{{ theme }}.png" (click)="selectTheme(theme)">
           </ion-item>
         </ion-list>
       </ion-col>
-      <ion-col>
+      <ion-col class="item-list-col">
         <ion-list class="item-list" no-lines>
           <ion-item class="item-item" *ngFor="let item of items; let i = index">
             {{ i+1 }}. {{ item }}
