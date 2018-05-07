@@ -24,7 +24,7 @@
         <ion-card-content>{{post?.content}}</ion-card-content>
         <button ion-button icon-left clear small class="comment-button">
           <ion-icon name="text" class="icon"></ion-icon>
-          <div>{{post?.comments?.length || 0}} </div>
+          <div class="commentCount">{{post?.comments?.length || 0}} </div>
         </button>
         <button ion-button icon-left clear small class="rating-icon">
           <ion-icon name="star" class="icon"></ion-icon>
