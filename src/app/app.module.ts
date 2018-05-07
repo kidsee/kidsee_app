@@ -41,6 +41,7 @@ import { StatusServiceProvider } from '../providers/status-service/status-servic
         deps: [HttpClient]
       }
     }),
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
