@@ -13,6 +13,6 @@ export class RatingServiceProvider {
   }
 
   public createRating(data) {
-      return this.datastore.createRecord(Rating, data).save();
+    return this.datastore.createRecord(Rating, data).save();
   }
 }

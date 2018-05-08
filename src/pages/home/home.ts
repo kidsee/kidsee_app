@@ -125,7 +125,7 @@ export class HomePage {
     this.radialURLs[0] = "PhotoandvideoPage";
     this.radialURLs[1] = "QuestionandanswerPage";
     this.radialURLs[2] = "PuzzlePage";
-    this.radialURLs[3] = "RatingPage";
+    this.radialURLs[3] = "LocationRatingPage";
     // this.radialURLs[4] = "info";
 
   }

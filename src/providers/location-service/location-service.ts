@@ -20,7 +20,7 @@ export class LocationServiceProvider {
     });
   }
 
-  public getLocationByName(name){
+  public getLocationByName(name) {
     return new Promise<any>((resolve) => {
       this.locations().then(
         result => {
@@ -33,6 +33,14 @@ export class LocationServiceProvider {
           resolve(false);
         }
       );
+    });
+  }
+
+  public getLocationById(id) {
+    return new Promise<any>((resolve) => {
+      this.datastore.findRecord(Location, id).subscribe(location => {
+        resolve(location);
+      });
     });
   }
 }
