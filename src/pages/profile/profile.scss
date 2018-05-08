@@ -40,7 +40,7 @@ page-profile {
         background: #FAF0C6;
     }
 
-    ion-input {
+    .custom-input {
         border-left:  3px solid #54330F;
     }
 
@@ -49,12 +49,12 @@ page-profile {
         margin: 3% auto;
     }
 
-    ion-item p{
+    .custom-item p{
         color: #54330F !important;
         margin: 5px !important;
     }
 
-    ion-icon {
+    .custom-icon {
         font-size: 1em;
         color: #54330F;
     }
