@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PostService } from "../../providers/post-service/post-service";
 import { Post } from "../../app/models/post";
 
@@ -14,7 +14,8 @@ export class QuestionandanswerPage {
 
   constructor(
     private navController: NavController,
-    private postService: PostService
+    private postService: PostService,
+    private navParams: NavParams
   ) { }
 
   protected goToPost(post: Post) {
@@ -44,7 +45,7 @@ export class QuestionandanswerPage {
   }
 
   protected createPost(){
-    this.navController.push('CreatePostPage');
+    this.navController.push('CreatePostPage', {location: this.navParams.get('location')});
   }
 
   protected back(){
