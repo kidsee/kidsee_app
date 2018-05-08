@@ -33,4 +33,8 @@ export class CreateCommentPage {
       });
     });
   }
+
+  protected back() {
+    this.navCtrl.pop();
+  }
 }

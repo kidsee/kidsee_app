@@ -1,34 +1,59 @@
-
 <ion-content>
+    <div class="map_canvas" id="map_canvas">
+        
+            <img *ngIf="menuVisible" [class]="profileButtonClasses" src="assets/imgs/profile.png" padding (click)="profile()">
 
-  <div id="map_canvas">
+            <img *ngIf="menuVisible" [class]="settingsButtonClasses" src="assets/imgs/settings.png" padding (click)="settings()">
 
-      <img class="profile_button" src="assets/imgs/profile.png" padding  (click)="profile()">
+            <ion-row *ngIf="menuVisible" [class]="containerClasses" padding>
+                <timeline-container >
 
-      <img class="settings_button" src="assets/imgs/settings.png" padding (click)="settings()">
+                </timeline-container>
+            </ion-row>
+            <ion-grid *ngIf="menuVisible" [class]="buttonGridClasses">
+                <ion-row>
+                    <ion-col>
+                        <img class="tlb-button" src="assets/imgs/puzzle.png" (click)="puzzle()">
+                    </ion-col>
+                    <ion-col>
+                        <img class="tlb-button" src="assets/imgs/questionandanswer.png" (click)="questionandanswer()">
+                    </ion-col>
+                    <ion-col>
+                        <img class="tlb-button" src="assets/imgs/photoandvideo.png" (click)="photoandvideo()">
+                    </ion-col>
+                    <ion-col>
+                        <img class="tlb-button" src="assets/imgs/rating.png" (click)="rating()">
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        
+    </div>
 
-    <ion-row>
-        <timeline-container>
+    <div *ngIf="radialVisible" [class]="radialClasses">
 
-        </timeline-container>
-    </ion-row>
-    <ion-grid class="button_grid" padding>
-        <ion-row>
-          <ion-col>
-              <img class="tlb-button" src="assets/imgs/puzzle.png" (click)="puzzle()">
-          </ion-col>
-          <ion-col>
-              <img class="tlb-button" src="assets/imgs/questionandanswer.png" (click)="questionandanswer()">
-          </ion-col>
-          <ion-col>
-              <img class="tlb-button" src="assets/imgs/photoandvideo.png" (click)="photoandvideo()">
-          </ion-col>
-          <ion-col>
-              <img class="tlb-button" src="assets/imgs/rating.png" (click)="rating()">
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-  </div>
+        <div class="radialContainer">
+            <img class="menu-image" src="assets/imgs/cirkel-interface-5.png">
+         
+        </div>
+        <div class="radialForeground" (click)="closeMarkerMenu()"></div>
 
+        <div *ngIf="radialAmount >= 1" class="radialIconContainer radialIcon1">
+            <img class="menu-image" [src]="radialIcons[0]" (click)= "redirect(1)">
+        </div>
+        <div *ngIf="radialAmount >= 2" class="radialIconContainer radialIcon2">
+            <img class="menu-image" [src]="radialIcons[1]" (click)= "redirect(2)">
+        </div>
+        <div *ngIf="radialAmount >= 3" class="radialIconContainer radialIcon3">
+            <img class="menu-image" [src]="radialIcons[2]" (click)= "redirect(3)">
+        </div>
+        <div *ngIf="radialAmount >= 4" class="radialIconContainer radialIcon4">
+            <img class="menu-image" [src]="radialIcons[3]" (click)= "redirect(4)">
+        </div>
+        <div *ngIf="radialAmount >= 5" class="radialIconContainer radialIcon5">
+            <img class="menu-image" [src]="radialIcons[4]" (click)= "redirect(5)">
+        </div>
+    </div>
+
+    
 
 </ion-content>

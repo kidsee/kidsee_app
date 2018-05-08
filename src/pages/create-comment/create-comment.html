@@ -1,19 +1,23 @@
-<ion-header>
-  <ion-navbar>
-      <ion-title>{{ 'create_comment' | translate }}</ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-  <form (ngSubmit)="createComment()" #commentform="ngForm">
-      <ion-list>
+<ion-content class="comment-content">
+  <ion-row class="logo-row questions-header">
+    <ion-col col-2>
+      <img src="assets/imgs/back-button.png" class="custom-back-button" (click)="back()" />
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <form (ngSubmit)="createComment()" #commentform="ngForm">
+        <ion-list>
+          <h3>{{'your_answer' | translate}}</h3>
           <ion-item>
-              <ion-input name="content" [(ngModel)]="commentAttributes.content" placeholder="{{ 'comment' | translate }}" required></ion-input>
+            <ion-textarea class="custom-input" type="text" name="content" [(ngModel)]="commentAttributes.content" placeholder="{{ 'comment' | translate }}" required></ion-textarea>
           </ion-item>
-      </ion-list>
+        </ion-list>
 
-      <ion-item>
-          <button ion-button class="submit-btn" full type="submit" [disabled]="!commentform.form.valid">{{ 'send_comment' | translate }}</button>
-      </ion-item>
-  </form>
+        <ion-item>
+          <button ion-button class="button" full type="submit" [disabled]="!commentform.form.valid">{{ 'send_comment' | translate }}</button>
+        </ion-item>
+      </form>
+    </ion-col>
+  </ion-row>
 </ion-content>

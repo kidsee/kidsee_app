@@ -50,5 +50,19 @@
   "german": "Duits - nog niet beschikbaar",
   "french": "Frans - nog niet beschikbaar",
   "spanish": "Spaans - nog niet beschikbaar",
-  "timeline": "Tijdlijn"
+  "timeline": "Tijdlijn",
+  "forgot_password": "Wachtwoord vergeten?",
+  "deactivate_account": "Sluit account af",
+  "account": "Account",
+  "help": "Hulp",
+  "privacy": "Privacy",
+  "search": "Zoeken",
+  "your_question": "Jouw vraag",
+  "edit_profile_picture": "Profielfoto aanpassen",
+  "your_answer": "Jouw antwoord",
+  "location": "Locatie",
+  "description": "Omschrijving",
+  "send_rating": "Waardeer!",
+  "rating_already_saved": "Je hebt deze locatie al gewaardeerd",
+  "successfully_rated": "Je hebt de locatie gewaardeerd!"
 }

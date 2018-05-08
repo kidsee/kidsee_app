@@ -1,44 +1,60 @@
-<base-header title="{{post?.title}}"></base-header>
-<ion-header>
-  <ion-navbar>
-    <ion-buttons left>
-      <button ion-button icon-only class="custom-back-button" (click)="back()">
-        <ion-icon name="arrow-back"></ion-icon>
-      </button>
-    </ion-buttons>
-    <ion-title>{{post?.title}}</ion-title>
-  </ion-navbar>
+<ion-header class="yellow">
+  <ion-row class="first-row">
+    <ion-col col-3>
+     <img class="back" src="assets/imgs/back-button.png" (click)="back()"/>
+    </ion-col>
+    <ion-col col-6></ion-col>
+    <ion-col col-3>
+      <p class="stars">5<ion-icon name="star"></ion-icon></p>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-4 class="center">
+      <img class="profile" src="assets/imgs/profile.png" padding (click)="profile()">
+      <p>{{post?.user.username}}</p>
+    </ion-col>
+    <ion-col col-8>
+      <h1>{{post?.title}}</h1>
+      <p>{{post?.content}}</p>
+    </ion-col>
+  </ion-row>
+  <ion-row class="border">
+    <ion-col col-1 class="border-right brown center" (click)="createComment()">
+      <ion-icon name="md-add"></ion-icon>
+    </ion-col>
+    <ion-col col-md-auto="" class="border-right light-brown" (click)="createComment()">
+      <button class="light-brown">{{'answer' | translate}}</button>
+    </ion-col>
+    <ion-col class="yellow" col-md-auto="">
+      <button class="yellow">{{'upvote' | translate}}</button>
+    </ion-col>
+  </ion-row>
 </ion-header>
 
 <ion-content padding>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>
-        {{post?.title}}
-      </ion-card-title>
-      <ion-note class="italic">
-        {{'posted_by' | translate}}{{post?.user.username}}
-      </ion-note>
-    </ion-card-header>
-    <ion-card-content>
-      {{post?.content}}
-    </ion-card-content>
-    <button ion-button icon-left clear small>
-      <ion-icon name="text"></ion-icon>
-      <div>{{post?.comments?.length || 0}} {{'comments' | translate}}</div>
-    </button>
-  </ion-card>
   <ion-list>
-    <ion-card *ngFor="let comment of post?.comments">
-      <ion-card-header>{{post.user.username}} {{'commented' | translate}}</ion-card-header>
-      <ion-card-content>
-        {{comment.content}}
-      </ion-card-content>
+    <ion-card *ngFor="let comment of post?.comments" class="border">
+      <ion-row>
+        <ion-col col-3 class="center brown border-right">
+          {{comment.user?.username}}
+          <img class="profile" src="assets/imgs/profile.png" padding (click)="profile()">
+        </ion-col>
+        <ion-col col-9 class="yellow">
+          {{comment.content}}
+        </ion-col>
+      </ion-row>
+      <ion-row class="border-top yellow">
+        <ion-col col-2 class="border-right">
+          <ion-icon name="heart" class="light-brown-icon"></ion-icon>
+          3
+        </ion-col>
+        <ion-col col-md-auto class="border-right">
+          {{'answer' | translate}}
+        </ion-col>
+        <ion-col col-1>
+          <ion-icon name="warning" class="light-brown-icon"></ion-icon>
+        </ion-col>
+      </ion-row>
     </ion-card>
   </ion-list>
-  <ion-fab bottom right >
-    <button ion-fab color="secondary" (click)="createComment()">
-      <ion-icon name="add-circle"></ion-icon>
-    </button>
-  </ion-fab>
 </ion-content>
