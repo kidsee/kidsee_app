@@ -2,7 +2,7 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from "../../app/models/user";
 import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
-import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, MarkerIcon } from '@ionic-native/google-maps';
+import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng } from '@ionic-native/google-maps';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { LocationServiceProvider } from "../../providers/location-service/location-service";
@@ -101,8 +101,6 @@ export class HomePage {
           marker.on(GoogleMapsEvent.MARKER_CLICK)
             .subscribe(() => {
               this.currentSelectedLocation = location;
-              console.log(this.currentSelectedLocation);
-              console.log("click");
               this.setRadialLayout(location);
               this.openMarkerMenu();
             });
@@ -132,7 +130,7 @@ export class HomePage {
 
   public openMarkerMenu() {
     this.map.setAllGesturesEnabled(false);
-    let timeout = setTimeout(() => {
+    setTimeout(() => {
       this.profileButtonClasses = "profile_button animated fadeOut";
       this.settingsButtonClasses = "settings_button animated fadeOut";
       this.containerClasses = "animated fadeOut";
@@ -142,7 +140,7 @@ export class HomePage {
       this.menuVisible = true;
       this.radialVisible = true;
       this.changeDetectorRef.detectChanges();
-      let timeout = setTimeout(() => {
+      setTimeout(() => {
         this.menuVisible = false;
         this.changeDetectorRef.detectChanges();
       }, 1000);
@@ -161,7 +159,7 @@ export class HomePage {
     this.buttonGridClasses = "button_grid animated fadeIn";
     this.menuVisible = true;
     this.changeDetectorRef.detectChanges();
-    let timeout = setTimeout(() => {
+    setTimeout(() => {
       this.radialVisible = false;
       this.changeDetectorRef.detectChanges();
     }, 1000);
@@ -171,8 +169,7 @@ export class HomePage {
 
   public redirect(buttonNo: number) {
     let direction = this.radialURLs[buttonNo-1];
-    this.navController.push(this.radialURLs[buttonNo-1], {location: this.currentSelectedLocation});
-    
+    this.navController.push(direction, {location: this.currentSelectedLocation});
   }
 
   public settings() {
