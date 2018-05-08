@@ -57,4 +57,8 @@ export class CreatePostPage {
     let location = this.navParams.get('location')
     this.selectedLocation = (location) ? this.navParams.get('location').name : '';
   }
+
+  protected back() {
+    this.navController.pop();
+  }
 }
