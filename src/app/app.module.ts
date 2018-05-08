@@ -22,6 +22,9 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { LocationServiceProvider } from '../providers/location-service/location-service';
 import { StatusServiceProvider } from '../providers/status-service/status-service';
+import { LocationTypeServiceProvider } from '../providers/location-type-service/location-type-service';
+import { RatingServiceProvider } from '../providers/rating-service/rating-service';
+import { ThemeServiceProvider } from '../providers/theme-service/theme-service';
 
 @NgModule({
   declarations: [
@@ -63,6 +66,9 @@ import { StatusServiceProvider } from '../providers/status-service/status-servic
     ScreenOrientation,
     LocationServiceProvider,
     StatusServiceProvider,
+    LocationTypeServiceProvider,
+    RatingServiceProvider,
+    ThemeServiceProvider
   ]
 })
 export class AppModule {

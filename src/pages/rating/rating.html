@@ -1,12 +1,31 @@
-<ion-header>
+<ion-content class="rating-content">
+   <ion-grid class="rating-grid" no-padding>
+    <ion-row class="header">
+      <ion-col col-2>
+          <img src="assets/imgs/back-arrow.png" (click)="back()"/>
+      </ion-col>
+      <ion-col class="title-container">
+        <h1 class="title">Top 10</h1>
+      </ion-col>
+      <ion-col col-2>
 
-  <ion-navbar>
-    <ion-title>rating</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
+      </ion-col>
+    </ion-row>
+    <ion-row class="content-row">
+      <ion-col col-2 class="theme-bar">
+        <ion-list class="theme-list">
+          <ion-item class="theme-item" *ngFor="let theme of themes;">
+            <img class="theme-button" src="assets/imgs/{{ theme.name }}.png" (click)="selectTheme(theme)">
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      <ion-col class="item-list-col">
+        <ion-list class="item-list" no-lines>
+          <ion-item class="item-item" *ngFor="let location of topTen; let i = index">
+            {{ i+1 }}. {{ location.name }}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

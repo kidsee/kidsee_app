@@ -1,3 +1,67 @@
 page-rating {
+    .header {
+        border: 4px solid #532409;
+        border-bottom: none;
+        background: #7D4D33;
+        height: 15%;
+    }
+
+    .title-container{
+        text-align: center;
+    }
+
+    .title {
+        color: #FDF3C8;
+        font-size: 4em;
+        margin: 0;
+    }
+
+    .rating-grid, .rating-content, .content-row, .item-list { height: 100%; }
+
+    .content-row {
+        background: url('../assets/imgs/cork.png');
+    }
+
+    .item-inner { padding: 0 !important; }
+
+    .label-md {
+        margin: 0;
+    }
+
+    .theme-item .label-md {
+        border-bottom: 4px solid #532409 !important;
+    }
+
+    .theme-item {
+        padding: 0;
+        background: #AA703F;
+    }
+
+    .theme-item:nth-child(even) {
+        background: #C88E5E;
+    }
+
+    .theme-list {
+        border: 4px solid #532409;
+        height: 100%;
+        margin: 0;
+        background: #AA703F;
+    }
+
+    .item-list-col {
+        background: transparent;
+        border: 4px solid #532409;
+        border-left: none;
+    }
+
+    .item-item {
+        height: 10%;
+        background: #FCF1C6;
+        border-bottom: 4px solid #532409 !important;
+    }
+
+    .item-item:nth-child(even) {
+        background: url('../assets/imgs/cork.png');
+    }
 
 }
