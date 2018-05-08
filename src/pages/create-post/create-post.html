@@ -7,11 +7,16 @@
 <ion-content padding>
   <form (ngSubmit)="createPost()" #postform="ngForm">
     <ion-list>
-      <ion-item>
-        <ion-select name="loc" [(ngModel)]="selectedLocation" required>
-          <ion-option *ngFor="let location of locations">{{location.name}}</ion-option>
-        </ion-select>
+      <ion-item *ngIf="selectedLocation; else elseBlock">
+        <label> {{selectedLocation}}</label>
       </ion-item>
+      <ng-template #elseBlock>
+        <ion-item>
+          <ion-select name="loc" [(ngModel)]="selectedLocation" required>
+            <ion-option *ngFor="let location of locations">{{location.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+      </ng-template>
       <ion-item>
         <ion-input name="title" [(ngModel)]="postAttributes.title" placeholder="{{ 'title' | translate }}" required></ion-input>
       </ion-item>

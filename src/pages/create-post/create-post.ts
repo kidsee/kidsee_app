@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Location } from '../../app/models/location';
 import { PostService } from "../../providers/post-service/post-service";
 import { ContentTypeServiceProvider } from "../../providers/content-type-service/content-type-service";
@@ -23,10 +23,9 @@ export class CreatePostPage {
     private contentTypeService: ContentTypeServiceProvider,
     private authService: AuthServiceProvider,
     private statusService: StatusServiceProvider,
-    private locationService: LocationServiceProvider
-  ) {
-
-   }
+    private locationService: LocationServiceProvider,
+    private navParams: NavParams
+  ) { }
 
   protected createPost() {
     this.authService.fetchCurrentUser().then(user => {
@@ -55,5 +54,7 @@ export class CreatePostPage {
         });
       }
     );
+    let location = this.navParams.get('location')
+    this.selectedLocation = (location) ? this.navParams.get('location').name : '';
   }
 }

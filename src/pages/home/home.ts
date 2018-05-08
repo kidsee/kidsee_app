@@ -171,7 +171,7 @@ export class HomePage {
 
   public redirect(buttonNo: number) {
     let direction = this.radialURLs[buttonNo-1];
-    this.navController.push(this.radialURLs[buttonNo-1]);
+    this.navController.push(this.radialURLs[buttonNo-1], {location: this.currentSelectedLocation});
     
   }
 
