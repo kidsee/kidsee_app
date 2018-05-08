@@ -9,7 +9,7 @@ import { ContentType } from "../../app/models/contentType";
 import { Location } from '../../app/models/location';
 
 const config: DatastoreConfig = {
-  baseUrl: 'http://128.199.32.227/api',
+  baseUrl: 'http://174.138.7.193/api',
   models: {
     users: User,
     posts: Post,
