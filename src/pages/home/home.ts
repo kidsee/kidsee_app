@@ -31,6 +31,7 @@ export class HomePage {
   public radialIcons = ["assets/imgs/photo-icon.png", "assets/imgs/question-icon.png", "assets/imgs/puzzle-icon.png", "assets/imgs/rating-icon.png", "assets/imgs/info-icon.png"];
   public radialURLs = [" ", " ", " ", " ", " "];
   public currentSelectedLocation : Location;
+  public menuStyleTop;
 
   constructor(
     public navController: NavController,
@@ -57,6 +58,12 @@ export class HomePage {
     if (this.platform.is('cordova')) {
       this.loadMap();
       this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.PORTRAIT);
+    }
+    if(this.platform.is('android')){
+      this.menuStyleTop = '46%';
+    }
+    else{
+      this.menuStyleTop = '50%';
     }
   }
 
