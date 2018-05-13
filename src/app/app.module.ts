@@ -26,6 +26,7 @@ import { LocationTypeServiceProvider } from '../providers/location-type-service/
 import { RatingServiceProvider } from '../providers/rating-service/rating-service';
 import { ThemeServiceProvider } from '../providers/theme-service/theme-service';
 import { Ionic2RatingModule } from "ionic2-rating";
+import { Geolocation } from '@ionic-native/geolocation';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { Ionic2RatingModule } from "ionic2-rating";
     StatusServiceProvider,
     LocationTypeServiceProvider,
     RatingServiceProvider,
-    ThemeServiceProvider
+    ThemeServiceProvider,
+    Geolocation
   ]
 })
 export class AppModule {

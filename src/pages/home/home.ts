@@ -8,6 +8,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { LocationServiceProvider } from "../../providers/location-service/location-service";
 import { Location } from '../../app/models/location';
 import { Platform } from 'ionic-angular';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @IonicPage()
 @Component({
@@ -39,7 +40,8 @@ export class HomePage {
     private screenOrientation: ScreenOrientation,
     private locationService: LocationServiceProvider,
     private platform: Platform,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private geolocation: Geolocation
   ) {
     platform.registerBackButtonAction(() => {
       if(this.radialVisible == true){
@@ -62,6 +64,7 @@ export class HomePage {
     //creates a new map
     this.map = GoogleMaps.create('map_canvas');
     this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
+      this.geolocation.getCurrentPosition().then((resp) => { 
       //gets location permission
       this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.LOCATION).then(result => {
       if(!result.hasPermission) {
@@ -70,7 +73,7 @@ export class HomePage {
       //sets more map properties
       this.map.setMyLocationEnabled(true);
       this.map.setCameraZoom(15);
-      let latLng: LatLng = new LatLng(51.6888981, 5.3037321);
+      let latLng: LatLng = new LatLng(resp.coords.latitude, resp.coords.longitude);
       this.map.setCameraTarget(latLng);
       try {
         this.setMarkers();
@@ -78,8 +81,10 @@ export class HomePage {
         console.log(error);
       }
     });
-
+    
+  });
   }
+
 
   setMarkers() {
     this.locationService.locations().then((res) => {
