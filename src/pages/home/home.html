@@ -29,9 +29,9 @@
         
     </div>
 
-    <div *ngIf="radialVisible" [class]="radialClasses">
+    <div *ngIf="radialVisible" [class]="radialClasses" (click)="closeMarkerMenu()">
 
-        <div class="radialContainer">
+        <div class="radialContainer" [style.top]="menuStyleTop">
             <img class="menu-image" src="assets/imgs/cirkel-interface-5.png">
          
         </div>
