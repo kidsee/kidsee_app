@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PostService } from "../../providers/post-service/post-service";
 import { Post } from "../../app/models/post";
 import { Location } from "../../app/models/location";
+import { RatingServiceProvider } from "../../providers/rating-service/rating-service";
 
 @IonicPage()
 @Component({
@@ -17,7 +18,8 @@ export class QuestionandanswerPage {
   constructor(
     private navController: NavController,
     private postService: PostService,
-    private navParams: NavParams
+    private navParams: NavParams,
+    private ratingService: RatingServiceProvider
   ) { }
 
   protected goToPost(post: Post) {
@@ -45,7 +47,10 @@ export class QuestionandanswerPage {
     this.postService.posts(params).subscribe(
       posts => {
         posts.getModels().forEach(post => {
-          this.posts.push(post);
+          this.ratingService.getTotalRating(post).then(rating => {
+            post.rating = rating;
+            this.posts.push(post);
+          });
         });
       }
     )

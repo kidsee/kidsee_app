@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Rating } from "../../app/models/rating";
 import { Datastore } from "../datastore/datastore";
+import { JsonApiModel } from "angular2-jsonapi";
 
 @Injectable()
 export class RatingServiceProvider {
@@ -14,5 +15,24 @@ export class RatingServiceProvider {
 
   public createRating(data) {
     return this.datastore.createRecord(Rating, data).save();
+  }
+
+  public getTotalRating(object: JsonApiModel) {
+    return new Promise(resolve => {
+      const params = {
+        filter: {
+          object_type: object.modelConfig.type,
+          object_id: object.id
+        }
+      };
+      this.datastore.findAll(Rating, params).subscribe(data => {
+        let ratings = data.getModels();
+        let total = 0;
+        ratings.forEach(rating => {
+          total += rating.rating;
+        });
+        resolve(total);
+      });
+    });
   }
 }
