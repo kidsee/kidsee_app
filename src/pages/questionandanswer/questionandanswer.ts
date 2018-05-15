@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PostService } from "../../providers/post-service/post-service";
 import { Post } from "../../app/models/post";
+import { Location } from "../../app/models/location";
 
 @IonicPage()
 @Component({
@@ -11,6 +12,7 @@ import { Post } from "../../app/models/post";
 export class QuestionandanswerPage {
   protected posts: Post[] = [];
   private page = 0;
+  private location: Location;
 
   constructor(
     private navController: NavController,
@@ -23,12 +25,24 @@ export class QuestionandanswerPage {
   }
 
   ionViewDidEnter() {
+    this.location = this.navParams.get('location');
     this.fetchNewPage();
   }
 
   private fetchNewPage() {
     this.page++;
-    this.postService.posts({page: this.page}).subscribe(
+    let params = {};
+    if(this.location) {
+      params = {
+        page: this.page,
+        filter: {
+          location_id: this.location.id,
+        }};
+    }
+    else {
+      params = {page: this.page};
+    }
+    this.postService.posts(params).subscribe(
       posts => {
         posts.getModels().forEach(post => {
           this.posts.push(post);
@@ -45,7 +59,7 @@ export class QuestionandanswerPage {
   }
 
   protected createPost(){
-    this.navController.push('CreatePostPage', {location: this.navParams.get('location')});
+    this.navController.push('CreatePostPage', this.location);
   }
 
   protected back(){
