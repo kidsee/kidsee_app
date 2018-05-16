@@ -19,11 +19,13 @@ export class PostPage {
 
   ionViewDidEnter() {
     this.post = this.navParams.get('post');
-    this.post.comments.forEach(comment => {
-      this.ratingService.getTotalRating(comment).then(rating => {
-        comment.rating = rating;
+    if(this.post.comments) {
+      this.post.comments.forEach(comment => {
+        this.ratingService.getTotalRating(comment).then(rating => {
+          comment.rating = rating;
+        });
       });
-    });
+    }
   }
 
   protected back() {
