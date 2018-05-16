@@ -64,5 +64,7 @@
   "description": "Omschrijving",
   "send_rating": "Waardeer!",
   "rating_already_saved": "Je hebt deze locatie al gewaardeerd",
-  "successfully_rated": "Je hebt de locatie gewaardeerd!"
+  "successfully_rated": "Je hebt de locatie gewaardeerd!",
+  "answer": "Beantwoorden",
+  "upvote": "Upvote"
 }
