@@ -19,9 +19,10 @@ export class RatingServiceProvider {
 
   public getTotalRating(object: JsonApiModel) {
     return new Promise(resolve => {
+      let type = object.modelConfig.type.slice(0, -1);
       const params = {
         filter: {
-          object_type: object.modelConfig.type,
+          object_type: type,
           object_id: object.id
         }
       };
