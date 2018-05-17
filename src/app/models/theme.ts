@@ -1,4 +1,4 @@
-import { JsonApiModelConfig, JsonApiModel, Attribute, HasMany } from 'angular2-jsonapi';
+import { JsonApiModelConfig, JsonApiModel, Attribute, HasMany, BelongsTo } from 'angular2-jsonapi';
 import { Location } from "./location";
 
 @JsonApiModelConfig({
@@ -11,4 +11,7 @@ export class Theme extends JsonApiModel {
 
   @HasMany()
   locations: Location[];
+
+  @BelongsTo()
+  location: Location;
 }
