@@ -66,5 +66,11 @@
   "rating_already_saved": "Je hebt deze locatie al gewaardeerd",
   "successfully_rated": "Je hebt de locatie gewaardeerd!",
   "answer": "Beantwoorden",
-  "upvote": "Upvote"
+  "upvote": "Upvote",
+  "change": "veranderen",
+  "cancel": "Annuleer",
+  "old_password": "Oud wachtwoord",
+  "new_password": "Nieuw wachtwoord",
+  "new": "Nieuwe",
+  "repeat": "Herhaal"
 }

@@ -113,12 +113,14 @@ export class AuthServiceProvider {
     });
   }
 
-  public changePassword(password) {
+  public changePassword(oldPassword, value) {
     bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(password, salt, (err, hash) => {
-        this.currentUser().then(user => {
-          user.password = password;
-          user.save().subscribe();
+      bcrypt.hash(value, salt, (err, hash) => {
+        bcrypt.hash(oldPassword, salt, (err, hash) => {
+          this.currentUser().then(user => {
+            user.password = value;
+            user.save().subscribe();
+          });
         });
       });
     });
