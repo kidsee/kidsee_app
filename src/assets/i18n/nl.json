@@ -66,5 +66,17 @@
   "rating_already_saved": "Je hebt deze locatie al gewaardeerd",
   "successfully_rated": "Je hebt de locatie gewaardeerd!",
   "answer": "Beantwoorden",
-  "upvote": "Upvote"
+  "upvote": "Upvote",
+  "edit_password": "Wachtwoord veranderen",
+  "cancel": "Annuleer",
+  "old_password": "Oud wachtwoord",
+  "new_password": "Nieuw wachtwoord",
+  "new": "Nieuwe",
+  "repeat": "Herhaal",
+  "repeat_password": "Herhaal wachtwoord",
+  "old_password_matches_new_password": "Het oude wachtwoord is gelijk aan het nieuwe wachtwoord",
+  "new_passwords_do_not_match": "De nieuwe wachtwoorden komen niet overeen",
+  "edited_password": "Het wachtwoord is aangepast",
+  "did_not_edit_password": "Het oude wachtwoord klopt niet",
+  "items_do_not_match": "De opgegeven veranderingen komen niet overeen"
 }
