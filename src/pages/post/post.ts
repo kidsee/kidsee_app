@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Post } from "../../app/models/post";
 import { RatingServiceProvider } from "../../providers/rating-service/rating-service";
+import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
+import { JsonApiModel } from "angular2-jsonapi";
 
 @IonicPage()
 @Component({
@@ -14,7 +16,8 @@ export class PostPage {
   constructor(
     private navController: NavController,
     private navParams: NavParams,
-    private ratingService: RatingServiceProvider
+    private ratingService: RatingServiceProvider,
+    private authService: AuthServiceProvider,
   ) { }
 
   ionViewDidEnter() {
@@ -34,5 +37,29 @@ export class PostPage {
 
   protected createComment(){
     this.navController.push('CreateCommentPage', { post: this.post });
+  }
+
+  protected upvote(object: JsonApiModel) {
+    const type = object.modelConfig.type.slice(0, -1);
+    this.authService.fetchCurrentUser().then(user => {
+      this.ratingService.checkIfUserHasRatedObject(object, user).then(result => {
+        if(result) {
+          this.ratingService.deleteRating(result).subscribe(_ => {
+            object.rating -= 1;
+          });
+        }
+        else {
+          this.ratingService.createRating({
+            rating: 1,
+            description: 'upvote',
+            object_type: type,
+            object_id: object.id,
+            user: user
+          }).subscribe(_ => {
+            object.rating += 1;
+          });
+        }
+      })
+    });
   }
 }
