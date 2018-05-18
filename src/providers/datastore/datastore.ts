@@ -8,6 +8,11 @@ import { Status } from "../../app/models/status";
 import { ContentType } from "../../app/models/contentType";
 import { Location } from '../../app/models/location';
 import { Theme } from '../../app/models/theme';
+import { Assignment } from '../../app/models/assignment';
+import { AssignmentType } from '../../app/models/assignmentType';
+import { Answer } from '../../app/models/answer';
+import { UserAnswer } from '../../app/models/userAnswer';
+import { AnswerType } from '../../app/models/answerType';
 
 const config: DatastoreConfig = {
   baseUrl: 'http://128.199.32.227/api',
@@ -18,7 +23,12 @@ const config: DatastoreConfig = {
     statuses: Status,
     'content-types': ContentType,
     locations: Location,
-    themes: Theme
+    themes: Theme,
+    assignments: Assignment,
+    'assignment-types': AssignmentType,
+    answers: Answer,
+    'user-answers': UserAnswer,
+    'answer-types': AnswerType
   }
 };
 
