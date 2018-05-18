@@ -10,7 +10,7 @@
   </ion-row>
   <ion-row>
     <ion-col col-4 class="center">
-      <img class="profile" src="assets/imgs/profile.png" padding (click)="profile()">
+      <img class="profile" src="assets/imgs/profile.png" padding">
       <p>{{post?.user.username}}</p>
     </ion-col>
     <ion-col col-8>
@@ -37,7 +37,7 @@
       <ion-row>
         <ion-col col-3 class="center brown border-right">
           {{comment.user?.username}}
-          <img class="profile" src="assets/imgs/profile.png" padding (click)="profile()">
+          <img class="profile" src="assets/imgs/profile.png" padding">
         </ion-col>
         <ion-col col-9 class="yellow">
           {{comment.content}}
