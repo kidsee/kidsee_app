@@ -117,7 +117,7 @@ export class AuthServiceProvider {
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(password, salt, (err, hash) => {
         this.currentUser().then(user => {
-          user.password = password;
+          user.password = hash;
           user.save().subscribe();
         });
       });
