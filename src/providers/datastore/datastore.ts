@@ -7,6 +7,7 @@ import { Comment } from "../../app/models/comment";
 import { Status } from "../../app/models/status";
 import { ContentType } from "../../app/models/contentType";
 import { Location } from '../../app/models/location';
+import { Theme } from '../../app/models/theme';
 
 const config: DatastoreConfig = {
   baseUrl: 'http://128.199.32.227/api',
@@ -16,7 +17,8 @@ const config: DatastoreConfig = {
     comments: Comment,
     statuses: Status,
     'content-types': ContentType,
-    locations: Location
+    locations: Location,
+    themes: Theme
   }
 };
 
