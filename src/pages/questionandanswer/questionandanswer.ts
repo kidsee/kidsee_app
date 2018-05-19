@@ -3,7 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PostService } from "../../providers/post-service/post-service";
 import { Post } from "../../app/models/post";
 import { Location } from "../../app/models/location";
-import { RatingServiceProvider } from "../../providers/rating-service/rating-service";
+import { TranslateService } from "@ngx-translate/core";
+import { AlertServiceProvider } from "../../providers/alert-service/alert-service";
 
 @IonicPage()
 @Component({
@@ -14,12 +15,14 @@ export class QuestionandanswerPage {
   protected posts: Post[] = [];
   private page = 0;
   private location: Location;
+  private selectedSort;
 
   constructor(
     private navController: NavController,
     private postService: PostService,
     private navParams: NavParams,
-    private ratingService: RatingServiceProvider
+    private alertService: AlertServiceProvider,
+    private translateService: TranslateService
   ) { }
 
   protected goToPost(post: Post) {
@@ -39,21 +42,23 @@ export class QuestionandanswerPage {
         page: this.page,
         filter: {
           location_id: this.location.id,
-        }};
+        },
+        sort: this.selectedSort
+      };
     }
     else {
-      params = {page: this.page};
+      params = {
+        page: this.page,
+        sort: this.selectedSort
+      };
     }
     this.postService.posts(params).subscribe(
       posts => {
         posts.getModels().forEach(post => {
-          this.ratingService.getTotalRating(post).then(rating => {
-            post.rating = rating;
-            this.posts.push(post);
-          });
-        });
+          this.posts.push(post);
+        })
       }
-    )
+    );
   }
 
   protected doInfinite(infiniteScroll) {
@@ -69,5 +74,38 @@ export class QuestionandanswerPage {
 
   protected back(){
     this.navController.pop();
+  }
+
+  protected openSort() {
+    this.translateService.get(
+      ['choose_sorting', 'highest_rated', 'lowest_rated', 'most_recent', 'least_recent', 'cancel', 'sort']
+    ).subscribe(translations => {
+      let alert = this.alertService.createAlert(translations.choose_sorting);
+      let options = [
+        { title: translations.highest_rated, value: '-rating'      },
+        { title: translations.lowest_rated,  value: 'rating'       },
+        { title: translations.most_recent,   value: '-inserted_at' },
+        { title: translations.least_recent,  value: 'inserted_at'  }
+      ];
+
+      options.forEach(option => {
+        let checked = option.value == this.selectedSort;
+        this.alertService.addRadioButton(alert, option.title, option.value, checked);
+      });
+
+      this.alertService.addButton(alert, translations.cancel);
+      this.alertService.addButton(alert, translations.sort,
+        (data: any) => {
+          this.selectedSort = data;
+          this.resetPosts();
+      });
+      alert.present();
+    });
+  }
+
+  private resetPosts() {
+    this.page = 0;
+    this.posts = [];
+    this.fetchNewPage();
   }
 }

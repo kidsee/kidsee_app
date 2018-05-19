@@ -56,7 +56,7 @@
   "account": "Account",
   "help": "Hulp",
   "privacy": "Privacy",
-  "search": "Zoeken",
+  "sort": "Sorteer",
   "your_question": "Jouw vraag",
   "edit_profile_picture": "Profielfoto aanpassen",
   "your_answer": "Jouw antwoord",
@@ -65,6 +65,11 @@
   "send_rating": "Waardeer!",
   "rating_already_saved": "Je hebt deze locatie al gewaardeerd",
   "successfully_rated": "Je hebt de locatie gewaardeerd!",
+  "choose_sorting": "Sorteer op...",
+  "lowest_rated": "Stemmen (oplopend)",
+  "highest_rated": "Stemmen (aflopend)",
+  "most_recent": "Meest recent",
+  "least_recent": "Minst recent",
   "answer": "Beantwoorden",
   "upvote": "Upvote",
   "edit_password": "Wachtwoord veranderen",
@@ -78,5 +83,6 @@
   "new_passwords_do_not_match": "De nieuwe wachtwoorden komen niet overeen",
   "edited_password": "Het wachtwoord is aangepast",
   "did_not_edit_password": "Het oude wachtwoord klopt niet",
-  "items_do_not_match": "De opgegeven veranderingen komen niet overeen"
+  "items_do_not_match": "De opgegeven veranderingen komen niet overeen",
+  "filter": "Filter"
 }
