@@ -1,33 +1,38 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>{{location?.name}}</ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-content class="location-rating-content">
+    <ion-row class="logo-row location-rating-header">
+        <ion-col col-2>
+            <img src="assets/imgs/back-button.png" (click)="back()" />
+        </ion-col>
+    </ion-row>
 
-<ion-content padding>
-  <form (ngSubmit)="submit()" #commentform="ngForm">
-    <ion-list>
-      <ion-item>
-        <rating [(ngModel)]="rating.rating"
-                readOnly="false"
-                max="5"
-                emptyStarIconName="star-outline"
-                halfStarIconName="star-half"
-                starIconName="star"
-                nullable="false"
-                name="rating"
-        >
-          <!--These values are mostly default, but left shown for clarity-->
-        </rating>
-      </ion-item>
+    <ion-row>
+        <ion-col col-md-auto="">
+            <ion-label class="rating-title">{{location?.name}}</ion-label>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <form class="rating-title" (ngSubmit)="submit()" #commentform="ngForm">
+            <ion-list>
+                <ion-item>
+                    <rating [(ngModel)]="rating.rating"
+                            readOnly="false"
+                            max="5"
+                            emptyStarIconName="star-outline"
+                            halfStarIconName="star-half"
+                            starIconName="star"
+                            nullable="false"
+                            name="rating"
+                    >
+                        <!--These values are mostly default, but left shown for clarity-->
+                    </rating>
+                </ion-item>
+                <ion-item>
+                    <ion-textarea class="custom-input" name="content" type="text" [(ngModel)]="rating.description" placeholder="{{ 'description' | translate }}" required></ion-textarea>
+                </ion-item>
+                <button ion-button class="rate-button" full type="submit">{{ 'send_rating' | translate }}</button>
 
-      <ion-item>
-        <ion-input name="content" [(ngModel)]="rating.description" placeholder="{{ 'description' | translate }}" required></ion-input>
-      </ion-item>
-    </ion-list>
+            </ion-list>
+        </form>
+    </ion-row>
 
-    <ion-item>
-      <button ion-button class="submit-btn" full type="submit">{{ 'send_rating' | translate }}</button>
-    </ion-item>
-  </form>
 </ion-content>
