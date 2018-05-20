@@ -7,6 +7,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { AlertServiceProvider } from "../../providers/alert-service/alert-service";
 import { RatingServiceProvider } from "../../providers/rating-service/rating-service";
 import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
+import { ThemeServiceProvider } from "../../providers/theme-service/theme-service";
 
 @IonicPage()
 @Component({
@@ -18,6 +19,8 @@ export class QuestionandanswerPage {
   private page = 0;
   private location: Location;
   private selectedSort;
+  private selectedFilter;
+  private filterOptions = [];
 
   constructor(
     private navController: NavController,
@@ -26,8 +29,15 @@ export class QuestionandanswerPage {
     private alertService: AlertServiceProvider,
     private translateService: TranslateService,
     private ratingService: RatingServiceProvider,
-    private authService: AuthServiceProvider
-  ) { }
+    private authService: AuthServiceProvider,
+    private themeService: ThemeServiceProvider
+  ) {
+    this.themeService.themes({}).subscribe(themes => {
+      themes.getModels().forEach(theme => {
+        this.filterOptions.push(theme);
+      })
+    })
+  }
 
   protected goToPost(post: Post) {
     this.navController.push('PostPage', {post: post});
@@ -41,33 +51,58 @@ export class QuestionandanswerPage {
   private fetchNewPage() {
     this.page++;
     let params = {};
-    if(this.location) {
+
+    if(this.selectedFilter)
+    {
       params = {
         page: this.page,
-        filter: {
-          location_id: this.location.id,
-        },
         sort: this.selectedSort
       };
+      this.postService.postsByTheme(this.selectedFilter, params).subscribe(data => {
+        this.authService.fetchCurrentUser().then(user => {
+          let posts = data.getModels();
+          posts.forEach(post => {
+            this.ratingService.checkIfUserHasRatedObject(post, user).then(rating => {
+              if(rating) {
+                post.rated = true;
+              }
+            });
+            this.posts.push(post);
+          });
+        });
+      })
     }
     else {
-      params = {
-        page: this.page,
-        sort: this.selectedSort
-      };
-    }
-    this.postService.posts(params).subscribe(posts => {
-      this.authService.fetchCurrentUser().then(user => {
-        posts.getModels().forEach(post => {
-          this.ratingService.checkIfUserHasRatedObject(post, user).then(rating => {
-            if(rating) {
-              post.rated = true;
-            }
+
+      if(this.location) {
+        params = {
+          page: this.page,
+          filter: {
+            location_id: this.location.id,
+          },
+          sort: this.selectedSort
+        };
+      }
+      else {
+        params = {
+          page: this.page,
+          sort: this.selectedSort
+        };
+      }
+
+      this.postService.posts(params).subscribe(posts => {
+        this.authService.fetchCurrentUser().then(user => {
+          posts.getModels().forEach(post => {
+            this.ratingService.checkIfUserHasRatedObject(post, user).then(rating => {
+              if(rating) {
+                post.rated = true;
+              }
+            });
+            this.posts.push(post);
           });
-          this.posts.push(post);
         });
       });
-    });
+    }
   }
 
   protected doInfinite(infiniteScroll) {
@@ -110,6 +145,26 @@ export class QuestionandanswerPage {
         });
       alert.present();
     });
+  }
+
+  protected openFilter() {
+    this.translateService.get(['choose_filter', 'cancel', 'filter']).subscribe(
+      translations => {
+        let alert = this.alertService.createAlert(translations.choose_filter);
+        this.filterOptions.forEach(filter => {
+          let checked = filter.name == this.selectedFilter;
+          this.alertService.addRadioButton(alert, filter.name, filter.id, checked);
+        });
+
+        this.alertService.addButton(alert, translations.cancel);
+        this.alertService.addButton(alert, translations.filter,
+          (data: any) => {
+            this.selectedFilter = data;
+            this.resetPosts();
+          });
+        alert.present();
+      }
+    );
   }
 
   private resetPosts() {
