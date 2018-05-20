@@ -23,11 +23,18 @@ export class PostPage {
   ionViewDidEnter() {
     this.post = this.navParams.get('post');
     if(this.post.comments) {
+      this.authService.fetchCurrentUser().then(user => {
       this.post.comments.forEach(comment => {
         this.ratingService.getTotalRating(comment).then(rating => {
           comment.rating = rating;
         });
+        this.ratingService.checkIfUserHasRatedObject(comment, user).then(rating => {
+          if(rating) {
+            comment.rated = true;
+          }
+        })
       });
+    });
     }
   }
 
@@ -46,6 +53,7 @@ export class PostPage {
         if(result) {
           this.ratingService.deleteRating(result).subscribe(_ => {
             object.rating -= 1;
+            object.rated = false;
           });
         }
         else {
@@ -57,6 +65,7 @@ export class PostPage {
             user: user
           }).subscribe(_ => {
             object.rating += 1;
+            object.rated = true;
           });
         }
       })
