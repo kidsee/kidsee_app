@@ -152,7 +152,7 @@ export class QuestionandanswerPage {
       translations => {
         let alert = this.alertService.createAlert(translations.choose_filter);
         this.filterOptions.forEach(filter => {
-          let checked = filter.name == this.selectedFilter;
+          let checked = filter.id == this.selectedFilter;
           this.alertService.addRadioButton(alert, filter.name, filter.id, checked);
         });
 
