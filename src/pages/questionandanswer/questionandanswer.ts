@@ -5,6 +5,8 @@ import { Post } from "../../app/models/post";
 import { Location } from "../../app/models/location";
 import { TranslateService } from "@ngx-translate/core";
 import { AlertServiceProvider } from "../../providers/alert-service/alert-service";
+import { RatingServiceProvider } from "../../providers/rating-service/rating-service";
+import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
 
 @IonicPage()
 @Component({
@@ -22,7 +24,9 @@ export class QuestionandanswerPage {
     private postService: PostService,
     private navParams: NavParams,
     private alertService: AlertServiceProvider,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private ratingService: RatingServiceProvider,
+    private authService: AuthServiceProvider
   ) { }
 
   protected goToPost(post: Post) {
@@ -52,13 +56,18 @@ export class QuestionandanswerPage {
         sort: this.selectedSort
       };
     }
-    this.postService.posts(params).subscribe(
-      posts => {
+    this.postService.posts(params).subscribe(posts => {
+      this.authService.fetchCurrentUser().then(user => {
         posts.getModels().forEach(post => {
+          this.ratingService.checkIfUserHasRatedObject(post, user).then(rating => {
+            if(rating) {
+              post.rated = true;
+            }
+          });
           this.posts.push(post);
-        })
-      }
-    );
+        });
+      });
+    });
   }
 
   protected doInfinite(infiniteScroll) {
@@ -98,7 +107,7 @@ export class QuestionandanswerPage {
         (data: any) => {
           this.selectedSort = data;
           this.resetPosts();
-      });
+        });
       alert.present();
     });
   }

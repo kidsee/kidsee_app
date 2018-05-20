@@ -5,7 +5,10 @@
     </ion-col>
     <ion-col col-6></ion-col>
     <ion-col col-3>
-      <p class="stars">{{post?.rating}}<ion-icon name="star"></ion-icon></p>
+      <p class="stars">{{post?.rating}}
+        <ion-icon *ngIf="!post?.rated" name="star" class="light-brown-icon"></ion-icon>
+        <ion-icon *ngIf="post?.rated" name="star" class="rated"></ion-icon>
+      </p>
     </ion-col>
   </ion-row>
   <ion-row>
@@ -45,7 +48,8 @@
       </ion-row>
       <ion-row class="border-top yellow">
         <ion-col col-2 class="border-right" (click)="upvote(comment)">
-          <ion-icon name="heart" class="light-brown-icon"></ion-icon>
+          <ion-icon *ngIf="!comment.rated" name="heart" class="light-brown-icon"></ion-icon>
+          <ion-icon *ngIf="comment.rated" name="heart" class="rated"></ion-icon>
           {{comment.rating}}
         </ion-col>
         <ion-col col-md-auto class="border-right"></ion-col>
