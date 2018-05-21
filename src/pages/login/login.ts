@@ -41,6 +41,10 @@ export class LoginPage {
     )
   }
 
+  protected forgotPassword() {
+    this.navController.push('ForgotpasswordPage');
+  }
+
   protected showLoading() {
     this.loading = this.loadingController.create({
       dismissOnPageChange: true

@@ -52,6 +52,7 @@
   "spanish": "Spaans - nog niet beschikbaar",
   "timeline": "Tijdlijn",
   "forgot_password": "Wachtwoord vergeten?",
+  "reset_password": "Reset Wachtwoord",
   "deactivate_account": "Sluit account af",
   "account": "Account",
   "help": "Hulp",
@@ -85,5 +86,7 @@
   "did_not_edit_password": "Het oude wachtwoord klopt niet",
   "items_do_not_match": "De opgegeven veranderingen komen niet overeen",
   "filter": "Filter",
-  "choose_filter": "Filter op..."
+  "choose_filter": "Filter op...",
+  "unknown_email": "Opgegeven mail kan niet worden gevonden.",
+  "password_reset_successful": "Het wachtwoord is opnieuw ingesteld en naar uw opgegeven mail verstuurd"
 }
