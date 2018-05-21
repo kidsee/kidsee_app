@@ -9,7 +9,8 @@
       <button class="yellow">{{'your_question' | translate}}</button>
     </ion-col>
     <ion-col col-md-auto="" class="border-right">
-      <button class="yellow"(click)="openSort()">{{'sort' | translate}}</button>
+      <button class="yellow" (click)="openSort()">{{'sort' | translate}}</button>
+      <ion-icon name="close" class="light-brown" (click)="resetSort()"></ion-icon>
     </ion-col>
     <ion-col col-md-auto="">
       <button class="yellow" (click)="openFilter()">{{'filter' | translate}}</button>

@@ -147,6 +147,11 @@ export class QuestionandanswerPage {
     });
   }
 
+  protected resetSort() {
+    this.selectedSort = undefined;
+    this.resetPosts();
+  }
+
   protected openFilter() {
     this.translateService.get(['choose_filter', 'cancel', 'filter']).subscribe(
       translations => {
