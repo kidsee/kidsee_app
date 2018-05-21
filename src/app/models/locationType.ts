@@ -1,4 +1,4 @@
-import { Attribute, JsonApiModel, JsonApiModelConfig } from "angular2-jsonapi";
+import { Attribute, JsonApiModel, JsonApiModelConfig, BelongsTo } from "angular2-jsonapi";
 
 @JsonApiModelConfig({
   type: 'location-types'
@@ -9,4 +9,7 @@ export class LocationType extends JsonApiModel {
 
   @Attribute()
   description: string;
+
+  @BelongsTo()
+  location: Location;
 }
