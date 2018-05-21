@@ -167,6 +167,11 @@ export class QuestionandanswerPage {
     );
   }
 
+  protected resetFilter() {
+    this.selectedFilter = undefined;
+    this.resetPosts();
+  }
+
   private resetPosts() {
     this.page = 0;
     this.posts = [];
