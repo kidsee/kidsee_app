@@ -1,0 +1,26 @@
+<ion-content class="info-content">
+  <ion-row class="logo-row info-header">
+    <ion-col col-2>
+      <img src="assets/imgs/back-button.png" (click)="back()" />
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col col-md-auto="">
+      <ion-label class="info-title"><h4>{{location?.name}}</h4></ion-label>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <form class="info-title">
+      <ion-list>
+        <ion-item>
+            <img class="location-image" [src]="image"/>
+        </ion-item>
+        <ion-item>
+          <ion-label class="info-description">{{location?.description}}</ion-label>
+        </ion-item>
+      </ion-list>
+    </form>
+  </ion-row>
+
+</ion-content>

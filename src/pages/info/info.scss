@@ -1,0 +1,68 @@
+page-info {
+
+    .info-header{
+      background: url('../assets/imgs/info_banner.png');
+      background-size: 100%;
+      background-repeat: no-repeat;
+      height:160px;
+    }
+  
+    .info-content {
+      background: url('../assets/imgs/QuestionsAndAnswers/Background.png');
+      background-size: 100%;
+      background-repeat: repeat-y;
+      text-align: center;
+    }
+    
+    .location-image{
+        width: 100%;
+        padding-left: 16px;
+    }
+
+    .item-inner {
+      border: 3px solid #54330F !important;
+      box-shadow: none !important;
+      background: #FAF0C6;
+    }
+  
+    .item-input {
+      width: 100%;
+      margin: 3% auto;
+    }
+  
+    .info-title {
+      width: 100%;
+      text-align: center;
+    }
+
+    .info-description {
+        
+        text-align: left;
+        white-space: normal;
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+  
+    .text-input::-webkit-input-placeholder { /* Chrome */
+      color: #54330F;
+    }
+  
+    .text-input:-ms-input-placeholder { /* IE 10+ */
+      color: #54330F;
+    }
+  
+    .text-input::-moz-placeholder { /* Firefox 19+ */
+      color: #54330F;
+      opacity: 1;
+    }
+  
+    .text-input:-moz-placeholder { /* Firefox 4 - 18 */
+      color: #54330F;
+      opacity: 1;
+    }
+  
+    .item-md {
+      padding-left: 0;
+    }
+  }
+  
