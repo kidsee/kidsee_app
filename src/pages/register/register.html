@@ -45,7 +45,7 @@
                 <ion-input type="text" placeholder="{{ 'postal_code' | translate }}" name="postal_code" formControlName="postal_code" [class.invalid]="!registerForm.controls.postal_code.valid && (registerForm.controls.postal_code.dirty || submitAttempt)"></ion-input>
               </ion-item>
               <ion-item text-wrap *ngIf="!registerForm.controls.postal_code.valid  && (registerForm.controls.postal_code.dirty || submitAttempt)">
-                <p>{{ 'postal_invalid' | translate }}</p>
+                <p>{{ 'postal_code_invalid' | translate }}</p>
               </ion-item>
 
                 <ion-item>
