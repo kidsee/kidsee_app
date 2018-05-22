@@ -11,9 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: 'forgotpassword.html',
 })
 export class ForgotpasswordPage {
-  createSuccess = false;
   forgotPasswordForm: FormGroup;
-  submitAttempt: boolean = false;
 
   constructor(
     private navController: NavController,
