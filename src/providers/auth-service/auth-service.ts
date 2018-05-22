@@ -129,7 +129,6 @@ export class AuthServiceProvider {
             observer.complete();
           },
           error => {
-            console.log(error);
             observer.error();
             observer.complete();
           }

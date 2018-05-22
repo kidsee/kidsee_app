@@ -11,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: 'forgotpassword.html',
 })
 export class ForgotpasswordPage {
-  forgotPasswordForm: FormGroup;
+  protected forgotPasswordForm: FormGroup;
 
   constructor(
     private navController: NavController,
@@ -25,11 +25,11 @@ export class ForgotpasswordPage {
     });
   }
 
-  public back() {
+  protected back() {
     this.navController.pop();
   }
 
-  public resetPassword() {
+  protected resetPassword() {
     this.authServiceProvider.resetPassword(this.forgotPasswordForm.value).subscribe(
       success => {
         this.translateService.get(['success', 'password_reset_successful', 'ok']).subscribe(translations => {
