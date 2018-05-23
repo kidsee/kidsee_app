@@ -28,6 +28,7 @@ import { ThemeServiceProvider } from '../providers/theme-service/theme-service';
 import { Ionic2RatingModule } from "ionic2-rating";
 import { Geolocation } from '@ionic-native/geolocation';
 import { StreetViewServiceProvider } from '../providers/street-view-service/street-view-service';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { StreetViewServiceProvider } from '../providers/street-view-service/stre
     RatingServiceProvider,
     ThemeServiceProvider,
     Geolocation,
-    StreetViewServiceProvider
+    StreetViewServiceProvider,
+    InAppBrowser
   ]
 })
 export class AppModule {

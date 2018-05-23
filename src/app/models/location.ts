@@ -21,6 +21,9 @@ export class Location extends JsonApiModel {
   @Attribute()
   lat: number;
 
+  @Attribute({serializedName: 'website-link'})
+  websiteLink: string;
+
   @BelongsTo()
   theme: Theme;
 

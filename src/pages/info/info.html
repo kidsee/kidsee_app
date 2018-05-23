@@ -19,6 +19,9 @@
         <ion-item>
           <ion-label class="info-description">{{location?.description}}</ion-label>
         </ion-item>
+        <ion-item *ngIf="hasWebsite" (click)="openWebsite()">
+          <ion-label class="info-description">{{location?.websiteLink}}</ion-label>
+        </ion-item>
       </ion-list>
     </form>
   </ion-row>
