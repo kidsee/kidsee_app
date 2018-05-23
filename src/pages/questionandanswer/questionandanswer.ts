@@ -32,7 +32,7 @@ export class QuestionandanswerPage {
     private ratingService: RatingServiceProvider,
     private authService: AuthServiceProvider,
     private themeService: ThemeServiceProvider,
-    private postTypeService: PostTypeServiceProvider
+    private postTypeService: PostTypeServiceProvider,
   ) {
     this.themeService.themes({}).subscribe(themes => {
       themes.getModels().forEach(theme => {

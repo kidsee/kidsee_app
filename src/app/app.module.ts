@@ -34,9 +34,11 @@ import { AssignmentTypeServiceProvider } from '../providers/assignment-type-serv
 import { AnswerServiceProvider } from '../providers/answer-service/answer-service';
 import { UserAnswerServiceProvider } from '../providers/user-answer-service/user-answer-service';
 import { AnswerTypeServiceProvider } from '../providers/answer-type-service/answer-type-service';
-import { PostTypeServiceProvider } from "../providers/post-type-service/post-type-service";
+import { Camera } from '@ionic-native/camera';
+import { PictureService } from "../providers/picture-service/picture-service";
 import { DiscoveryService } from "../providers/discovery-service/discovery-service";
-
+import { Base64 } from "@ionic-native/base64";
+import { PostTypeServiceProvider } from "../providers/post-type-service/post-type-service";
 
 @NgModule({
   declarations: [
@@ -91,7 +93,11 @@ import { DiscoveryService } from "../providers/discovery-service/discovery-servi
     UserAnswerServiceProvider,
     AnswerTypeServiceProvider,
     PostTypeServiceProvider,
-    DiscoveryService
+    DiscoveryService,
+    Camera,
+    PictureService,
+    Base64,
+    PostTypeServiceProvider
   ]
 })
 export class AppModule {

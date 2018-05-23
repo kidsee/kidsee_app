@@ -108,6 +108,10 @@
   "react": "Reageren",
   "lowercase_edited": "aangepast!",
   "lowercase_already_in_use": "is al in gebruik!",
+  "choose_source": "Kies bron",
+  "library": "Bibliotheek",
+  "camera": "Camera",
+  "upload": "Uploaden",
   "no_connection": "Geen internet verbinding",
   "end_discovery": "Beëindig ontdekttocht"
 }
