@@ -94,7 +94,7 @@ export class HomePage {
         if(location["location-type"]){
           url = "assets/imgs/icon_" + location["location-type"].name + ".png";
         }else{
-          url ="assets/imgs/icon_overig.png";
+          url ="assets/imgs/icon_other.png";
         }
 
         this.map.addMarker({
