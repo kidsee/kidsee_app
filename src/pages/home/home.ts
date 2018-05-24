@@ -129,7 +129,7 @@ export class HomePage {
     this.radialURLs[1] = "QuestionandanswerPage";
     this.radialURLs[2] = "AssignmentPage";
     this.radialURLs[3] = "LocationRatingPage";
-    // this.radialURLs[4] = "info";
+    this.radialURLs[4] = "InfoPage";
 
   }
 

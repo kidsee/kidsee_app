@@ -8,6 +8,7 @@ import { Status } from "../../app/models/status";
 import { ContentType } from "../../app/models/contentType";
 import { Location } from '../../app/models/location';
 import { Theme } from '../../app/models/theme';
+import { LocationType } from '../../app/models/locationType';
 import { Assignment } from '../../app/models/assignment';
 import { AssignmentType } from '../../app/models/assignmentType';
 import { Answer } from '../../app/models/answer';
@@ -22,6 +23,7 @@ const config: DatastoreConfig = {
     comments: Comment,
     statuses: Status,
     'content-types': ContentType,
+    'location-types': LocationType,
     locations: Location,
     themes: Theme,
     assignments: Assignment,
