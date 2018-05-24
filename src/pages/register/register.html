@@ -25,7 +25,7 @@
                 </ion-item>
 
                 <ion-item>
-                    <ion-label><ion-icon name="mail"></ion-icon></ion-label>
+                  <ion-label><ion-icon name="mail"></ion-icon></ion-label>
                   <ion-input type="text" placeholder="{{ 'email' | translate }}" name="email" formControlName="email" [class.invalid]="!registerForm.controls.email.valid && (registerForm.controls.email.dirty || submitAttempt)"></ion-input>
                 </ion-item>
                 <ion-item text-wrap *ngIf="!registerForm.controls.email.valid  && (registerForm.controls.email.dirty || submitAttempt)">
@@ -39,6 +39,14 @@
                 <ion-item text-wrap *ngIf="!registerForm.controls.birthdate.valid  && (registerForm.controls.birthdate.dirty || submitAttempt)">
                   <p>{{ 'birthdate_invalid' | translate }}</p>
                 </ion-item>
+                
+              <ion-item>
+                <ion-label><ion-icon name="locate"></ion-icon></ion-label>
+                <ion-input type="text" placeholder="{{ 'postal_code' | translate }}" name="postal_code" formControlName="postal_code" [class.invalid]="!registerForm.controls.postal_code.valid && (registerForm.controls.postal_code.dirty || submitAttempt)"></ion-input>
+              </ion-item>
+              <ion-item text-wrap *ngIf="!registerForm.controls.postal_code.valid  && (registerForm.controls.postal_code.dirty || submitAttempt)">
+                <p>{{ 'postal_code_invalid' | translate }}</p>
+              </ion-item>
 
                 <ion-item>
                   <ion-label><ion-icon name="lock"></ion-icon></ion-label>

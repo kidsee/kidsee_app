@@ -27,6 +27,7 @@ export class RegisterPage {
       username: ['', Validators.compose([Validators.pattern('^[a-zA-Z0-9_-]{6,18}$'), Validators.required])],
       email: ['', Validators.compose([Validators.pattern("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"), Validators.required])],
       birthdate: ['', Validators.compose([Validators.required])],
+      postal_code: ['', Validators.compose([Validators.pattern('^[1-9][0-9]{3}\s?[a-zA-Z]{2}$'), Validators.required])],
       password: ['', Validators.compose([Validators.pattern('^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$'), Validators.required])],
       passwordConfirmation: ['', ConfirmPasswordValidator.checkConfirmPassword]
     });
