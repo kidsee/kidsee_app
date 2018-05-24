@@ -1,0 +1,21 @@
+<ion-content>
+  <ion-row class="assignment-header">
+    <ion-col col-2>
+      <img src="assets/imgs/back-arrow.png" class="back-button" (click)="back()" />
+    </ion-col>
+  </ion-row>
+  <ion-row class="detail-content">
+    <ion-list>
+      <ion-card class="card-content" class="yellow">
+        <ion-card-header>
+            {{assignment?.name}}
+            <img *ngIf=assignmentType class="brown card-icon" src="assets/imgs/AssignmentTypes/{{ assignmentType.name }}.png">
+        </ion-card-header>
+        <ion-card-content>{{assignment?.content}}
+          <answer-type-number>
+          </answer-type-number>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  </ion-row>
+</ion-content>

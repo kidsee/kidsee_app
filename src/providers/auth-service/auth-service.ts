@@ -91,7 +91,6 @@ export class AuthServiceProvider {
     });
   }
 
-
   public register(userParams) {
     return Observable.create(observer => {
       bcrypt.genSalt(10, (err, salt) => {
@@ -113,6 +112,29 @@ export class AuthServiceProvider {
     });
   }
 
+  public resetPassword(form) {
+    let data = {
+      "data": {
+        "attributes": {
+          "email": form.email
+        }
+      }
+    };
+    return Observable.create(observer => {
+      this.httpClient.post(this.datastore.getBaseUrl() + '/password-reset', data,
+        { headers: new HttpHeaders({ 'Content-Type': 'application/vnd.api+json' }) })
+        .subscribe(
+          success => {
+            observer.next(true);
+            observer.complete();
+          },
+          error => {
+            observer.error();
+            observer.complete();
+          }
+        );
+    });
+  }
   public changePassword(password) {
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(password, salt, (err, hash) => {
