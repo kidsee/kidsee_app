@@ -14,7 +14,7 @@ export class InfoPage {
   protected location: Location;
   protected image: SafeResourceUrl;
   protected hasWebsite = false;
-  
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -24,7 +24,7 @@ export class InfoPage {
     private inAppBrowser: InAppBrowser
   ) {
     this.location = navParams.get('location');
-    if(this.location.websiteLink){
+    if (this.location.websiteLink) {
       this.hasWebsite = true;
     }
     this.streetViewServiceProvider.getImage(this.location.address, 640, 400).then(response => {
@@ -34,7 +34,7 @@ export class InfoPage {
     });
   }
 
-  protected openWebsite(){
+  protected openWebsite() {
     this.inAppBrowser.create(this.location.websiteLink);
   }
 
