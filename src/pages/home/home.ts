@@ -90,13 +90,18 @@ export class HomePage {
     this.locationService.locations().then((res) => {
       this.locations = res as Location[];
       this.locations.forEach(location => {
-        //if location type
-        //change different icons
+        var url;
+        if(location["location-type"]){
+          url = "assets/imgs/icon_" + location["location-type"].name + ".png";
+        }else{
+          url ="assets/imgs/icon_other.png";
+        }
+
         this.map.addMarker({
           position: { lat: location.lat, lng: location.lon },
           title: location.name,
           icon: {
-            url: "assets/imgs/Coins.png",
+            url: url,
             size: {
               width: 40,
               height: 40
