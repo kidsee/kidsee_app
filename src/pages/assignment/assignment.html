@@ -1,0 +1,37 @@
+<ion-content>
+  <ion-row class="assignment-header">
+    <ion-col col-2>
+      <img src="assets/imgs/back-button2.png" (click)="back()" />
+    </ion-col>
+  </ion-row>
+  <ion-row class="yellow button-header">
+    <ion-col col-md-auto="" class="border-right">
+      <button class="yellow"></button>
+    </ion-col>
+    <ion-col col-md-auto="" class="border-right">
+      <button class="yellow"></button>
+    </ion-col>
+    <ion-col col-md-auto="" class="border-right">
+      <button class="yellow"></button>
+    </ion-col>
+    <ion-col col-md-auto="">
+      <button class="yellow"></button>
+    </ion-col>
+  </ion-row>
+  <ion-row class="content-row">
+    <ion-col col-2 class="types-bar">
+      <ion-list class="types-list">
+        <ion-item class="type-item" *ngFor="let type of types">
+          <img class="type-button" src="assets/imgs/AssignmentTypes/{{ type.name }}.png" (click)="selectType(type.id)">
+        </ion-item>
+      </ion-list>
+    </ion-col>
+    <ion-col col-10 class="puzzle-content">
+      <ion-list>
+        <ion-card *ngFor="let assignment of assignments"  class="yellow" (click)="goToDetailPage(assignment, type)">
+          <ion-card-content>{{assignment?.content}}</ion-card-content>
+        </ion-card>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-content>

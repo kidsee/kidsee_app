@@ -127,7 +127,7 @@ export class HomePage {
     this.radialIcons[4] = "assets/imgs/info-icon.png";
     this.radialURLs[0] = "PhotoandvideoPage";
     this.radialURLs[1] = "QuestionandanswerPage";
-    this.radialURLs[2] = "PuzzlePage";
+    this.radialURLs[2] = "AssignmentPage";
     this.radialURLs[3] = "LocationRatingPage";
     // this.radialURLs[4] = "info";
 
@@ -190,7 +190,7 @@ export class HomePage {
   }
 
   public puzzle() {
-    this.navController.push('PuzzlePage');
+    this.navController.push('AssignmentPage');
   }
 
   public questionandanswer() {
