@@ -19,7 +19,7 @@ export class CreateCommentPage {
     private authService: AuthServiceProvider,
     private contentTypeService: ContentTypeServiceProvider
   ) {
-    this.commentAttributes['post'] = navParams.get('post');
+    this.commentAttributes['post'] = this.navParams.get('post');
   }
 
   protected createComment() {

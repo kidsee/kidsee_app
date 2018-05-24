@@ -23,6 +23,20 @@ export class AlertServiceProvider {
       ]
     });
     alert.present();
+  };
+
+  public showPopupWithHandler(title, text, prompt, handler) {
+    let alert = this.alertController.create({
+      title: title,
+      subTitle: text,
+      buttons: [
+        {
+          text: prompt,
+          handler: handler
+        }
+      ]
+    });
+    alert.present();
   }
 
   public createAlert(title) {
