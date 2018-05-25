@@ -27,17 +27,14 @@
                 </ion-item>
                 <ion-label class="title-label">{{'birthdate' | translate}}</ion-label>
                 <ion-item class="custom-item" >
-                    <ion-label class="birthdate-label">
+                    <ion-label>
                         <ion-icon class="custom-icon" name="calendar"></ion-icon>
                     </ion-label>
-                    <ion-datetime class="datetime" displayFormat="DD - MM - YYYY" name="birthdate" [ngModel]="birthdate" (ngModelChange)='saveChanges()'></ion-datetime>
+                    <ion-datetime class="datetime" displayFormat="DD - MM - YYYY" name="birthdate" [ngModel]="birthdate" (ngModelChange)='saveChanges().subscribe()'></ion-datetime>
                 </ion-item>
                 <ion-label class="title-label">{{'postal_code' | translate}}</ion-label>
                 <ion-item class="custom-item" >
-                    <ion-label>
-                        <ion-icon class="custom-icon" name="mail"></ion-icon>
-                    </ion-label>
-                    <ion-input class="custom-input" type="text" name="postal_code" [ngModel]="user?.postal_code" (ngModelChange)='saveChanges()'></ion-input>
+                    <a class="button" (click)="openChangeDialog('postal_code')">{{user?.postal_code}}</a>
                 </ion-item>
                 <ion-label class="title-label">{{'password' | translate}}</ion-label>
                 <ion-item class="custom-item" >
