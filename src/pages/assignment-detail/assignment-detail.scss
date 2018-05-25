@@ -1,0 +1,40 @@
+page-assignment-detail {
+  .assignment-header{
+    background: url('../assets/imgs/Puzzle/DetailHeader.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin:auto;
+    height:30%;
+  }
+
+  .yellow {
+    background-color: #FDF3C8;
+  }
+
+  .brown {
+    background-color: #753800;
+  }
+
+  .detail-content {
+    background: url('../assets/imgs/QuestionsAndAnswers/Background.png');
+    background-size: 100%;
+    background-repeat: repeat-y;
+    width: 100%;
+    height: 100%;
+  }
+
+  .back-button{
+    margin-left: 8px;
+    display: block;
+  }
+
+  .card-content{
+    height: 60%;
+    width: 100%;
+  }
+
+  .card-icon{
+    float: right;
+    width: 10%;
+  }
+}

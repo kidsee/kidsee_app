@@ -90,13 +90,18 @@ export class HomePage {
     this.locationService.locations().then((res) => {
       this.locations = res as Location[];
       this.locations.forEach(location => {
-        //if location type
-        //change different icons
+        var url;
+        if(location["location-type"]){
+          url = "assets/imgs/icon_" + location["location-type"].name + ".png";
+        }else{
+          url ="assets/imgs/icon_other.png";
+        }
+
         this.map.addMarker({
           position: { lat: location.lat, lng: location.lon },
           title: location.name,
           icon: {
-            url: "assets/imgs/Coins.png",
+            url: url,
             size: {
               width: 40,
               height: 40
@@ -127,9 +132,9 @@ export class HomePage {
     this.radialIcons[4] = "assets/imgs/info-icon.png";
     this.radialURLs[0] = "PhotoandvideoPage";
     this.radialURLs[1] = "QuestionandanswerPage";
-    this.radialURLs[2] = "PuzzlePage";
+    this.radialURLs[2] = "AssignmentPage";
     this.radialURLs[3] = "LocationRatingPage";
-    // this.radialURLs[4] = "info";
+    this.radialURLs[4] = "InfoPage";
 
   }
 
@@ -190,7 +195,7 @@ export class HomePage {
   }
 
   public puzzle() {
-    this.navController.push('PuzzlePage');
+    this.navController.push('AssignmentPage');
   }
 
   public questionandanswer() {
