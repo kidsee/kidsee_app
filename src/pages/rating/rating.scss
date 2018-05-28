@@ -22,7 +22,10 @@ page-rating {
         background: url('../assets/imgs/cork.png');
     }
 
-    .item-inner { padding: 0 !important; }
+    .item-inner { 
+        padding: 0 !important; 
+        border: none !important;
+    }
 
     .label-md {
         margin: 0;
@@ -55,8 +58,7 @@ page-rating {
     }
 
     .item-item {
-        height: 10%;
-        background: #FCF1C6;
+        height: calc(10% + 0.5px);
         border-bottom: 4px solid #532409 !important;
     }
 

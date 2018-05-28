@@ -2,12 +2,13 @@ import { Component, ChangeDetectorRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from "../../app/models/user";
 import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
-import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, MarkerIcon } from '@ionic-native/google-maps';
+import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng } from '@ionic-native/google-maps';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { LocationServiceProvider } from "../../providers/location-service/location-service";
 import { Location } from '../../app/models/location';
 import { Platform } from 'ionic-angular';
+import { Geolocation } from '@ionic-native/geolocation';
 
 @IonicPage()
 @Component({
@@ -39,7 +40,8 @@ export class HomePage {
     private screenOrientation: ScreenOrientation,
     private locationService: LocationServiceProvider,
     private platform: Platform,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private geolocation: Geolocation
   ) {
     platform.registerBackButtonAction(() => {
       if(this.radialVisible == true){
@@ -62,6 +64,7 @@ export class HomePage {
     //creates a new map
     this.map = GoogleMaps.create('map_canvas');
     this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
+      this.geolocation.getCurrentPosition().then((resp) => { 
       //gets location permission
       this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.LOCATION).then(result => {
       if(!result.hasPermission) {
@@ -70,7 +73,7 @@ export class HomePage {
       //sets more map properties
       this.map.setMyLocationEnabled(true);
       this.map.setCameraZoom(15);
-      let latLng: LatLng = new LatLng(51.6888981, 5.3037321);
+      let latLng: LatLng = new LatLng(resp.coords.latitude, resp.coords.longitude);
       this.map.setCameraTarget(latLng);
       try {
         this.setMarkers();
@@ -78,20 +81,27 @@ export class HomePage {
         console.log(error);
       }
     });
-
+    
+  });
   }
+
 
   setMarkers() {
     this.locationService.locations().then((res) => {
       this.locations = res as Location[];
       this.locations.forEach(location => {
-        //if location type
-        //change different icons
+        var url;
+        if(location["location-type"]){
+          url = "assets/imgs/icon_" + location["location-type"].name + ".png";
+        }else{
+          url ="assets/imgs/icon_other.png";
+        }
+
         this.map.addMarker({
           position: { lat: location.lat, lng: location.lon },
           title: location.name,
           icon: {
-            url: "assets/imgs/Coins.png",
+            url: url,
             size: {
               width: 40,
               height: 40
@@ -101,8 +111,6 @@ export class HomePage {
           marker.on(GoogleMapsEvent.MARKER_CLICK)
             .subscribe(() => {
               this.currentSelectedLocation = location;
-              console.log(this.currentSelectedLocation);
-              console.log("click");
               this.setRadialLayout(location);
               this.openMarkerMenu();
             });
@@ -124,15 +132,15 @@ export class HomePage {
     this.radialIcons[4] = "assets/imgs/info-icon.png";
     this.radialURLs[0] = "PhotoandvideoPage";
     this.radialURLs[1] = "QuestionandanswerPage";
-    this.radialURLs[2] = "PuzzlePage";
+    this.radialURLs[2] = "AssignmentPage";
     this.radialURLs[3] = "LocationRatingPage";
-    // this.radialURLs[4] = "info";
+    this.radialURLs[4] = "InfoPage";
 
   }
 
   public openMarkerMenu() {
     this.map.setAllGesturesEnabled(false);
-    let timeout = setTimeout(() => {
+    setTimeout(() => {
       this.profileButtonClasses = "profile_button animated fadeOut";
       this.settingsButtonClasses = "settings_button animated fadeOut";
       this.containerClasses = "animated fadeOut";
@@ -142,7 +150,7 @@ export class HomePage {
       this.menuVisible = true;
       this.radialVisible = true;
       this.changeDetectorRef.detectChanges();
-      let timeout = setTimeout(() => {
+      setTimeout(() => {
         this.menuVisible = false;
         this.changeDetectorRef.detectChanges();
       }, 1000);
@@ -161,7 +169,7 @@ export class HomePage {
     this.buttonGridClasses = "button_grid animated fadeIn";
     this.menuVisible = true;
     this.changeDetectorRef.detectChanges();
-    let timeout = setTimeout(() => {
+    setTimeout(() => {
       this.radialVisible = false;
       this.changeDetectorRef.detectChanges();
     }, 1000);
@@ -171,8 +179,7 @@ export class HomePage {
 
   public redirect(buttonNo: number) {
     let direction = this.radialURLs[buttonNo-1];
-    this.navController.push(this.radialURLs[buttonNo-1], {location: this.currentSelectedLocation});
-    
+    this.navController.push(direction, {location: this.currentSelectedLocation});
   }
 
   public settings() {
@@ -188,7 +195,7 @@ export class HomePage {
   }
 
   public puzzle() {
-    this.navController.push('PuzzlePage');
+    this.navController.push('AssignmentPage');
   }
 
   public questionandanswer() {

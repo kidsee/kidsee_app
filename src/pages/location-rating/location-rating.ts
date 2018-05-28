@@ -29,6 +29,10 @@ export class LocationRatingPage {
     this.location = navParams.get('location');
   }
 
+  protected back(){
+    this.navCtrl.pop();
+  }
+
   protected submit() {
     this.locationService.getLocationById(this.location.id).then(location => {
       this.rating.object_type = 'location';

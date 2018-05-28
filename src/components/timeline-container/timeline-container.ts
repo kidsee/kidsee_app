@@ -36,7 +36,7 @@ export class TimelineContainerComponent {
 
   close() {
     this.isOpen = false;
-    this.height = 1;
+    this.height = 0;
     this.sizeMode = !this.sizeMode;
     this.renderList();
   }

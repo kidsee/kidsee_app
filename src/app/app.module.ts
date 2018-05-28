@@ -26,6 +26,15 @@ import { LocationTypeServiceProvider } from '../providers/location-type-service/
 import { RatingServiceProvider } from '../providers/rating-service/rating-service';
 import { ThemeServiceProvider } from '../providers/theme-service/theme-service';
 import { Ionic2RatingModule } from "ionic2-rating";
+import { Geolocation } from '@ionic-native/geolocation';
+import { StreetViewServiceProvider } from '../providers/street-view-service/street-view-service';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { AssignmentServiceProvider } from '../providers/assignment-service/assignment-service';
+import { AssignmentTypeServiceProvider } from '../providers/assignment-type-service/assignment-type-service';
+import { AnswerServiceProvider } from '../providers/answer-service/answer-service';
+import { UserAnswerServiceProvider } from '../providers/user-answer-service/user-answer-service';
+import { AnswerTypeServiceProvider } from '../providers/answer-type-service/answer-type-service';
+
 
 @NgModule({
   declarations: [
@@ -69,7 +78,16 @@ import { Ionic2RatingModule } from "ionic2-rating";
     StatusServiceProvider,
     LocationTypeServiceProvider,
     RatingServiceProvider,
-    ThemeServiceProvider
+    ThemeServiceProvider,
+    Geolocation,
+    StreetViewServiceProvider,
+    InAppBrowser,
+    AssignmentServiceProvider,
+    AssignmentTypeServiceProvider,
+    Geolocation,
+    AnswerServiceProvider,
+    UserAnswerServiceProvider,
+    AnswerTypeServiceProvider
   ]
 })
 export class AppModule {

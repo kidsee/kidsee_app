@@ -2,12 +2,16 @@ import { Location } from "../../app/models/location"
 import { Injectable } from '@angular/core';
 import { Datastore } from '../datastore/datastore';
 import { JsonApiQueryData } from "angular2-jsonapi";
+import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 
 
 @Injectable()
 export class LocationServiceProvider {
   constructor(
-    private datastore: Datastore
+    private datastore: Datastore,
+    private httpClient: HttpClient
   ) { }
 
   public locations()
@@ -43,4 +47,17 @@ export class LocationServiceProvider {
       });
     });
   }
+
+  public TopTenByTheme(themeId) {
+    return this.datastore.findAll(
+      Location,
+      {
+        page_size: 10,
+        sort: '-rating'
+      },
+      this.datastore.headers,
+      this.datastore.getBaseUrl()+'/themes/'+themeId+'/locations'
+    )
+  }
+
 }

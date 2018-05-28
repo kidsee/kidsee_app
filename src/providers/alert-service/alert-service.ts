@@ -23,5 +23,39 @@ export class AlertServiceProvider {
       ]
     });
     alert.present();
+  };
+
+  public showPopupWithHandler(title, text, prompt, handler) {
+    let alert = this.alertController.create({
+      title: title,
+      subTitle: text,
+      buttons: [
+        {
+          text: prompt,
+          handler: handler
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  public createAlert(title) {
+    return this.alertController.create({title: title});
+  }
+
+  public addRadioButton(alert, label, value, checked) {
+    alert.addInput({
+      type: 'radio',
+      label: label,
+      value: value,
+      checked: checked
+    });
+  }
+
+  public addButton(alert, text, handler = undefined) {
+    alert.addButton({
+      text: text,
+      handler: handler
+    });
   }
 }

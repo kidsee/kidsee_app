@@ -13,6 +13,15 @@ export class PostService {
   }
 
   public createPost(data) {
-      return this.datastore.createRecord(Post, data).save();
+    return this.datastore.createRecord(Post, data).save();
+  }
+
+  public postsByTheme(themeId, params) {
+    return this.datastore.findAll(
+      Post,
+      params,
+      this.datastore.headers,
+      this.datastore.getBaseUrl()+'/themes/'+themeId+'/posts'
+    )
   }
 }
