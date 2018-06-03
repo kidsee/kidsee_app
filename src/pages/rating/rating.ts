@@ -1,7 +1,5 @@
-import * as _ from 'underscore';
 import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
-import { RatingServiceProvider } from "../../providers/rating-service/rating-service";
 import { ThemeServiceProvider } from "../../providers/theme-service/theme-service";
 import { LocationServiceProvider } from "../../providers/location-service/location-service";
 import { Theme } from "../../app/models/theme";
@@ -23,7 +21,6 @@ export class RatingPage {
 
   constructor(
     private navController: NavController,
-    private ratingService: RatingServiceProvider,
     private themeService: ThemeServiceProvider,
     private locationService: LocationServiceProvider
   ) { }
