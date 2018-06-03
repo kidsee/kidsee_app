@@ -2,16 +2,12 @@ import { Location } from "../../app/models/location"
 import { Injectable } from '@angular/core';
 import { Datastore } from '../datastore/datastore';
 import { JsonApiQueryData } from "angular2-jsonapi";
-import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
 
 
 @Injectable()
 export class LocationServiceProvider {
   constructor(
-    private datastore: Datastore,
-    private httpClient: HttpClient
+    private datastore: Datastore
   ) { }
 
   public locations()
