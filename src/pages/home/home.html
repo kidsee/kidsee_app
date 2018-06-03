@@ -5,7 +5,7 @@
 
             <img *ngIf="menuVisible" [class]="settingsButtonClasses" src="assets/imgs/settings.png" padding (click)="settings()">
 
-            <ion-row *ngIf="menuVisible" [class]="containerClasses" padding>
+            <ion-row [hidden]="!menuVisible" [class]="containerClasses" padding>
                 <timeline-container >
 
                 </timeline-container>
