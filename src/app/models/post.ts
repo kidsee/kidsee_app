@@ -37,6 +37,6 @@ export class Post extends JsonApiModel {
   @Attribute()
   updated_at: Date;
 
-  @Attribute()
+  @Attribute({serializedName: 'rating-count'})
   rating: number;
 }
