@@ -1,32 +1,40 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-import { Answer } from '../../app/models/answer';
-import { Assignment } from '../../app/models/assignment';
 import { AnswerServiceProvider } from '../../providers/answer-service/answer-service';
+import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
+import { NavParams, NavController } from 'ionic-angular';
+import { Assignment } from '../../app/models/assignment';
+import { TranslateService } from '@ngx-translate/core';
+import { Answer } from '../../app/models/answer';
 import { AlertServiceProvider } from '../../providers/alert-service/alert-service';
 import { UserAnswerServiceProvider } from '../../providers/user-answer-service/user-answer-service';
-import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
-import { TranslateService } from '@ngx-translate/core';
 
+/**
+ * Generated class for the AnswerTypeMultipleChoiceComponent component.
+ *
+ * See https://angular.io/api/core/Component for more info on Angular
+ * Components.
+ */
 @Component({
-  selector: 'answer-type-number',
-  templateUrl: 'answer-type-number.html'
+  selector: 'answer-type-multiple-choice',
+  templateUrl: 'answer-type-multiple-choice.html'
 })
+export class AnswerTypeMultipleChoiceComponent {
 
-export class AnswerTypeNumberComponent {
-  protected filledAnswer: String;
-  protected assignmentId: Number;
-  protected answers: Answer[]=[];
   public assignment: Assignment;
+  protected answers: Answer[]=[];
+  protected filledAnswer: Answer;
+  protected selection: any;
+  protected rightAnswer: Answer;
+  
 
   constructor(
     private navController: NavController,
     private answerService: AnswerServiceProvider,
-    private alertService: AlertServiceProvider,
-    private userAnswerService: UserAnswerServiceProvider,
     private authService: AuthServiceProvider,
     private navParams: NavParams,
-    private translateService: TranslateService
+    private alertService: AlertServiceProvider,
+    private translateService: TranslateService,
+    private userAnswerService: UserAnswerServiceProvider
   ) { }
 
   ngAfterContentInit() {
@@ -34,6 +42,25 @@ export class AnswerTypeNumberComponent {
     if(this.assignment){
       this.fetchAnswer(Number(this.assignment.id));
     }
+    if(this.answers != null){
+      this.checkAnswer();
+    }
+  }
+
+  private checkAnswer(){
+    this.answers.forEach(answer => {
+      if(answer.correctAnswer){
+        this.rightAnswer = answer;
+        console.log('bla', answer);
+        return;
+      }
+      console.log('bla', answer);
+    });
+  }
+
+  protected setAnswer(answer: Answer){
+    this.filledAnswer = answer;
+    this.saveAnswer();
   }
 
   private goToAssignments() {
@@ -41,6 +68,7 @@ export class AnswerTypeNumberComponent {
   }
 
   private fetchAnswer(id: Number) {
+    console.log('id', id)
     this.answerService.answers({filter: {assignment_id: id}}).subscribe(
       answers => {
         answers.getModels().forEach(answer => {
@@ -53,7 +81,7 @@ export class AnswerTypeNumberComponent {
 
   protected saveAnswer() {
     let correct;
-    if(this.filledAnswer == this.answers[0].answer){
+    if(this.filledAnswer == this.rightAnswer){
       this.translateService.get([
         'popup_title_succes',
         'popup_text_succes',
