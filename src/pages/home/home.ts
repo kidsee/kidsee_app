@@ -1,5 +1,5 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams} from 'ionic-angular';
 import { User } from "../../app/models/user";
 import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
 import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng } from '@ionic-native/google-maps';
@@ -9,6 +9,9 @@ import { LocationServiceProvider } from "../../providers/location-service/locati
 import { Location } from '../../app/models/location';
 import { Platform } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
+import { mapStyle } from "../../pages/home/mapStyle";
+import { MenuController } from 'ionic-angular';
+import { LocationTypeServiceProvider } from '../../providers/location-type-service/location-type-service';
 
 @IonicPage()
 @Component({
@@ -27,11 +30,14 @@ export class HomePage {
   public settingsButtonClasses = "settings_button animated fadeIn";
   public containerClasses = "animated fadeIn";
   public buttonGridClasses = "button_grid animated fadeIn";
+  public sideMenuButtonClasses = "sideMenuButton animated fadeIn";
   public radialAmount = 5;
   public radialIcons = ["assets/imgs/photo-icon.png", "assets/imgs/question-icon.png", "assets/imgs/puzzle-icon.png", "assets/imgs/rating-icon.png", "assets/imgs/info-icon.png"];
   public radialURLs = [" ", " ", " ", " ", " "];
   public currentSelectedLocation : Location;
-
+  public locationTypes;
+  public filteredLocationTypes: Map<String, Boolean>;
+  
   constructor(
     public navController: NavController,
     public navParams: NavParams,
@@ -41,13 +47,24 @@ export class HomePage {
     private locationService: LocationServiceProvider,
     private platform: Platform,
     private changeDetectorRef: ChangeDetectorRef,
-    private geolocation: Geolocation
+    private geolocation: Geolocation,
+    private menuController: MenuController,
+    private locationTypeService: LocationTypeServiceProvider
   ) {
     platform.registerBackButtonAction(() => {
       if(this.radialVisible == true){
         this.closeMarkerMenu();
       }
     },1);
+    locationTypeService.getAllLocationTypes().then(types =>{
+      this.locationTypes = types;
+      this.filteredLocationTypes = new Map<String,Boolean>();
+      types.forEach(type => {
+        this.filteredLocationTypes.set(type.name, true);
+      });
+      
+    })
+    
   }
 
   ionViewDidEnter() {
@@ -62,7 +79,8 @@ export class HomePage {
 
   loadMap() {
     //creates a new map
-    this.map = GoogleMaps.create('map_canvas');
+    var style = mapStyle;
+    this.map = GoogleMaps.create('map_canvas',{ styles: style });
     this.map.one(GoogleMapsEvent.MAP_READY).then(() => {
       this.geolocation.getCurrentPosition().then((resp) => { 
       //gets location permission
@@ -85,9 +103,14 @@ export class HomePage {
   });
   }
 
+  public clearMarkers(){
+    this.map.clear();
+    this.map.off();
+  }
 
-  setMarkers() {
+  public setMarkers() {
     this.locationService.locations().then((res) => {
+
       this.locations = res as Location[];
       this.locations.forEach(location => {
         var url;
@@ -96,7 +119,7 @@ export class HomePage {
         }else{
           url ="assets/imgs/icon_other.png";
         }
-
+        if(this.filteredLocationTypes.get(location["location-type"].name)){
         this.map.addMarker({
           position: { lat: location.lat, lng: location.lon },
           title: location.name,
@@ -115,6 +138,7 @@ export class HomePage {
               this.openMarkerMenu();
             });
         })
+      }
       });
     }
     );
@@ -135,16 +159,12 @@ export class HomePage {
     this.radialURLs[2] = "AssignmentPage";
     this.radialURLs[3] = "LocationRatingPage";
     this.radialURLs[4] = "InfoPage";
-
   }
 
   public openMarkerMenu() {
     this.map.setAllGesturesEnabled(false);
     setTimeout(() => {
-      this.profileButtonClasses = "profile_button animated fadeOut";
-      this.settingsButtonClasses = "settings_button animated fadeOut";
-      this.containerClasses = "animated fadeOut";
-      this.buttonGridClasses = "button_grid animated fadeOut";
+      this.setAnimationsClose();
       this.menuVisible = false;
       this.changeDetectorRef.detectChanges();
       this.menuVisible = true;
@@ -157,16 +177,28 @@ export class HomePage {
     }, 300);
   }
 
-  public closeMarkerMenu() {
+  public setAnimationsClose(){
+    this.profileButtonClasses = "profile_button animated fadeOut";
+    this.settingsButtonClasses = "settings_button animated fadeOut";
+    this.containerClasses = "animated fadeOut";
+    this.buttonGridClasses = "button_grid animated fadeOut";
+    this.sideMenuButtonClasses = "sideMenuButton animated fadeOut";
+  }
 
-    this.radialClasses = "front_buttons animated zoomOut";
-    this.radialVisible = false;
-    this.changeDetectorRef.detectChanges();
-    this.radialVisible = true;
+  public setAnimationsOpen(){
     this.profileButtonClasses = "profile_button animated fadeIn";
     this.settingsButtonClasses = "settings_button animated fadeIn";
     this.containerClasses = "animated fadeIn";
     this.buttonGridClasses = "button_grid animated fadeIn";
+    this.sideMenuButtonClasses = "sideMenuButton animated fadeIn";
+  }
+
+  public closeMarkerMenu() {
+    this.radialClasses = "front_buttons animated zoomOut";
+    this.radialVisible = false;
+    this.changeDetectorRef.detectChanges();
+    this.radialVisible = true;
+    this.setAnimationsOpen();
     this.menuVisible = true;
     this.changeDetectorRef.detectChanges();
     setTimeout(() => {
@@ -175,6 +207,21 @@ export class HomePage {
     }, 1000);
     this.map.setAllGesturesEnabled(true);
     this.radialClasses = "front_buttons animated zoomIn";
+  }
+
+  public toggleSideMenu() {
+    this.menuController.toggle();
+  }
+
+  public toggleLocationFilter(changedLocationType: String){
+    var filtered = this.filteredLocationTypes.get(changedLocationType)
+    this.filteredLocationTypes.set(changedLocationType, !filtered);
+    console.log(!filtered)
+  }
+
+  public sideMenuClosed(){
+    this.clearMarkers();
+    this.setMarkers();
   }
 
   public redirect(buttonNo: number) {
