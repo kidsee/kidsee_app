@@ -37,7 +37,7 @@ export class AnswerTypeNumberComponent {
   }
 
   private goToAssignments() {
-    this.navController.push('AssignmentPage');
+    this.navController.pop();
   }
 
   private fetchAnswer(id: Number) {

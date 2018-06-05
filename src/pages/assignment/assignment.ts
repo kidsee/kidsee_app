@@ -49,9 +49,10 @@ export class AssignmentPage {
     )
   }
 
-  protected selectType(id: String) {
+  protected selectType(type: AssignmentType) {
+    this.selectedType = type;
     this.assignments.length = 0
-    this.fetchAssignments(id);
+    this.fetchAssignments(type.id);
   };
 
   protected goToDetailPage(assignment: Assignment) {
