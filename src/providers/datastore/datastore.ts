@@ -1,4 +1,4 @@
-import { JsonApiDatastoreConfig, JsonApiDatastore, DatastoreConfig } from 'angular2-jsonapi';
+ import { JsonApiDatastoreConfig, JsonApiDatastore, DatastoreConfig } from 'angular2-jsonapi';
 import { User } from '../../app/models/user';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
@@ -14,6 +14,7 @@ import { AssignmentType } from '../../app/models/assignmentType';
 import { Answer } from '../../app/models/answer';
 import { UserAnswer } from '../../app/models/userAnswer';
 import { AnswerType } from '../../app/models/answerType';
+import { UserAssignment } from '../../app/models/userAssignment';
 
 const config: DatastoreConfig = {
   baseUrl: 'http://128.199.32.227/api',
@@ -30,7 +31,8 @@ const config: DatastoreConfig = {
     'assignment-types': AssignmentType,
     answers: Answer,
     'user-answers': UserAnswer,
-    'answer-types': AnswerType
+    'answer-types': AnswerType,
+    'user-assignments': UserAssignment
   }
 };
 
