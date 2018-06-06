@@ -24,4 +24,9 @@ export class PostService {
       this.datastore.getBaseUrl()+'/themes/'+themeId+'/posts'
     )
   }
+
+  public postById(id)
+  {
+    return this.datastore.findRecord(Post, id);
+  }
 }

@@ -1,0 +1,72 @@
+photo-page-post {
+  font-family: 'Times New Roman', Times, serif;
+
+  .profile_button {
+    height : 70px !important;
+  }
+  .yellow {
+    background-color: #FDF3C8 !important;
+  }
+
+  .brown {
+    background-color: #54330F !important;
+  }
+
+  .light-brown {
+    background-color: #AA703F !important;
+  }
+
+  .light-brown-icon {
+    color: #54330F;
+  }
+
+  .title{
+    float: right;
+  }
+
+  .stars{
+    float: right;
+  }
+
+  .first-row{
+    max-height: 5.0em;
+    font-size: 20px;
+  }
+
+  .back {
+    width: 75%;
+    height: 75%;
+  }
+
+  .profile {
+    max-height: 100%;
+    // max-width: 150%;
+  }
+
+  .center {
+    text-align: center;
+    justify-content: center;
+  }
+
+  .border {
+    border: 2px solid #54330F;
+  }
+
+  .border-right {
+    border-right: 2px solid #54330F;
+  }
+
+  .border-top {
+    border-top: 2px solid #54330F;
+  }
+
+  .custom-content {
+    background: url('../assets/imgs/QuestionsAndAnswers/Background.png');
+    background-size: 100%;
+    background-repeat: repeat-y;
+  }
+
+  .rated {
+    color: deepskyblue;
+  }
+}
