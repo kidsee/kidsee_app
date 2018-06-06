@@ -45,7 +45,6 @@ export class AnswerTypeNumberComponent {
       answers => {
         answers.getModels().forEach(answer => {
           this.answers.push(answer);
-          console.log('answer', answer);
         });
       }
     )
