@@ -12,7 +12,11 @@ page-rating {
 
     .title {
         color: #FDF3C8;
-        font-size: 4em;
+        font-size: 3em;
+        margin: 0;
+    }
+
+    .theme-name {
         margin: 0;
     }
 
@@ -40,7 +44,11 @@ page-rating {
         background: #AA703F;
     }
 
-    .theme-item:nth-child(even) {
+    .theme-item :hover {
+        background: #C88E5E;
+    }
+
+    .active {
         background: #C88E5E;
     }
 
