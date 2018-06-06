@@ -25,7 +25,6 @@ export class AssignmentDetailPage {
     this.assignment = this.navParams.get('assignment');
     this.assignmentType = this.navParams.get('type');
     this.answerType = this.navParams.get('answer');
-    console.log('anser', this.answerType);
   }
 
   protected back() {
