@@ -1,7 +1,7 @@
-page-create-post {
+page-create-question {
   font-family: 'Times New Roman';
 
-  .posts-header{
+  .question-header{
     background: url('../assets/imgs/QuestionsAndAnswers/Header.png');
     background-size: 100%;
     background-repeat: no-repeat;
@@ -9,7 +9,7 @@ page-create-post {
     height:160px;
   }
 
-  .post-content {
+  .question-content {
     background: url('../assets/imgs/QuestionsAndAnswers/Background.png');
     background-size: 100%;
     background-repeat: repeat-y;

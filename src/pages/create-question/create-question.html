@@ -1,14 +1,14 @@
-<ion-content class="post-content">
-  <ion-row class="logo-row posts-header">
+<ion-content class="question-content">
+  <ion-row class="logo-row questions-header">
     <ion-col col-2>
       <img src="assets/imgs/back-button.png" class="custom-back-button" (click)="back()" />
     </ion-col>
   </ion-row>
-  <ion-row class="post-row">
+  <ion-row class="question-row">
     <ion-col>
       <form (ngSubmit)="createPost()" #postform="ngForm" class="form">
         <ion-list>
-          <h3>{{'place_post' | translate}}</h3>
+          <h3>{{'your_question' | translate}}</h3>
           <label>{{'location' | translate}}</label>
           <ion-item *ngIf="selectedLocation; else elseBlock" class="item-md">
             <label> {{selectedLocation}}</label>
@@ -24,7 +24,7 @@
             <ion-input class="custom-input" type="text" name="title" [(ngModel)]="postAttributes.title" placeholder="{{ 'title' | translate }}" required></ion-input>
           </ion-item>
           <ion-item class="item-md">
-            <ion-textarea class="custom-input" type="text" name="content" [(ngModel)]="postAttributes.content" placeholder="{{ 'content' | translate }}" required></ion-textarea>
+            <ion-textarea class="custom-input" type="text" name="content" [(ngModel)]="postAttributes.content" placeholder="{{ 'question' | translate }}" required></ion-textarea>
           </ion-item>
         </ion-list>
 

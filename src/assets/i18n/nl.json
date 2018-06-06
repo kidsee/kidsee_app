@@ -102,6 +102,8 @@
   "playground": "Speeltuin",
   "store": "Winkel",
   "restaurant": "Restaurant",
-  "education": "Leerplekken"
-
+  "education": "Leerplekken",
+  "place_post": "Post plaatsen",
+  "content": "Inhoud",
+  "react": "Reageren"
 }

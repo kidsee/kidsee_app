@@ -12,4 +12,28 @@ timeline-container {
         padding-left: 5%;
         margin: 0 0 0 0;
     }
+
+    .transparent{
+        background-color: transparent;
+    }
+
+    .comment-button {
+        float:left;
+    }
+
+    .yellow {
+        background-color: #FDF3C8;
+    }
+
+    .rating-icon {
+        float: left;
+    }
+
+    .light-brown {
+        color: #54330F;
+    }
+
+    .rated {
+        color: deepskyblue;
+    }
 }

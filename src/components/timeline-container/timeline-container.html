@@ -1,35 +1,40 @@
-  <ion-row>
+<ion-row>
     <ion-col col-10>
-      <button ion-button (click)="openTimelinePage()">{{'timeline' | translate}}</button>
+        <button ion-button (click)="openTimelinePage()">{{'timeline' | translate}}</button>
     </ion-col>
     <ion-col col-1>
-      <button (click)="open()">
-        <ion-icon name="resize"></ion-icon>
-      </button>
+        <button (click)="open()">
+            <ion-icon name="resize"></ion-icon>
+        </button>
     </ion-col>
     <ion-col col-1>
-      <button (click)="close()">
-        <ion-icon name="close"></ion-icon>
-      </button>
+        <button (click)="close()">
+            <ion-icon name="close"></ion-icon>
+        </button>
     </ion-col>
-  </ion-row>
-  <ion-content *ngIf="isOpen">
+</ion-row>
+<ion-content *ngIf="isOpen" class="transparent">
     <ion-list>
-        <ion-card *ngFor="let post of posts" (click)="gotoPost(post)">
+        <ion-card *ngFor="let post of posts" (click)="goToPost(post)" class="yellow">
             <ion-card-header>
-                <ion-card-title>{{post?.title}}</ion-card-title>
-                <ion-note class="italic">
-                    {{'posted_by' | translate}}{{post.user.username}}
-                </ion-note>
+                <ion-card-title>{{post?.title}}
+                    <ion-note class="italic">
+                        {{'posted_by' | translate}}{{post.user.username}}
+                    </ion-note>
+                </ion-card-title>
             </ion-card-header>
-            <ion-card-content>{{post?.content}}</ion-card-content>
-            <button ion-button icon-left clear small>
-                <ion-icon name="text"></ion-icon>
-                <div>{{post?.comments?.length || 0}} {{'comments' | translate}}</div>
+            <button ion-button icon-left clear small class="comment-button">
+                <ion-icon name="text" class="light-brown"></ion-icon>
+                <div class="light-brown">{{post?.comments?.length || 0}} </div>
+            </button>
+            <button ion-button icon-left clear small class="rating-icon">
+                <ion-icon *ngIf="!post?.rated" name="star" class="light-brown"></ion-icon>
+                <ion-icon *ngIf="post?.rated" name="star" class="rated"></ion-icon>
+                <div class="light-brown">{{post.rating || 0}} </div>
             </button>
         </ion-card>
     </ion-list>
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
         <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
-  </ion-content>
+</ion-content>
