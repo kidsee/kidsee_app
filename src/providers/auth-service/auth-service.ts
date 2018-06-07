@@ -95,7 +95,6 @@ export class AuthServiceProvider {
     return Observable.create(observer => {
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(userParams.password, salt, (err, hash) => {
-          userParams.avatar = 'https://www.w3schools.com/howto/img_avatar.png';
           let user = {...userParams, ...{password: hash}};
           this.datastore.createRecord(User, user).save().subscribe(
             success => {
