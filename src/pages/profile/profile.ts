@@ -24,7 +24,7 @@ export class ProfilePage {
 
   protected saveChanges() {
     this.user.birthdate = new Date(this.birthdate);
-    this.user.save().subscribe();
+    return this.user.save();
   }
 
   protected back() {
@@ -32,18 +32,13 @@ export class ProfilePage {
   }
 
   protected openChangeDialog(item){
-    this.translateService.get(['new', 'edit', 'repeat', 'cancel', 'edit']).subscribe(translation => {
-
+    this.translateService.get(['new', 'edit', 'cancel', 'edit', item]).subscribe(translation => {
       let alert = this.alertController.create({
-        title: item + ' ' + translation.edit,
+        title: translation[item] + ' ' + translation.edit,
         inputs: [
           {
             name: 'new',
-            placeholder: translation.new + ' ' + item
-          },
-          {
-            name: 'repeat',
-            placeholder: translation.repeat + ' ' + item
+            placeholder: translation.new + ' ' + translation[item]
           }
         ],
         buttons: [
@@ -54,15 +49,21 @@ export class ProfilePage {
           {
             text: translation.edit,
             handler: data => {
-              if (data.new == data.repeat) {
-                this.user[item] = data.repeat;
-                this.saveChanges();
-              } else {
-                this.translateService.get(['fail','items_do_not_match', 'ok']).subscribe(translation => {
-                  this.alertService.showPopup(translation.fail, translation.items_do_not_match, translation.ok);
+              var attribute = this.user[item];
+              this.user[item] = data.new;
+                this.saveChanges().subscribe(success => {
+                  this.translateService.get(['success', 'lowercase_edited', 'ok', item]).subscribe(translation => {
+                    this.alertService.showPopup(translation.success, translation[item] + ' ' + translation.lowercase_edited, translation.ok);
+                  });
+                  return true;
+                }, error => {
+                  this.user[item] = attribute;
+                  this.translateService.get(['fail','lowercase_already_in_use', 'ok', item]).subscribe(translation => {
+                    this.alertService.showPopup(translation.fail, translation[item] + ' ' + translation.lowercase_already_in_use, translation.ok);
+                  });
+                  return false;
                 });
-                return false;
-              }
+                return true;
             }
           }
         ]
