@@ -1,11 +1,49 @@
 page-timeline {
-  .under-nav-margin {
-    margin-top: 56px;
+
+  .posts-header{
+    background: url('../assets/imgs/QuestionsAndAnswers/Header.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin:auto;
+    height:160px;
   }
-  ion-fab{
-    margin-bottom: 56px;
+
+  .comment-button {
+    float:left;
   }
-  .italic{
-    font-style: italic;
+
+  .yellow {
+    background-color: #FDF3C8;
+  }
+
+  .button-header {
+    border: 1px solid black;
+  }
+
+  .rating-icon {
+    float: left;
+  }
+
+  .border-right {
+    border-right: 1px solid black;
+  }
+
+  .posts-content {
+    background: url('../assets/imgs/QuestionsAndAnswers/Background.png');
+    background-size: 100%;
+    background-repeat: repeat-y;
+    width: 100%;
+  }
+
+  .posts-row {
+    text-align: center;
+  }
+
+  .light-brown {
+    color: #54330F;
+  }
+
+  .rated {
+    color: deepskyblue;
   }
 }

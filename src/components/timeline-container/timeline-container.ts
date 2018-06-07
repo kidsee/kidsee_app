@@ -2,6 +2,8 @@ import { Component, ElementRef, Renderer } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { PostService } from "../../providers/post-service/post-service";
 import { Post } from "../../app/models/post";
+import { RatingServiceProvider } from "../../providers/rating-service/rating-service";
+import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
 
 
 @Component({
@@ -19,7 +21,9 @@ export class TimelineContainerComponent {
     private element: ElementRef,
     private renderer: Renderer,
     private navController: NavController,
-    private postService: PostService
+    private postService: PostService,
+    private ratingService: RatingServiceProvider,
+    private authService: AuthServiceProvider
   ) {
     this.height = 25;
   }
@@ -41,7 +45,7 @@ export class TimelineContainerComponent {
     this.renderList();
   }
 
-  protected gotoPost(post: Post) {
+  protected goToPost(post: Post) {
     this.navController.push('PostPage', {post: post});
   }
 
@@ -56,10 +60,16 @@ export class TimelineContainerComponent {
 
   private fetchNewPage() {
     this.page++;
-    this.postService.posts({page: this.page}).subscribe(
-      posts => {
-        posts.getModels().forEach(post => {
-          this.posts.push(post);
+    this.postService.posts({page: this.page, sort: '-inserted_at'}).subscribe(posts => {
+        this.authService.fetchCurrentUser().then(user => {
+          posts.getModels().forEach(post => {
+            this.ratingService.checkIfUserHasRatedObject(post, user).then(rating => {
+              if(rating) {
+                post.rated = true;
+              }
+            });
+            this.posts.push(post);
+          });
         });
       }
     )

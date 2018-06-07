@@ -4,6 +4,7 @@ import { ContentType } from "./contentType";
 import { Status } from "./status";
 import { Comment } from "./comment";
 import { Location } from "./location";
+import { PostType } from "./postType";
 
 @JsonApiModelConfig({
   type: 'posts'
@@ -39,4 +40,7 @@ export class Post extends JsonApiModel {
 
   @Attribute({serializedName: 'rating-count'})
   rating: number;
+
+  @BelongsTo()
+  post_type: PostType
 }
