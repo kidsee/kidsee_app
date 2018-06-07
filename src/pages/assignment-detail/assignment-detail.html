@@ -12,7 +12,6 @@
             <img *ngIf=assignmentType class="brown card-icon" src="assets/imgs/AssignmentTypes/{{ assignmentType.name }}.png">
         </ion-card-header>
         <ion-card-content>{{assignment?.content}}
-          {{answerType?.name}}
           <answer-type-multiple-choice *ngIf="answerType?.name == 'multiple_choice'">
           </answer-type-multiple-choice>
           <answer-type-number *ngIf="answerType?.name == 'number'">
