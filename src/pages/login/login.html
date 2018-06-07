@@ -30,15 +30,15 @@
 
           <ion-row>
             <ion-col>
-              <button ion-button class="register-btn" type="button" block clear (click)="createAccount()">{{'register' | translate}}</button>
-
+              <button class="login-btn" full type="submit" [disabled]="!registerForm.form.valid">GO!</button>
               <p class="forgot-password" (click)="forgotPassword()">{{'forgot_password' | translate}}</p>
             </ion-col>
           </ion-row>
-
+          
+          <button ion-button class="register-btn" type="button" block clear (click)="createAccount()">{{'register' | translate}}</button>
 
       </div>
-      <button class="login-btn" full type="submit" [disabled]="!registerForm.form.valid">GO!</button>
+      
     </form>
   </ion-row>
 </ion-content>
