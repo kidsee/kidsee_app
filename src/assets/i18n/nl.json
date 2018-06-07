@@ -94,5 +94,14 @@
   "filter": "Filter",
   "choose_filter": "Filter op...",
   "unknown_email": "Opgegeven mail kan niet worden gevonden.",
-  "password_reset_successful": "Het wachtwoord is opnieuw ingesteld en naar uw opgegeven mail verstuurd"
+  "password_reset_successful": "Het wachtwoord is opnieuw ingesteld en naar uw opgegeven mail verstuurd",
+  "filter_map": "Kaart filteren",
+  "other": "Overig",
+  "monument": "Monumenten",
+  "nature": "Natuur",
+  "playground": "Speeltuin",
+  "store": "Winkel",
+  "restaurant": "Restaurant",
+  "education": "Leerplekken"
+
 }
