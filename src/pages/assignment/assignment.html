@@ -5,24 +5,15 @@
     </ion-col>
   </ion-row>
   <ion-row class="yellow button-header">
-    <ion-col col-md-auto="" class="border-right">
-      <button class="yellow"></button>
-    </ion-col>
-    <ion-col col-md-auto="" class="border-right">
-      <button class="yellow"></button>
-    </ion-col>
-    <ion-col col-md-auto="" class="border-right">
-      <button class="yellow"></button>
-    </ion-col>
-    <ion-col col-md-auto="">
-      <button class="yellow"></button>
+    <ion-col col-12 class="border-right assignment-type">
+      <p class="yellow ">{{selectedType?.name}}</p>
     </ion-col>
   </ion-row>
   <ion-row class="content-row">
     <ion-col col-2 class="types-bar">
       <ion-list class="types-list">
         <ion-item class="type-item" *ngFor="let type of types">
-          <img class="type-button" src="assets/imgs/AssignmentTypes/{{ type.name }}.png" (click)="selectType(type.id)">
+          <img class="type-button" src="assets/imgs/AssignmentTypes/{{ type.name }}.png" (click)="selectType(type)">
         </ion-item>
       </ion-list>
     </ion-col>

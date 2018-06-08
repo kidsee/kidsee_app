@@ -9,10 +9,10 @@ export class Answer extends JsonApiModel {
   @Attribute()
   answer: String;
 
-  @Attribute()
-  correctAnswer: Boolean;
-
   @BelongsTo()
   assignment: Assignment;
+
+  @Attribute({ serializedName: 'correct-answer' })
+  correct_answer: Boolean;
 
 }

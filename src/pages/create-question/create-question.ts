@@ -10,10 +10,10 @@ import { PostTypeServiceProvider } from "../../providers/post-type-service/post-
 
 @IonicPage()
 @Component({
-  selector: 'page-create-post',
-  templateUrl: 'create-post.html',
+  selector: 'page-create-question',
+  templateUrl: 'create-question.html',
 })
-export class CreatePostPage {
+export class CreateQuestionPage {
   private postAttributes = { title: '', content: '', location: ''};
   protected locations: Location[] = [];
   protected selectedLocation;
@@ -59,7 +59,6 @@ export class CreatePostPage {
         });
       }
     );
-    //Only used in case of entering through the map.
     let location = this.navParams.get('location');
     this.selectedLocation = (location) ? this.navParams.get('location').name : '';
   }

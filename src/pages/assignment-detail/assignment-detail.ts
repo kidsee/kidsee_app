@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Assignment } from '../../app/models/assignment';
 import { AssignmentType } from '../../app/models/assignmentType';
 import { AssignmentTypeServiceProvider } from '../../providers/assignment-type-service/assignment-type-service';
+import { AnswerType } from '../../app/models/answerType';
 
 @IonicPage()
 @Component({
@@ -14,6 +15,7 @@ export class AssignmentDetailPage {
 
   protected assignmentType: AssignmentType;
   protected assignment: Assignment;
+  protected answerType: AnswerType;
 
   constructor(
     public navController: NavController,
@@ -22,6 +24,7 @@ export class AssignmentDetailPage {
   ) {
     this.assignment = this.navParams.get('assignment');
     this.assignmentType = this.navParams.get('type');
+    this.answerType = this.navParams.get('answer');
   }
 
   protected back() {

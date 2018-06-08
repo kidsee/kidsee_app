@@ -34,6 +34,7 @@ import { AssignmentTypeServiceProvider } from '../providers/assignment-type-serv
 import { AnswerServiceProvider } from '../providers/answer-service/answer-service';
 import { UserAnswerServiceProvider } from '../providers/user-answer-service/user-answer-service';
 import { AnswerTypeServiceProvider } from '../providers/answer-type-service/answer-type-service';
+import { PostTypeServiceProvider } from "../providers/post-type-service/post-type-service";
 
 
 @NgModule({
@@ -87,7 +88,8 @@ import { AnswerTypeServiceProvider } from '../providers/answer-type-service/answ
     Geolocation,
     AnswerServiceProvider,
     UserAnswerServiceProvider,
-    AnswerTypeServiceProvider
+    AnswerTypeServiceProvider,
+    PostTypeServiceProvider
   ]
 })
 export class AppModule {

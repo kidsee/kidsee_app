@@ -5,7 +5,8 @@
           <img src="assets/imgs/back-arrow.png" (click)="back()"/>
       </ion-col>
       <ion-col class="title-container">
-        <h1 class="title">Top 10</h1>
+            <h1 class="title">Top 10</h1>
+            <h4 class="theme-name">{{ selectedTheme?.name }}</h4>
       </ion-col>
       <ion-col col-2>
 
@@ -14,7 +15,7 @@
     <ion-row class="content-row">
       <ion-col col-2 class="theme-bar">
         <ion-list class="theme-list">
-          <ion-item class="theme-item" *ngFor="let theme of themes;">
+          <ion-item [class]="theme.name == selectedTheme.name ? 'theme-item active' : 'theme-item'" *ngFor="let theme of themes;">
             <img class="theme-button" src="assets/imgs/{{ theme.name }}.png" (click)="selectTheme(theme)">
           </ion-item>
         </ion-list>

@@ -95,4 +95,8 @@
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
     </plugin>
     <engine name="android" spec="7.0.0" />
+    <allow-navigation href="http://192.168.2.103:8100" />
+    <allow-navigation href="http://145.49.115.11:8100" />
+    <allow-navigation href="http://192.168.178.248:8101" />
+    <allow-navigation href="http://192.168.178.248:8100" />
 </widget>

@@ -1,5 +1,7 @@
 
 page-home {
+
+
   .under-nav-margin {
     margin-top: 56px;
   }
@@ -13,7 +15,10 @@ page-home {
     max-height: 100%;
   }
   .profile_button {
-    max-height : 15%
+    max-height : 15%;
+    z-index : 1;
+    position: absolute;
+    left: 0;
   }
   .settings_button {
     max-height : 15%;
@@ -85,6 +90,24 @@ page-home {
     transform: translate(35px, 8px);
   }
 
+
+  //sidemenu
+  .sidemenu{
+    background: url('../assets/imgs/QuestionsAndAnswers/Background.png');
+  }
+  
+  .location-type-item{
+    background: #FAF0C6;
+  }
+  
+  .sideMenuButton{
+    top: 30%;
+    left: 0;
+    max-height : 15%;
+    z-index: 99;
+    position: absolute;
+  }
+  
     
   //Animation
   .animated {

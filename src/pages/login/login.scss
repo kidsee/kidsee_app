@@ -20,14 +20,12 @@ page-login {
 
     .login-btn {
         font-family: 'Times New Roman';
-        font-size: 6em;
+        font-size: 2em;
         color: #54330F;
         background: #FAF0C6;
         border: 3px solid #FDFAE9;
         outline: 4px solid #54330F;
-        width: 60%;
-        height: 25%;
-        margin-top: 6%;
+        width: 50%;
     }
 
     .register-btn {
@@ -38,8 +36,7 @@ page-login {
         border: 3px solid #FDFAE9;
         outline: 4px solid #54330F;
         width: 50%;
-        margin: 0 auto;
-        margin-bottom: 3%;
+        margin: 15% auto;
     }
 
     .login-form {

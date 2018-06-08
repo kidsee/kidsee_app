@@ -14,6 +14,7 @@ import { AssignmentType } from '../../app/models/assignmentType';
 import { Answer } from '../../app/models/answer';
 import { UserAnswer } from '../../app/models/userAnswer';
 import { AnswerType } from '../../app/models/answerType';
+import { PostType } from "../../app/models/postType";
 
 const config: DatastoreConfig = {
   baseUrl: 'http://174.138.7.193/api',
@@ -30,7 +31,8 @@ const config: DatastoreConfig = {
     'assignment-types': AssignmentType,
     answers: Answer,
     'user-answers': UserAnswer,
-    'answer-types': AnswerType
+    'answer-types': AnswerType,
+    'post-types': PostType
   }
 };
 

@@ -8,6 +8,7 @@ import { AlertServiceProvider } from "../../providers/alert-service/alert-servic
 import { RatingServiceProvider } from "../../providers/rating-service/rating-service";
 import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
 import { ThemeServiceProvider } from "../../providers/theme-service/theme-service";
+import { PostTypeServiceProvider } from "../../providers/post-type-service/post-type-service";
 
 @IonicPage()
 @Component({
@@ -30,7 +31,8 @@ export class QuestionandanswerPage {
     private translateService: TranslateService,
     private ratingService: RatingServiceProvider,
     private authService: AuthServiceProvider,
-    private themeService: ThemeServiceProvider
+    private themeService: ThemeServiceProvider,
+    private postTypeService: PostTypeServiceProvider
   ) {
     this.themeService.themes({}).subscribe(themes => {
       themes.getModels().forEach(theme => {
@@ -40,7 +42,7 @@ export class QuestionandanswerPage {
   }
 
   protected goToPost(post: Post) {
-    this.navController.push('PostPage', {post: post});
+    this.navController.push('QuestionPage', {post: post});
   }
 
   ionViewDidEnter() {
@@ -52,57 +54,66 @@ export class QuestionandanswerPage {
     this.page++;
     let params = {};
 
-    if(this.selectedFilter)
-    {
-      params = {
-        page: this.page,
-        sort: this.selectedSort
-      };
-      this.postService.postsByTheme(this.selectedFilter, params).subscribe(data => {
-        this.authService.fetchCurrentUser().then(user => {
-          let posts = data.getModels();
-          posts.forEach(post => {
-            this.ratingService.checkIfUserHasRatedObject(post, user).then(rating => {
-              if(rating) {
-                post.rated = true;
-              }
-            });
-            this.posts.push(post);
-          });
-        });
-      })
-    }
-    else {
-
-      if(this.location) {
+    this.postTypeService.getTypeByName("question").then(postType => {
+      if(this.selectedFilter)
+      {
         params = {
           page: this.page,
+          sort: this.selectedSort,
           filter: {
-            location_id: this.location.id,
-          },
-          sort: this.selectedSort
+            post_type_id: postType.id
+          }
         };
+        this.postService.postsByTheme(this.selectedFilter, params).subscribe(data => {
+          this.authService.fetchCurrentUser().then(user => {
+            let posts = data.getModels();
+            posts.forEach(post => {
+              this.ratingService.checkIfUserHasRatedObject(post, user).then(rating => {
+                if(rating) {
+                  post.rated = true;
+                }
+              });
+              this.posts.push(post);
+            });
+          });
+        })
       }
       else {
-        params = {
-          page: this.page,
-          sort: this.selectedSort
-        };
-      }
 
-      this.postService.posts(params).subscribe(posts => {
-        this.authService.fetchCurrentUser().then(user => {
-          posts.getModels().forEach(post => {
-            this.ratingService.checkIfUserHasRatedObject(post, user).then(rating => {
-              if(rating) {
-                post.rated = true;
-              }
+        if(this.location) {
+          params = {
+            page: this.page,
+            filter: {
+              location_id: this.location.id,
+              post_type_id: postType.id
+            },
+            sort: this.selectedSort
+          };
+        }
+        else {
+          params = {
+            page: this.page,
+            sort: this.selectedSort,
+            filter: {
+              post_type_id: postType.id
+            }
+          };
+        }
+
+        this.postService.posts(params).subscribe(posts => {
+          this.authService.fetchCurrentUser().then(user => {
+            posts.getModels().forEach(post => {
+              this.ratingService.checkIfUserHasRatedObject(post, user).then(rating => {
+                if(rating) {
+                  post.rated = true;
+                }
+              });
+              this.posts.push(post);
             });
-            this.posts.push(post);
           });
         });
-      });
-    }
+      }
+    });
   }
 
   protected doInfinite(infiniteScroll) {
@@ -113,7 +124,7 @@ export class QuestionandanswerPage {
   }
 
   protected createPost(){
-    this.navController.push('CreatePostPage', this.location);
+    this.navController.push('CreateQuestionPage', this.location);
   }
 
   protected back(){
@@ -126,8 +137,8 @@ export class QuestionandanswerPage {
     ).subscribe(translations => {
       let alert = this.alertService.createAlert(translations.choose_sorting);
       let options = [
-        { title: translations.highest_rated, value: '-rating'      },
-        { title: translations.lowest_rated,  value: 'rating'       },
+        { title: translations.highest_rated, value: '-rating_count'      },
+        { title: translations.lowest_rated,  value: 'rating_count'       },
         { title: translations.most_recent,   value: '-inserted_at' },
         { title: translations.least_recent,  value: 'inserted_at'  }
       ];

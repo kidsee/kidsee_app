@@ -1,0 +1,10 @@
+<!-- Generated template for the AnswerTypeMultipleChoiceComponent component -->
+<div>
+  <ion-list radio-group>
+    <ion-item class="yellow" *ngFor="let answer of answers">
+      <ion-label>{{answer?.answer}}</ion-label>
+      <ion-radio [value]="answer.answer" (ionSelect)="setAnswer(answer)"></ion-radio>
+    </ion-item>
+  </ion-list>
+  <button ion-button (click)="saveAnswer()">{{'fill_in_answer' | translate}}</button>
+</div>

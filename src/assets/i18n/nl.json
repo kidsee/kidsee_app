@@ -93,6 +93,19 @@
   "items_do_not_match": "De opgegeven veranderingen komen niet overeen",
   "filter": "Filter",
   "choose_filter": "Filter op...",
-  "unknown_email": "Opgegeven mail kan niet worden gevonden.",
-  "password_reset_successful": "Het wachtwoord is opnieuw ingesteld en naar uw opgegeven mail verstuurd"
+  "unknown_email": "Opgegeven email kan niet worden gevonden.",
+  "password_reset_successful": "Het wachtwoord is opnieuw ingesteld en naar uw opgegeven mail verstuurd",
+  "filter_map": "Kaart filteren",
+  "other": "Overig",
+  "monument": "Monumenten",
+  "nature": "Natuur",
+  "playground": "Speeltuin",
+  "store": "Winkel",
+  "restaurant": "Restaurant",
+  "education": "Leerplekken",
+  "place_post": "Post plaatsen",
+  "content": "Inhoud",
+  "react": "Reageren",
+  "lowercase_edited": "aangepast!",
+  "lowercase_already_in_use": "is al in gebruik!"
 }
