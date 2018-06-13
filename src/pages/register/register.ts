@@ -50,13 +50,23 @@ export class RegisterPage {
         });
       },
       error => {
-        this.translateService.get(['error', 'problem_creating_account', 'ok']).subscribe(translations => {
-          this.alertServiceProvider.showPopup(
-            translations.error,
-            translations.problem_creating_account,
-            translations.ok
-          );
-        });
+        if(error.status == 0) {
+          this.translateService.get(['error', 'no_connection', 'ok']).subscribe(translations => {
+            this.alertServiceProvider.showPopup(
+              translations.error,
+              translations.no_connection,
+              translations.ok
+            );
+          });
+        } else {
+          this.translateService.get(['error', 'problem_creating_account', 'ok']).subscribe(translations => {
+            this.alertServiceProvider.showPopup(
+              translations.error,
+              translations.problem_creating_account,
+              translations.ok
+            );
+          });
+        }
       }
     );
   }

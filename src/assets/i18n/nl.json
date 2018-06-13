@@ -107,5 +107,6 @@
   "content": "Inhoud",
   "react": "Reageren",
   "lowercase_edited": "aangepast!",
-  "lowercase_already_in_use": "is al in gebruik!"
+  "lowercase_already_in_use": "is al in gebruik!",
+  "no_connection": "Geen internet verbinding"
 }
