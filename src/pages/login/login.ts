@@ -33,10 +33,17 @@ export class LoginPage {
         this.navController.setRoot('HomePage');
       },
       error => {
-        this.translateService.get(['fail', 'access_denied', 'ok']).subscribe(translation => {
-          this.alertServiceProvider.showPopup(translation.fail, translation.access_denied, translation.ok);
-          this.loading.dismiss();
-        });
+        if(error.status == 0) {
+          this.translateService.get(['fail', 'no_connection', 'ok']).subscribe(translation => {
+            this.alertServiceProvider.showPopup(translation.fail, translation.no_connection, translation.ok);
+            this.loading.dismiss();
+          });
+        } else {
+          this.translateService.get(['fail', 'access_denied', 'ok']).subscribe(translation => {
+            this.alertServiceProvider.showPopup(translation.fail, translation.access_denied, translation.ok);
+            this.loading.dismiss();
+          });
+        }
       }
     )
   }

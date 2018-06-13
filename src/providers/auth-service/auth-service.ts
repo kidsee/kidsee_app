@@ -37,7 +37,7 @@ export class AuthServiceProvider {
             });
           },
           (err) => {
-            observer.error();
+            observer.error(err);
             observer.complete();
           });
     });
