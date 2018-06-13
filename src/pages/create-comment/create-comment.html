@@ -8,14 +8,14 @@
     <ion-col>
       <form (ngSubmit)="createComment()" #commentform="ngForm">
         <ion-list>
-          <h3>{{'your_answer' | translate}}</h3>
+          <h3>{{'my_answer' | translate}}</h3>
           <ion-item>
             <ion-textarea class="custom-input" type="text" name="content" [(ngModel)]="commentAttributes.content" placeholder="{{ 'comment' | translate }}" required></ion-textarea>
           </ion-item>
         </ion-list>
 
         <ion-item>
-          <button ion-button class="button" full type="submit" [disabled]="!commentform.form.valid">{{ 'send_comment' | translate }}</button>
+          <button ion-button class="button" full type="submit" [disabled]="!commentform.form.valid"><ion-icon name="checkmark"></ion-icon></button>
         </ion-item>
       </form>
     </ion-col>

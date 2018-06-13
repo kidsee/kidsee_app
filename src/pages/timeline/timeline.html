@@ -1,19 +1,19 @@
-<ion-content>
+ <ion-content>
     <ion-row class="logo-row posts-header">
         <ion-col col-2>
             <img src="assets/imgs/back-button.png" (click)="back()" />
         </ion-col>
     </ion-row>
-    <ion-row class="yellow button-header">
+    <ion-row class="yellow button-header center">
         <ion-col col-md-auto="" class="border-right" (click)="createPost()">
             <button class="yellow">{{'place_post' | translate}}</button>
         </ion-col>
-        <ion-col col-md-auto="" class="border-right">
+        <ion-col col-md-auto="" class="border-right center">
             <button class="yellow" (click)="openSort()">{{'sort' | translate}}</button>
-            <ion-icon name="close" class="light-brown" (click)="resetSort()"></ion-icon>
+            <ion-icon name="close" class="light-brown custom-close" (click)="resetSort()"></ion-icon>
         </ion-col>
-        <ion-col col-md-auto="">
-            <button class="yellow" (click)="openFilter()">{{'filter' | translate}}</button>
+        <ion-col col-md-auto="" class="center">
+            <button class="yellow" (click)="openFilter()"><img class="magnifying-glass" src="assets/imgs/QuestionsAndAnswers/magnifying-glass.png"/></button>
             <ion-icon name="close" class="light-brown" (click)="resetFilter()"></ion-icon>
         </ion-col>
     </ion-row>

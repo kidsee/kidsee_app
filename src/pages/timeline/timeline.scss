@@ -1,11 +1,12 @@
 page-timeline {
 
   .posts-header{
-    background: url('../assets/imgs/QuestionsAndAnswers/Header.png');
-    background-size: 100%;
+    background: url('../assets/imgs/kidsee-logo.png');
+    background-size: auto 160px;
     background-repeat: no-repeat;
+    background-position-x: center;
     margin:auto;
-    height:160px;
+    height: 160px;
   }
 
   .comment-button {
@@ -45,5 +46,17 @@ page-timeline {
 
   .rated {
     color: deepskyblue;
+  }
+
+  .magnifying-glass {
+    height: 30px;
+    width: 50px;
+  }
+
+  .center {
+    vertical-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

@@ -8,7 +8,7 @@
     <ion-col>
       <form (ngSubmit)="createPost()" #postform="ngForm" class="form">
         <ion-list>
-          <h3>{{'your_question' | translate}}</h3>
+          <h3>{{'my_question' | translate}}</h3>
           <label>{{'location' | translate}}</label>
           <ion-item *ngIf="selectedLocation; else elseBlock" class="item-md">
             <label> {{selectedLocation}}</label>
@@ -29,7 +29,7 @@
         </ion-list>
 
         <ion-item class="item-md">
-          <button ion-button class="submit-btn" full type="submit" [disabled]="!postform.form.valid">{{ 'send_post' | translate }}!</button>
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!postform.form.valid"><ion-icon name="checkmark"></ion-icon></button>
         </ion-item>
       </form>
     </ion-col>
