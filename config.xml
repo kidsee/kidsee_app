@@ -12,7 +12,7 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <preference name="ScrollEnabled" value="false" />
-    <preference name="android-minSdkVersion" value="16" />
+    <preference name="android-minSdkVersion" value="19" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="FadeSplashScreenDuration" value="300" />
@@ -94,6 +94,10 @@
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="To locate you" />
     </plugin>
+    <plugin name="cordova-android-support-gradle-release" spec="^1.4.3">
+        <variable name="ANDROID_SUPPORT_VERSION" value="24.+" />
+    </plugin>
+    <plugin name="com-badrit-base64" spec="^0.2.0" />
     <engine name="android" spec="7.0.0" />
     <allow-navigation href="http://192.168.2.103:8100" />
     <allow-navigation href="http://145.49.115.11:8100" />
