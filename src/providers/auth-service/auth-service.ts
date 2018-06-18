@@ -102,7 +102,7 @@ export class AuthServiceProvider {
               observer.complete();
             },
             error => {
-              observer.error();
+              observer.error(error);
               observer.complete();
             }
           );
