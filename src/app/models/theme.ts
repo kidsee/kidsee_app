@@ -9,6 +9,9 @@ export class Theme extends JsonApiModel {
   @Attribute()
   name: string;
 
+  @Attribute()
+  icon: string;
+
   @HasMany()
   locations: Location[];
 

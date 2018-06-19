@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 import { ThemeServiceProvider } from "../../providers/theme-service/theme-service";
 import { LocationServiceProvider } from "../../providers/location-service/location-service";
+import { Datastore } from '../../providers/datastore/datastore';
 import { Theme } from "../../app/models/theme";
 import { Rating } from "../../app/models/rating";
 import { Location } from "../../app/models/location";
@@ -18,12 +19,16 @@ export class RatingPage {
   protected selectedTheme :Theme;
   private doneCounter :number = 0;
   protected topTen :Location[] = [];
+  protected url: String;
 
   constructor(
     private navController: NavController,
     private themeService: ThemeServiceProvider,
-    private locationService: LocationServiceProvider
-  ) { }
+    private locationService: LocationServiceProvider,
+    private datastore: Datastore
+  ) { 
+    this.url = datastore.getBaseUrl().split('api')[0];
+  }
 
   protected back() {
     this.navController.pop();
@@ -36,10 +41,12 @@ export class RatingPage {
   private fetchThemes() {
     this.themeService.themes({}).subscribe(
       themes => {
+        console.log('json', themes);
         themes.getModels().forEach(theme => {
           this.themes.push(theme);
         });
         this.selectTheme(this.themes[0]);
+        console.log(this.themes);
       }
     )
   }
