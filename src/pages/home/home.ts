@@ -12,6 +12,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { mapStyle } from "../../pages/home/mapStyle";
 import { MenuController } from 'ionic-angular';
 import { LocationTypeServiceProvider } from '../../providers/location-type-service/location-type-service';
+import { ThemeServiceProvider } from '../../providers/theme-service/theme-service';
 
 @IonicPage()
 @Component({
@@ -49,14 +50,14 @@ export class HomePage {
     private changeDetectorRef: ChangeDetectorRef,
     private geolocation: Geolocation,
     private menuController: MenuController,
-    private locationTypeService: LocationTypeServiceProvider
+    private themeService: ThemeServiceProvider
   ) {
     platform.registerBackButtonAction(() => {
       if(this.radialVisible == true){
         this.closeMarkerMenu();
       }
     },1);
-    locationTypeService.getAllLocationTypes().then(types =>{
+    themeService.getAllThemes().then(types =>{
       this.locationTypes = types;
       this.filteredLocationTypes = new Map<String,Boolean>();
       types.forEach(type => {
@@ -114,31 +115,30 @@ export class HomePage {
       this.locations = res as Location[];
       this.locations.forEach(location => {
         var url;
-        if(location["location-type"]){
-          url = "assets/imgs/icon_" + location["location-type"].name + ".png";
-        }else{
-          url ="assets/imgs/icon_other.png";
+        if(location.themes[0]){
+          url = location.themes[0].icon;
         }
-        if(this.filteredLocationTypes.get(location["location-type"].name)){
-        this.map.addMarker({
-          position: { lat: location.lat, lng: location.lon },
-          title: location.name,
-          icon: {
-            url: url,
-            size: {
-              width: 40,
-              height: 40
+        
+        if(this.filteredLocationTypes.get(location.themes[0].name)){
+          this.map.addMarker({
+            position: { lat: location.lat, lng: location.lon },
+            title: location.name,
+            icon: {
+              url: url,
+              size: {
+                width: 40,
+                height: 40
+              }
             }
-          }
-        }).then(marker => {
-          marker.on(GoogleMapsEvent.MARKER_CLICK)
-            .subscribe(() => {
-              this.currentSelectedLocation = location;
-              this.setRadialLayout(location);
-              this.openMarkerMenu();
-            });
-        })
-      }
+          }).then(marker => {
+            marker.on(GoogleMapsEvent.MARKER_CLICK)
+              .subscribe(() => {
+                this.currentSelectedLocation = location;
+                this.setRadialLayout(location);
+                this.openMarkerMenu();
+              });
+          })
+        } 
       });
     }
     );
@@ -216,7 +216,6 @@ export class HomePage {
   public toggleLocationFilter(changedLocationType: String){
     var filtered = this.filteredLocationTypes.get(changedLocationType)
     this.filteredLocationTypes.set(changedLocationType, !filtered);
-    console.log(!filtered)
   }
 
   public sideMenuClosed(){

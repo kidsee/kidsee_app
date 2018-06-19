@@ -14,4 +14,7 @@ export class Theme extends JsonApiModel {
 
   @BelongsTo()
   location: Location;
+
+  @Attribute()
+  icon: string;
 }
