@@ -41,12 +41,10 @@ export class RatingPage {
   private fetchThemes() {
     this.themeService.themes({}).subscribe(
       themes => {
-        console.log('json', themes);
         themes.getModels().forEach(theme => {
           this.themes.push(theme);
         });
         this.selectTheme(this.themes[0]);
-        console.log(this.themes);
       }
     )
   }
