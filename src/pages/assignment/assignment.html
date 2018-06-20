@@ -20,7 +20,13 @@
     <ion-col col-10 class="puzzle-content">
       <ion-list>
         <ion-card *ngFor="let assignment of assignments"  class="yellow" (click)="goToDetailPage(assignment, type)">
-          <ion-card-content>{{assignment?.content}}</ion-card-content>
+          <div *ngIf="!assignment.completed; else assignmentDone">
+              <ion-card-content >{{assignment?.content}}</ion-card-content>
+          </div>
+          <ng-template #assignmentDone>
+              <ion-icon name="checkmark" class="card-icon brown" ></ion-icon>
+            <ion-card-content >{{assignment?.content}}</ion-card-content>
+          </ng-template>
         </ion-card>
       </ion-list>
     </ion-col>
