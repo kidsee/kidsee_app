@@ -46,4 +46,16 @@ page-questionandanswer {
   .rated {
     color: deepskyblue;
   }
+
+  .magnifying-glass {
+    height: 30px;
+    width: 50px;
+  }
+
+  .center {
+    vertical-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
