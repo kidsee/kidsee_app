@@ -1,6 +1,7 @@
 import { Theme } from "../../app/models/theme"
 import { Injectable } from '@angular/core';
 import { Datastore } from '../datastore/datastore';
+import { JsonApiQueryData } from "angular2-jsonapi";
 @Injectable()
 export class ThemeServiceProvider {
   constructor(
@@ -16,4 +17,17 @@ export class ThemeServiceProvider {
       name: name,
     });
   }
-}
+
+  public getAllThemes(){
+    
+      return new Promise<any>((resolve) => {
+        this.themes({}).subscribe(
+          
+            (locationTypes: JsonApiQueryData<Theme>) => {
+              resolve(locationTypes.getModels());}
+          
+        );
+      });
+    }
+    
+  } 

@@ -12,7 +12,7 @@
     <ion-content class="sidemenu">
         <ion-item class="location-type-item" *ngFor="let locationType of locationTypes;">
             <ion-checkbox checked=true (ionChange)="toggleLocationFilter(locationType.name)" color="kidsee-dark"></ion-checkbox>
-            <ion-label>{{ locationType.name | translate }}</ion-label>
+            <ion-label>{{ locationType.name }}</ion-label>
         </ion-item>
     </ion-content>
 </ion-menu>
