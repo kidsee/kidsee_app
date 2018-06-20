@@ -13,7 +13,7 @@
   </ion-row>
   <ion-row>
     <ion-col col-4 class="center">
-      <img class="profile" src="assets/imgs/profile.png" padding>
+      <img class="profile" [src]="post?.user?.avatar" padding>
       <p>{{post?.user.username}}</p>
     </ion-col>
     <ion-col col-8>
@@ -34,13 +34,13 @@
   </ion-row>
 </ion-header>
 
-<ion-content class="custom-content" padding>
+<ion-content class="custom-content has-header" padding>
   <ion-list>
     <ion-card *ngFor="let comment of post?.comments" class="border">
       <ion-row>
         <ion-col col-3 class="center brown border-right">
           {{comment.user?.username}}
-          <img class="profile" src="assets/imgs/profile.png" padding>
+          <img class="profile" [src]="comment.user?.avatar" padding>
         </ion-col>
         <ion-col col-9 class="yellow">
           {{comment.content}}

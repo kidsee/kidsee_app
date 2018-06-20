@@ -4,6 +4,8 @@ import { AuthServiceProvider } from '../../providers/auth-service/auth-service';
 import { User } from '../../app/models/user';
 import { TranslateService } from "@ngx-translate/core";
 import {AlertServiceProvider} from "../../providers/alert-service/alert-service";
+import { Camera } from "@ionic-native/camera";
+import { PictureService } from "../../providers/picture-service/picture-service";
 
 @IonicPage()
 @Component({
@@ -19,7 +21,9 @@ export class ProfilePage {
     private authServiceProvider: AuthServiceProvider,
     private alertController: AlertController,
     private translateService: TranslateService,
-    private alertService: AlertServiceProvider
+    private alertService: AlertServiceProvider,
+    private pictureService: PictureService,
+    private camera: Camera
   ) { }
 
   protected saveChanges() {
@@ -104,12 +108,36 @@ export class ProfilePage {
             handler: data => {
               if(this.checkPassword(data.password, data.newPassword, data.repeatPassword))
                 return this.updatePassword(data.password, data.newPassword);
-                return false;
+              return false;
             }
           }
         ]
       });
       alert.present();
+    });
+  }
+
+  protected openPictureDialog() {
+    this.translateService.get(['choose_source', 'library', 'camera', 'cancel', 'upload']).subscribe(translation => {
+      let alert = this.alertService.createAlert(translation.choose_source);
+      this.alertService.addRadioButton(alert, translation.library, this.camera.PictureSourceType.PHOTOLIBRARY, false);
+      this.alertService.addRadioButton(alert, translation.camera, this.camera.PictureSourceType.CAMERA, false);
+      this.alertService.addButton(alert, translation.cancel);
+      this.alertService.addButton(alert, translation.upload,
+        (data: any) => {
+          this.takePicture(data);
+        });
+      alert.present();
+    });
+  }
+
+  private takePicture(sourceType) {
+    this.pictureService.takePicture(sourceType).then(picture => {
+      this.authServiceProvider.fetchCurrentUser().then(user => {
+        this.pictureService.uploadAvatar(user, picture).then(avatar => {
+          this.user.avatar = this.pictureService.retrieveFullImageUrl(avatar as string);
+        });
+      });
     });
   }
 
@@ -136,16 +164,16 @@ export class ProfilePage {
         password: oldPassword
       };
       this.authServiceProvider.login(credentials).subscribe(success => {
-          this.authServiceProvider.changePassword(value);
-          this.translateService.get(['success', 'edited_password', 'ok']).subscribe(translation => {
-            this.alertService.showPopup(translation.success, translation.edited_password, translation.ok);
-          });
-          return true;
+        this.authServiceProvider.changePassword(value);
+        this.translateService.get(['success', 'edited_password', 'ok']).subscribe(translation => {
+          this.alertService.showPopup(translation.success, translation.edited_password, translation.ok);
+        });
+        return true;
       }, error => {
-          this.translateService.get(['fail','did_not_edit_password', 'ok']).subscribe(translation => {
-            this.alertService.showPopup(translation.fail, translation.did_not_edit_password, translation.ok);
-          });
-          return false;
+        this.translateService.get(['fail','did_not_edit_password', 'ok']).subscribe(translation => {
+          this.alertService.showPopup(translation.fail, translation.did_not_edit_password, translation.ok);
+        });
+        return false;
       })
     });
   }
@@ -154,6 +182,7 @@ export class ProfilePage {
     this.authServiceProvider.fetchCurrentUser().then(user => {
       this.user = user;
       this.birthdate = this.user.birthdate.toISOString();
+      user.avatar = this.pictureService.retrieveFullImageUrl(user.avatar);
     });
   }
 }
