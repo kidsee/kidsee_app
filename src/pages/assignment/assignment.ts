@@ -56,11 +56,13 @@ export class AssignmentPage {
   };
 
   protected goToDetailPage(assignment: Assignment) {
-    this.navController.push('AssignmentDetailPage', {
-      assignment: assignment,
-      type: assignment['assignment-type'],
-      answer: assignment["answer-type"]
-    });
+    if(!assignment.completed){
+      this.navController.push('AssignmentDetailPage', {
+        assignment: assignment,
+        type: assignment['assignment-type'],
+        answer: assignment["answer-type"]
+      });
+    }
   };
 
   protected back() {
