@@ -111,34 +111,33 @@ export class HomePage {
 
   public setMarkers() {
     this.locationService.locations().then((res) => {
-
       this.locations = res as Location[];
       this.locations.forEach(location => {
-        var url;
-        if(location.themes[0]){
-          url = location.themes[0].icon;
-        }
-        
-        if(this.filteredLocationTypes.get(location.themes[0].name)){
-          this.map.addMarker({
-            position: { lat: location.lat, lng: location.lon },
-            title: location.name,
-            icon: {
-              url: url,
-              size: {
-                width: 40,
-                height: 40
+        if(location.themes){
+          if(location.themes[0].icon){
+            var url = location.themes[0].icon;
+          }
+          if(this.filteredLocationTypes.get(location.themes[0].name)){
+            this.map.addMarker({
+              position: { lat: location.lat, lng: location.lon },
+              title: location.name,
+              icon: {
+                url: url,
+                size: {
+                  width: 40,
+                  height: 40
+                }
               }
-            }
-          }).then(marker => {
-            marker.on(GoogleMapsEvent.MARKER_CLICK)
-              .subscribe(() => {
-                this.currentSelectedLocation = location;
-                this.setRadialLayout(location);
-                this.openMarkerMenu();
-              });
-          })
-        } 
+            }).then(marker => {
+              marker.on(GoogleMapsEvent.MARKER_CLICK)
+                .subscribe(() => {
+                  this.currentSelectedLocation = location;
+                  this.setRadialLayout(location);
+                  this.openMarkerMenu();
+                });
+            })
+          } 
+        }
       });
     }
     );
