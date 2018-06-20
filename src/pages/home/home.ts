@@ -38,6 +38,7 @@ export class HomePage {
   public currentSelectedLocation : Location;
   public locationTypes;
   public filteredLocationTypes: Map<String, Boolean>;
+  public serverUrl = "http://128.199.32.227";
   
   constructor(
     public navController: NavController,
@@ -115,7 +116,8 @@ export class HomePage {
       this.locations.forEach(location => {
         if(location.themes){
           if(location.themes[0].icon){
-            var url = location.themes[0].icon;
+            var url = this.serverUrl + location.themes[0].icon;
+            console.log(url);
           }
           if(this.filteredLocationTypes.get(location.themes[0].name)){
             this.map.addMarker({
