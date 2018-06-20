@@ -2,27 +2,31 @@
    <ion-grid class="rating-grid" no-padding>
     <ion-row class="header">
       <ion-col col-2>
-          <img src="assets/imgs/back-arrow.png" (click)="back()"/>
+          <img class="back-arrow" src="assets/imgs/back-button.png" (click)="back()"/>
       </ion-col>
       <ion-col class="title-container">
-            <h1 class="title">Top 10</h1>
-            <h4 class="theme-name">{{ selectedTheme?.name }}</h4>
+            <p class="title">Top 10</p>
       </ion-col>
       <ion-col col-2>
 
+      </ion-col>
+    </ion-row>
+    <ion-row class="yellow button-header">
+      <ion-col col-12 class="theme-type yellow">
+        <p>{{ selectedTheme?.name }}</p>
       </ion-col>
     </ion-row>
     <ion-row class="content-row">
       <ion-col col-2 class="theme-bar">
         <ion-list class="theme-list">
           <ion-item [class]="theme.name == selectedTheme.name ? 'theme-item active' : 'theme-item'" *ngFor="let theme of themes;">
-            <img class="theme-button" src="assets/imgs/{{ theme.name }}.png" (click)="selectTheme(theme)">
+            <img class="theme-button" src="{{ url + theme.icon }}" (click)="selectTheme(theme)">
           </ion-item>
         </ion-list>
       </ion-col>
       <ion-col class="item-list-col">
         <ion-list class="item-list" no-lines>
-          <ion-item class="item-item" *ngFor="let location of topTen; let i = index">
+          <ion-item class="item-item yellow" *ngFor="let location of topTen; let i = index">
             {{ i+1 }}. {{ location.name }}
           </ion-item>
         </ion-list>
