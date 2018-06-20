@@ -18,6 +18,7 @@ export class AnswerTypeNumberComponent {
   protected assignmentId: Number;
   protected answers: Answer[]=[];
   public assignment: Assignment;
+  private assignments: Assignment[] = [];
 
   constructor(
     private navController: NavController,
@@ -34,10 +35,7 @@ export class AnswerTypeNumberComponent {
     if(this.assignment){
       this.fetchAnswer(Number(this.assignment.id));
     }
-  }
-
-  private goToAssignments() {
-    this.navController.pop();
+    this.assignments = this.navParams.get('assignments');
   }
 
   private fetchAnswer(id: Number) {
@@ -62,8 +60,18 @@ export class AnswerTypeNumberComponent {
           translations.popup_title_succes,
           translations.popup_text_succes,
           translations.ok,  _ => {
-            this.goToAssignments();
-        });
+            if(this.assignments[1]){
+              this.assignments.shift();
+              this.navController.push('AssignmentDetailPage',{
+                assignment: this.assignments[0],
+                type: this.assignments[0]['assignment-type'],
+                answer: this.assignments[0]['answer-type'],
+                assignments: this.assignments});
+            }
+            else{
+              this.navController.popToRoot();
+            }
+          });
       });
       correct = true;
     } else {
@@ -76,8 +84,18 @@ export class AnswerTypeNumberComponent {
           translations.popup_title_fail,
           translations.popup_text_fail,
           translations.ok, _ =>{
-            this.goToAssignments();
-        });
+            if(this.assignments[1]){
+              this.assignments.shift();
+              this.navController.push('AssignmentDetailPage',{
+                assignment: this.assignments[0],
+                type: this.assignments[0]['assignment-type'],
+                answer: this.assignments[0]['answer-type'],
+                assignments: this.assignments});
+            }
+            else{
+              this.navController.popToRoot();
+            }
+          });
       });
       correct = false;
     }
