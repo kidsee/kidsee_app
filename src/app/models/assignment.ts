@@ -26,4 +26,7 @@ export class Assignment extends JsonApiModel {
   @Attribute()
   content: String;
 
+  @Attribute()
+  completed: Boolean;
+
 }

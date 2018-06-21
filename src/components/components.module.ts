@@ -5,13 +5,15 @@ import { TimelineContainerComponent } from './timeline-container/timeline-contai
 import { TranslateModule } from '@ngx-translate/core';
 import { AnswerTypeNumberComponent } from './answer-type-number/answer-type-number';
 import { AnswerTypeMultipleChoiceComponent } from './answer-type-multiple-choice/answer-type-multiple-choice';
+import { AnswerTypeTextComponent } from './answer-type-text/answer-type-text';
 
 @NgModule({
   declarations: [
     BaseHeaderComponent,
     TimelineContainerComponent,
     AnswerTypeNumberComponent,
-    AnswerTypeMultipleChoiceComponent
+    AnswerTypeMultipleChoiceComponent,
+    AnswerTypeTextComponent
   ],
   imports: [
     IonicModule,
@@ -21,7 +23,8 @@ import { AnswerTypeMultipleChoiceComponent } from './answer-type-multiple-choice
     BaseHeaderComponent,
     TimelineContainerComponent,
     AnswerTypeNumberComponent,
-    AnswerTypeMultipleChoiceComponent
+    AnswerTypeMultipleChoiceComponent,
+    AnswerTypeTextComponent
   ]
 })
 export class ComponentsModule {

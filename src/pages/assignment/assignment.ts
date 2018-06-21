@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { AssignmentServiceProvider } from '../../providers/assignment-service/assignment-service';
-import { Assignment } from '../../app/models/assignment';
 import { AssignmentTypeServiceProvider } from '../../providers/assignment-type-service/assignment-type-service';
 import { AssignmentType } from '../../app/models/assignmentType';
+import { DiscoveryService } from "../../providers/discovery-service/discovery-service";
+import { Assignment } from "../../app/models/assignment";
 
 @IonicPage()
 @Component({
@@ -13,14 +14,16 @@ import { AssignmentType } from '../../app/models/assignmentType';
 
 export class AssignmentPage {
 
-  protected assignments : Assignment[] = [];
+  protected assignments : any[] = [];
   protected types : AssignmentType[] = [];
   protected selectedType: AssignmentType;
+  protected tour: Assignment[] = [];
 
   constructor(
     private navController: NavController,
     private assignmentService: AssignmentServiceProvider,
-    private assignmentTypeService: AssignmentTypeServiceProvider
+    private assignmentTypeService: AssignmentTypeServiceProvider,
+    private discoveryService: DiscoveryService
   ) { }
 
   ionViewDidLoad() {
@@ -51,17 +54,54 @@ export class AssignmentPage {
 
   protected selectType(type: AssignmentType) {
     this.selectedType = type;
-    this.assignments.length = 0
-    this.fetchAssignments(type.id);
+    this.assignments.length = 0;
+
+    if(type.name == 'ontdektocht'){
+      this.discoveryService.discoveries({}).subscribe(
+        assignments => {
+          assignments.getModels().forEach(assignment => {
+            this.assignments.push(assignment);
+          });
+        }
+      )
+    }
+    else{
+      this.fetchAssignments(type.id);
+    }
   };
 
-  protected goToDetailPage(assignment: Assignment) {
-    this.navController.push('AssignmentDetailPage', {
-      assignment: assignment,
-      type: assignment['assignment-type'],
-      answer: assignment["answer-type"]
-    });
-  };
+  private fetchTourAssignments(id){
+
+    this.discoveryService.discoveryAssignments({filter: {discovery_id: id}}).subscribe(
+      assignments => {
+        this.tour.length = 0;
+        assignments.getModels().forEach(assignment => {
+          this.tour.push(assignment.assignment);
+        });
+        this.navController.push('AssignmentDetailPage', {
+          assignment: this.tour[0],
+          assignments: this.tour,
+          type: this.tour[0]['assignment-type'],
+          answer: this.tour[0]['answer-type']
+        });
+      }
+    );
+  }
+
+  protected goToDetailPage(assignment: any) {
+    if(!assignment.completed) {
+      if (this.selectedType.name == 'ontdektocht') {
+        this.fetchTourAssignments(assignment.id);
+      }
+      else {
+        this.navController.push('AssignmentDetailPage', {
+          assignment: assignment,
+          type: assignment['assignment-type'],
+          answer: assignment["answer-type"]
+        });
+      }
+    }
+  }
 
   protected back() {
     this.navController.pop();

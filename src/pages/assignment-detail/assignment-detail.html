@@ -8,14 +8,19 @@
     <ion-list>
       <ion-card class="card-content" class="yellow">
         <ion-card-header>
-            {{assignment?.name}}
+            <ion-card-title> {{assignment?.name}}</ion-card-title>
             <img *ngIf=assignmentType class="brown card-icon" src="assets/imgs/AssignmentTypes/{{ assignmentType.name }}.png">
+            <ion-note class="italic brown-text">
+              {{assignment?.location?.name}}
+            </ion-note>
         </ion-card-header>
         <ion-card-content>{{assignment?.content}}
           <answer-type-multiple-choice *ngIf="answerType?.name == 'multiple_choice'">
           </answer-type-multiple-choice>
           <answer-type-number *ngIf="answerType?.name == 'number'">
-            </answer-type-number>
+          </answer-type-number>
+          <answer-type-text *ngIf="answerType?.name == 'text'">
+          </answer-type-text>
         </ion-card-content>
       </ion-card>
     </ion-list>

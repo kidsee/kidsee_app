@@ -32,7 +32,7 @@ export class QuestionandanswerPage {
     private ratingService: RatingServiceProvider,
     private authService: AuthServiceProvider,
     private themeService: ThemeServiceProvider,
-    private postTypeService: PostTypeServiceProvider
+    private postTypeService: PostTypeServiceProvider,
   ) {
     this.themeService.themes({}).subscribe(themes => {
       themes.getModels().forEach(theme => {
@@ -133,14 +133,12 @@ export class QuestionandanswerPage {
 
   protected openSort() {
     this.translateService.get(
-      ['choose_sorting', 'highest_rated', 'lowest_rated', 'most_recent', 'least_recent', 'cancel', 'sort']
+      ['choose_sorting', 'highest_rated', 'most_recent', 'cancel', 'sort']
     ).subscribe(translations => {
       let alert = this.alertService.createAlert(translations.choose_sorting);
       let options = [
         { title: translations.highest_rated, value: '-rating_count'      },
-        { title: translations.lowest_rated,  value: 'rating_count'       },
         { title: translations.most_recent,   value: '-inserted_at' },
-        { title: translations.least_recent,  value: 'inserted_at'  }
       ];
 
       options.forEach(option => {

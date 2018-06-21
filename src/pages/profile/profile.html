@@ -6,7 +6,7 @@
         </ion-col>
         <ion-col col-1></ion-col>
         <ion-col col-6 padding>
-            <img class="avatar" src="assets/imgs/profile.png" />
+            <img class="avatar" [src]="user?.avatar" />
         </ion-col>
         <ion-col col-3></ion-col>
     </ion-row>
@@ -15,7 +15,7 @@
         <ion-col>
             <ion-list>
                 <ion-item class="custom-item" >
-                    <a>{{'edit_profile_picture' | translate}}</a>
+                    <a (click)="openPictureDialog()">{{'edit_profile_picture' | translate}}</a>
                 </ion-item>
                 <ion-label class="title-label">{{'username' | translate}}</ion-label>
                 <ion-item class="custom-item" >

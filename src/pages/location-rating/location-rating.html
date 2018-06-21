@@ -29,7 +29,9 @@
                 <ion-item>
                     <ion-textarea class="custom-input" name="content" type="text" [(ngModel)]="rating.description" placeholder="{{ 'description' | translate }}" required></ion-textarea>
                 </ion-item>
-                <button ion-button class="rate-button" full type="submit">{{ 'send_rating' | translate }}</button>
+                <button ion-button class="rate-button" full type="submit">
+                    <ion-icon ios="ios-checkmark" md="md-checkmark"></ion-icon>
+                </button>
 
             </ion-list>
         </form>

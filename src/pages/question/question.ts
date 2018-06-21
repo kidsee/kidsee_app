@@ -4,6 +4,7 @@ import { Post } from "../../app/models/post";
 import { RatingServiceProvider } from "../../providers/rating-service/rating-service";
 import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
 import { JsonApiModel } from "angular2-jsonapi";
+import { PictureService } from "../../providers/picture-service/picture-service";
 
 @IonicPage()
 @Component({
@@ -18,24 +19,29 @@ export class QuestionPage {
     private navParams: NavParams,
     private ratingService: RatingServiceProvider,
     private authService: AuthServiceProvider,
+    private pictureService: PictureService
   ) { }
 
   ionViewDidEnter() {
     this.post = this.navParams.get('post');
-    if(this.post.comments) {
-      this.authService.fetchCurrentUser().then(user => {
-      this.post.comments.forEach(comment => {
-        this.ratingService.getTotalRating(comment).then(rating => {
-          comment.rating = rating;
-        });
-        this.ratingService.checkIfUserHasRatedObject(comment, user).then(rating => {
-          if(rating) {
-            comment.rated = true;
+    this.authService.fetchCurrentUser().then(user => {
+      this.post.user.avatar = this.pictureService.retrieveFullImageUrl(this.post.user.avatar);
+      if(this.post.comments) {
+        this.post.comments.forEach(comment => {
+          if(comment.user) {
+            comment.user.avatar = this.pictureService.retrieveFullImageUrl(comment.user.avatar);
           }
-        })
-      });
+          this.ratingService.getTotalRating(comment).then(rating => {
+            comment.rating = rating;
+          });
+          this.ratingService.checkIfUserHasRatedObject(comment, user).then(rating => {
+            if (rating) {
+              comment.rated = true;
+            }
+          })
+        });
+      }
     });
-    }
   }
 
   protected back() {

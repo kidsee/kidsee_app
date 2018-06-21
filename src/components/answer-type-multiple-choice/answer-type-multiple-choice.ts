@@ -18,6 +18,7 @@ export class AnswerTypeMultipleChoiceComponent {
   protected answers: Answer[]=[];
   protected filledAnswer: Answer;
   protected rightAnswer: Answer;
+  private assignments: Assignment[] = [];
 
   constructor(
     private navController: NavController,
@@ -34,14 +35,11 @@ export class AnswerTypeMultipleChoiceComponent {
     if(this.assignment){
       this.fetchAnswer(Number(this.assignment.id));
     }
+    this.assignments = this.navParams.get('assignments');
   }
 
   protected setAnswer(answer: Answer){
     this.filledAnswer = answer;
-  }
-
-  private goToAssignments() {
-    this.navController.pop();
   }
 
   private fetchAnswer(id: Number) {
@@ -67,7 +65,17 @@ export class AnswerTypeMultipleChoiceComponent {
             translations.popup_title_succes,
             translations.popup_text_succes,
             translations.ok,  _ => {
-              this.goToAssignments();
+              if(this.assignments[1]){
+                this.assignments.shift();
+                this.navController.push('AssignmentDetailPage',{
+                  assignment: this.assignments[0],
+                  type: this.assignments[0]['assignment-type'],
+                  answer: this.assignments[0]['answer-type'],
+                  assignments: this.assignments});
+              }
+              else{
+                this.navController.popToRoot();
+              }
           });
         });
         correct = true;
@@ -81,7 +89,17 @@ export class AnswerTypeMultipleChoiceComponent {
             translations.popup_title_fail,
             translations.popup_text_fail,
             translations.ok, _ =>{
-              this.goToAssignments();
+              if(this.assignments[1]){
+                this.assignments.shift();
+                this.navController.push('AssignmentDetailPage',{
+                  assignment: this.assignments[0],
+                  type: this.assignments[0]['assignment-type'],
+                  answer: this.assignments[0]['answer-type'],
+                  assignments: this.assignments});
+              }
+              else{
+                this.navController.popToRoot();
+              }
           });
         });
         correct = false;

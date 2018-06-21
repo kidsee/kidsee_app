@@ -1,0 +1,40 @@
+<ion-content class="post-content">
+  <ion-row class="logo-row questions-header">
+    <ion-col col-2>
+      <img src="assets/imgs/back-button.png" class="custom-back-button" (click)="back()" />
+    </ion-col>
+  </ion-row>
+  <ion-row class="post-row">
+    <ion-col>
+      <form (ngSubmit)="createPost()" #photoform="ngForm" class="form">
+        <ion-list>
+          <h3>{{'upload_picture' | translate}}</h3>
+          <label>{{'location' | translate}}</label>
+          <ion-item *ngIf="selectedLocation; else elseBlock" class="item-md">
+            <label> {{selectedLocation}}</label>
+          </ion-item>
+          <ng-template #elseBlock>
+            <ion-item class="item-md">
+              <ion-select name="loc" [(ngModel)]="selectedLocation" required>
+                <ion-option *ngFor="let location of locations">{{location.name}}</ion-option>
+              </ion-select>
+            </ion-item>
+          </ng-template>
+          <ion-item class="item-md">
+            <ion-input class="custom-input" type="text" name="title" [(ngModel)]="postAttributes.title" placeholder="{{ 'title' | translate }}" required></ion-input>
+          </ion-item>
+          <ion-item class="item-md">
+            <a (click)="openPictureDialog()">{{'upload_picture' | translate}}</a>
+          </ion-item>
+          <ion-item *ngIf="url">
+            <img src="{{url}}" />
+          </ion-item>
+        </ion-list>
+
+        <ion-item class="item-md">
+          <button ion-button class="submit-btn" full type="submit" [disabled]="!photoform.form.valid">{{ 'send_post' | translate }}!</button>
+        </ion-item>
+      </form>
+    </ion-col>
+  </ion-row>
+</ion-content>

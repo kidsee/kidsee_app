@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { PhotoandvideoPage } from './photoandvideo';
+import { PhotoAndVideoPage } from './photoandvideo';
+import { ComponentsModule } from "../../components/components.module";
+import { TranslateModule } from "@ngx-translate/core";
 
 @NgModule({
   declarations: [
-    PhotoandvideoPage,
+    PhotoAndVideoPage,
   ],
   imports: [
-    IonicPageModule.forChild(PhotoandvideoPage),
+    IonicPageModule.forChild(PhotoAndVideoPage),
+    TranslateModule,
+    ComponentsModule,
   ],
 })
 export class PhotoandvideoPageModule {}
