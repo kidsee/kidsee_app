@@ -12,7 +12,9 @@ export class LocationServiceProvider {
   public locations()
   {
     return new Promise((resolve, reject) => {
-      this.datastore.findAll(Location,  null).subscribe(
+      this.datastore.findAll(Location,  {
+        page_size: 999
+      }).subscribe(
         (locations: JsonApiQueryData<Location>) => {
           resolve(locations.getModels());}
       );
