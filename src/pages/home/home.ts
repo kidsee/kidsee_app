@@ -154,7 +154,7 @@ export class HomePage {
     this.radialIcons[2] = "assets/imgs/puzzle-icon.png";
     this.radialIcons[3] = "assets/imgs/rating-icon.png";
     this.radialIcons[4] = "assets/imgs/info-icon.png";
-    this.radialURLs[0] = "PhotoandvideoPage";
+    this.radialURLs[0] = "PhotoAndVideoPage";
     this.radialURLs[1] = "QuestionandanswerPage";
     this.radialURLs[2] = "AssignmentPage";
     this.radialURLs[3] = "LocationRatingPage";
@@ -250,7 +250,7 @@ export class HomePage {
   }
 
   public photoandvideo() {
-    this.navController.push('PhotoandvideoPage');
+    this.navController.push('PhotoAndVideoPage');
   }
 
 }

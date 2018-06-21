@@ -111,5 +111,11 @@
   "camera": "Camera",
   "upload": "Uploaden",
   "no_connection": "Geen internet verbinding",
-  "end_discovery": "Beëindig ontdekttocht"
+  "end_discovery": "Beëindig ontdekttocht",
+  "your_picture": "Jouw foto",
+  "upload_picture": "Plaatje uploaden",
+  "choose_source": "Kies bron",
+  "library": "Bibliotheek",
+  "camera": "Camera",
+  "upload": "Uploaden"
 }

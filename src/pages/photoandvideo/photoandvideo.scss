@@ -1,3 +1,49 @@
 page-photoandvideo {
 
+  .questions-header{
+    background: url('../assets/imgs/PhotoAndVideo/Header.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin:auto;
+    height:160px;
+  }
+
+  .comment-button {
+    float:left;
+  }
+
+  .yellow {
+    background-color: #FDF3C8;
+  }
+
+  .button-header {
+    border: 1px solid black;
+  }
+
+  .rating-icon {
+    float: left;
+  }
+
+  .border-right {
+    border-right: 1px solid black;
+  }
+
+  .questions-content {
+    background: url('../assets/imgs/PhotoAndVideo/Background.png');
+    background-size: 100%;
+    background-repeat: repeat-y;
+    width: 100%;
+  }
+
+  .questions-row {
+    text-align: center;
+  }
+
+  .light-brown {
+    color: #54330F;
+  }
+
+  .rated {
+    color: deepskyblue;
+  }
 }

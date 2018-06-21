@@ -1,13 +1,45 @@
-
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>photoandvideo</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
+<ion-content>
+  <ion-row class="logo-row questions-header">
+    <ion-col col-2>
+      <img src="assets/imgs/back-button.png" (click)="back()" />
+    </ion-col>
+  </ion-row>
+  <ion-row class="yellow button-header">
+    <ion-col col-md-auto="" class="border-right" (click)="createPost()">
+      <button class="yellow">{{'your_picture' | translate}}</button>
+    </ion-col>
+    <ion-col col-md-auto="" class="border-right">
+      <button class="yellow" (click)="openSort()">{{'sort' | translate}}</button>
+      <ion-icon name="close" class="light-brown" (click)="resetSort()"></ion-icon>
+    </ion-col>
+    <ion-col col-md-auto="">
+      <button class="yellow" (click)="openFilter()">{{'filter' | translate}}</button>
+      <ion-icon name="close" class="light-brown" (click)="resetFilter()"></ion-icon>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-list class="questions-content">
+      <ion-card *ngFor="let post of posts" (click)="goToPost(post)" class="yellow">
+        <ion-card-header>
+          <ion-card-title>{{post?.title}}</ion-card-title>
+          <ion-note class="italic">
+            {{'posted_by' | translate}}{{post.user.username}}
+          </ion-note>
+        </ion-card-header>
+        <img src="{{post?.content}}"/>
+        <button ion-button icon-left clear small class="comment-button">
+          <ion-icon name="text" class="light-brown"></ion-icon>
+          <div class="light-brown">{{post?.comments?.length || 0}} </div>
+        </button>
+        <button ion-button icon-left clear small class="rating-icon">
+          <ion-icon *ngIf="!post?.rated" name="star" class="light-brown"></ion-icon>
+          <ion-icon *ngIf="post?.rated" name="star" class="rated"></ion-icon>
+          <div class="light-brown">{{post.rating || 0}} </div>
+        </button>
+      </ion-card>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-row>
 </ion-content>

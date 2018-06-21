@@ -16,12 +16,12 @@ export class PictureService {
   public takePicture(sourceType) {
     return new Promise(resolve => {
       var options = {
-        quality: 100,
+        quality: 75,
         sourceType: sourceType,
         saveToPhotoAlbum: false,
         correctOrientation: true,
-        targetWidth: 150,
-        targetHeight: 150
+        targetWidth: 300,
+        targetHeight: 300
       };
 
       this.camera.getPicture(options).then((imagePath) => {
@@ -30,7 +30,7 @@ export class PictureService {
     });
   }
 
-  private getBase64(imagePath: string)
+  public getBase64(imagePath: string)
   {
     return new Promise(resolve => {
       this.base64.encodeFile(imagePath).then((base64File: string) => {

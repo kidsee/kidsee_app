@@ -8,6 +8,7 @@ import { AlertServiceProvider } from "../../providers/alert-service/alert-servic
 import { RatingServiceProvider } from "../../providers/rating-service/rating-service";
 import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
 import { ThemeServiceProvider } from "../../providers/theme-service/theme-service";
+import { ContentTypeServiceProvider } from "../../providers/content-type-service/content-type-service";
 
 @IonicPage()
 @Component({
@@ -30,7 +31,8 @@ export class TimelinePage {
     private translateService: TranslateService,
     private ratingService: RatingServiceProvider,
     private authService: AuthServiceProvider,
-    private themeService: ThemeServiceProvider
+    private themeService: ThemeServiceProvider,
+    private contentTypeService: ContentTypeServiceProvider
   ) {
     this.themeService.themes({}).subscribe(themes => {
       themes.getModels().forEach(theme => {
@@ -52,57 +54,66 @@ export class TimelinePage {
     this.page++;
     let params = {};
 
-    if(this.selectedFilter)
-    {
-      params = {
-        page: this.page,
-        sort: this.selectedSort
-      };
-      this.postService.postsByTheme(this.selectedFilter, params).subscribe(data => {
-        this.authService.fetchCurrentUser().then(user => {
-          let posts = data.getModels();
-          posts.forEach(post => {
-            this.ratingService.checkIfUserHasRatedObject(post, user).then(rating => {
-              if(rating) {
-                post.rated = true;
-              }
-            });
-            this.posts.push(post);
-          });
-        });
-      })
-    }
-    else {
+    this.contentTypeService.getTypeByName("plain_text").then(contentType => {
 
-      if(this.location) {
+      if (this.selectedFilter) {
         params = {
           page: this.page,
+          sort: this.selectedSort,
           filter: {
-            location_id: this.location.id,
-          },
-          sort: this.selectedSort
+            content_type_id: contentType.id
+          }
         };
+        this.postService.postsByTheme(this.selectedFilter, params).subscribe(data => {
+          this.authService.fetchCurrentUser().then(user => {
+            let posts = data.getModels();
+            posts.forEach(post => {
+              this.ratingService.checkIfUserHasRatedObject(post, user).then(rating => {
+                if (rating) {
+                  post.rated = true;
+                }
+              });
+              this.posts.push(post);
+            });
+          });
+        })
       }
       else {
-        params = {
-          page: this.page,
-          sort: this.selectedSort
-        };
-      }
 
-      this.postService.posts(params).subscribe(posts => {
-        this.authService.fetchCurrentUser().then(user => {
-          posts.getModels().forEach(post => {
-            this.ratingService.checkIfUserHasRatedObject(post, user).then(rating => {
-              if(rating) {
-                post.rated = true;
-              }
+        if (this.location) {
+          params = {
+            page: this.page,
+            filter: {
+              location_id: this.location.id,
+              content_type_id: contentType.id
+            },
+            sort: this.selectedSort
+          };
+        }
+        else {
+          params = {
+            page: this.page,
+            sort: this.selectedSort,
+            filter: {
+              content_type_id: contentType.id
+            }
+          };
+        }
+
+        this.postService.posts(params).subscribe(posts => {
+          this.authService.fetchCurrentUser().then(user => {
+            posts.getModels().forEach(post => {
+              this.ratingService.checkIfUserHasRatedObject(post, user).then(rating => {
+                if (rating) {
+                  post.rated = true;
+                }
+              });
+              this.posts.push(post);
             });
-            this.posts.push(post);
           });
         });
-      });
-    }
+      }
+    });
   }
 
   protected doInfinite(infiniteScroll) {

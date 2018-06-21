@@ -4,6 +4,7 @@ import { PostService } from "../../providers/post-service/post-service";
 import { Post } from "../../app/models/post";
 import { RatingServiceProvider } from "../../providers/rating-service/rating-service";
 import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
+import { ContentTypeServiceProvider } from "../../providers/content-type-service/content-type-service";
 
 
 @Component({
@@ -23,7 +24,8 @@ export class TimelineContainerComponent {
     private navController: NavController,
     private postService: PostService,
     private ratingService: RatingServiceProvider,
-    private authService: AuthServiceProvider
+    private authService: AuthServiceProvider,
+    private contentTypeService: ContentTypeServiceProvider
   ) {
     this.height = 25;
   }
@@ -60,19 +62,21 @@ export class TimelineContainerComponent {
 
   private fetchNewPage() {
     this.page++;
-    this.postService.posts({page: this.page, sort: '-inserted_at'}).subscribe(posts => {
-        this.authService.fetchCurrentUser().then(user => {
-          posts.getModels().forEach(post => {
-            this.ratingService.checkIfUserHasRatedObject(post, user).then(rating => {
-              if(rating) {
-                post.rated = true;
-              }
+    this.contentTypeService.getTypeByName("plain_text").then(contentType => {
+      this.postService.posts({page: this.page, sort: '-inserted_at', filter: {content_type_id: contentType.id}}).subscribe(posts => {
+          this.authService.fetchCurrentUser().then(user => {
+            posts.getModels().forEach(post => {
+              this.ratingService.checkIfUserHasRatedObject(post, user).then(rating => {
+                if (rating) {
+                  post.rated = true;
+                }
+              });
+              this.posts.push(post);
             });
-            this.posts.push(post);
           });
-        });
-      }
-    )
+        }
+      )
+    });
   }
 
   protected doInfinite(infiniteScroll) {
