@@ -117,7 +117,6 @@ export class HomePage {
         if(location.themes){
           if(location.themes[0].icon){
             var url = this.serverUrl + location.themes[0].icon;
-            console.log(url);
           }
           if(this.filteredLocationTypes.get(location.themes[0].name)){
             this.map.addMarker({
